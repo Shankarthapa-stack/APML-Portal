@@ -3,7 +3,7 @@ function openQuotation() {
 }
 
 function openGallery() {
-    alert("Packing Gallery - Coming Soon");
+    window.location.href = "gallery.html";
 }
 
 function openCarRate() {
