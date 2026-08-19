@@ -12,7 +12,7 @@ function openCarRate() {
 
 function openCalculator() {
     const amount = prompt("Enter amount:");
-    
+
     if (amount !== null && amount !== "") {
         const value = Number(amount);
 
