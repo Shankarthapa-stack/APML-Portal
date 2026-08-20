@@ -1,212 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Photos Section -->
+<div class="media-card">
+    <img src="images/packing1.jpg" alt="APML Packing Photo 1">
+</div>
+<div class="media-card">
+    <img src="images/packing2.jpg" alt="APML Packing Photo 2">
+</div>
+<div class="media-card">
+    <img src="images/packing3.jpg" alt="APML Packing Photo 3">
+</div>
+<div class="media-card">
+    <img src="images/packing4.jpg" alt="APML Packing Photo 4">
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>APML Packing Gallery</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
-            padding: 30px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        h1 {
-            text-align: center;
-            color: #0b3d91;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 35px;
-        }
-
-        h2 {
-            color: #0b3d91;
-            margin: 30px 0 20px;
-            border-left: 5px solid #0b3d91;
-            padding-left: 10px;
-        }
-
-        /* Photo Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.03);
-        }
-
-        /* Video Gallery */
-        .videos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-        }
-
-        .video-box {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-        }
-
-        .video-box video {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .video-title {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #0b3d91;
-        }
-
-        /* Back Button */
-        .back-section {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .back-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #0b3d91;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: #082f6b;
-        }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-
-            .gallery img {
-                height: 200px;
-            }
-
-            .videos {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-
-        <!-- Page Heading -->
-        <h1>APML Packing Gallery</h1>
-
-        <p class="subtitle">
-            Packing Photos & Videos
-        </p>
-
-
-        <!-- Photos -->
-        <h2>📸 Packing Photos</h2>
-
-        <div class="gallery">
-
-            <img src="./images/packing1.jpg" alt="APML Packing Photo 1">
-
-            <img src="./images/packing2.jpg" alt="APML Packing Photo 2">
-
-            <img src="./images/packing3.jpg" alt="APML Packing Photo 3">
-
-            <img src="./images/packing4.jpg" alt="APML Packing Photo 4">
-
-        </div>
-
-
-        <!-- Videos -->
-        <h2>🎥 Packing Videos</h2>
-
-        <div class="videos">
-
-            <div class="video-box">
-
-                <video controls>
-                    <source src="./images/packing-video1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-
-                <p class="video-title">
-                    Packing Video 1
-                </p>
-
-            </div>
-
-
-            <div class="video-box">
-
-                <video controls>
-                    <source src="./images/packing-video2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-
-                <p class="video-title">
-                    Packing Video 2
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- Back Button -->
-        <div class="back-section">
-
-            <a href="index.html" class="back-button">
-                ← Back to Portal
-            </a>
-
-        </div>
-
-    </div>
-
-</body>
-
-</html>
+<!-- Videos Section -->
+<div class="media-card video-card">
+    <video controls>
+        <source src="images/packing-video1.mp4" type="video/mp4">
+    </video>
+    <p class="video-caption">Packing Video 1</p>
+</div>
+<div class="media-card video-card">
+    <video controls>
+        <source src="images/packing-video2.mp4" type="video/mp4">
+    </video>
+    <p class="video-caption">Packing Video 2</p>
+</div>
