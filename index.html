@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APML Portal</title>
+    <title>APML Portal - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,46 +21,53 @@
         </div>
     </nav>
 
-    <div class="container main-content">
-        <header class="page-header">
-            <h1>APML Packing Gallery</h1>
-            <div class="divider"></div>
-        </header>
-
-        <section>
-            <h2>Photos</h2>
-            <div class="gallery-grid">
-                <div class="media-card">
-                    <img src="images/packing1.jpg" alt="Packing Photo 1">
-                </div>
-                <div class="media-card">
-                    <img src="images/packing2.jpg" alt="Packing Photo 2">
-                </div>
-                <div class="media-card">
-                    <img src="images/packing3.jpg" alt="Packing Photo 3">
-                </div>
-                <div class="media-card">
-                    <img src="images/packing4.jpg" alt="Packing Photo 4">
-                </div>
+    <header class="hero">
+        <div class="hero-container">
+            <h1>Safe, Smart & Reliable Logistics Portal</h1>
+            <p>Access APML packing media, calculate operational quotes, and view current tariffs in one centralized hub.</p>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="openGallery()">Explore Gallery</button>
+                <button class="btn btn-secondary" onclick="openCalculator()">Rate Calculator</button>
             </div>
-        </section>
+        </div>
+    </header>
 
-        <section>
-            <h2>Videos</h2>
-            <div class="video-grid">
-                <div class="media-card video-card">
-                    <video controls>
-                        <source src="images/packing-video1.mp4" type="video/mp4">
-                    </video>
+    <section class="features">
+        <h2 class="section-title">Quick Actions</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <h3>Packing Gallery</h3>
+                    <p>Inspect standard packing techniques, photo documentation, and operational video procedures.</p>
                 </div>
-                <div class="media-card video-card">
-                    <video controls>
-                        <source src="images/packing-video2.mp4" type="video/mp4">
-                    </video>
-                </div>
+                <button class="btn-link" onclick="openGallery()">Open Gallery &rarr;</button>
             </div>
-        </section>
-    </div>
+
+            <div class="card">
+                <div>
+                    <h3>Quotation Editor</h3>
+                    <p>Draft and edit customer moving estimates and consignment quotations instantly.</p>
+                </div>
+                <button class="btn-link" onclick="openQuotation()">Launch Editor &rarr;</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Car Transport Rates</h3>
+                    <p>View current vehicle relocation tariffs, carrier schedules, and regional rate cards.</p>
+                </div>
+                <button class="btn-link" onclick="openCarRate()">View Rates &rarr;</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Amount Calculator</h3>
+                    <p>Quickly calculate consignment totals, taxes, and final pricing breakdowns.</p>
+                </div>
+                <button class="btn-link" onclick="openCalculator()">Calculate &rarr;</button>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2026 APML Portal. All rights reserved.</p>
