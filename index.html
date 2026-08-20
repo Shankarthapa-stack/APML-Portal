@@ -1,78 +1,288 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APML Portal - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>APML Portal</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
+
         <div class="nav-container">
-            <a href="index.html" class="logo">APML <span>Portal</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#" onclick="openQuotation()">Quotation</a></li>
-                <li><a href="#" onclick="openCarRate()">Car Rates</a></li>
-            </ul>
+
+            <a href="index.html" class="logo">
+                APML <span>Portal</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html" class="active">
+                    Home
+                </a>
+
+                <a href="gallery.html">
+                    Gallery
+                </a>
+
+                <a href="#" onclick="openQuotation()">
+                    Quotation
+                </a>
+
+                <a href="#" onclick="openCarRate()">
+                    Car Rates
+                </a>
+
+            </div>
+
         </div>
+
     </nav>
 
-    <header class="hero">
-        <div class="hero-container">
-            <h1>Safe, Smart & Reliable Logistics Portal</h1>
-            <p>Access APML packing media, calculate operational quotes, and view current tariffs in one centralized hub.</p>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="openGallery()">Explore Gallery</button>
-                <button class="btn btn-secondary" onclick="openCalculator()">Rate Calculator</button>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                APML INTERNAL PORTAL
             </div>
+
+            <h1>
+                Welcome to <span>APML Portal</span>
+            </h1>
+
+            <p>
+                Your centralized platform for transportation quotations,
+                packing gallery, car transportation rates and calculations.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn"
+                    onclick="openQuotation()">
+                    📝 Create Quotation
+                </button>
+
+                <button class="secondary-btn"
+                    onclick="openGallery()">
+                    📸 View Packing Gallery
+                </button>
+
+            </div>
+
         </div>
-    </header>
 
-    <section class="features">
-        <h2 class="section-title">Quick Actions</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <h3>Packing Gallery</h3>
-                    <p>Inspect standard packing techniques, photo documentation, and operational video procedures.</p>
-                </div>
-                <button class="btn-link" onclick="openGallery()">Open Gallery &rarr;</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <h3>Quotation Editor</h3>
-                    <p>Draft and edit customer moving estimates and consignment quotations instantly.</p>
-                </div>
-                <button class="btn-link" onclick="openQuotation()">Launch Editor &rarr;</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <h3>Car Transport Rates</h3>
-                    <p>View current vehicle relocation tariffs, carrier schedules, and regional rate cards.</p>
-                </div>
-                <button class="btn-link" onclick="openCarRate()">View Rates &rarr;</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <h3>Amount Calculator</h3>
-                    <p>Quickly calculate consignment totals, taxes, and final pricing breakdowns.</p>
-                </div>
-                <button class="btn-link" onclick="openCalculator()">Calculate &rarr;</button>
-            </div>
-        </div>
     </section>
 
+
+    <!-- QUICK ACTIONS -->
+
+    <section class="dashboard">
+
+        <div class="section-heading">
+
+            <p class="small-heading">
+                QUICK ACCESS
+            </p>
+
+            <h2>
+                APML Operations
+            </h2>
+
+            <p>
+                Select a service to continue
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+
+            <!-- QUOTATION -->
+
+            <div class="card">
+
+                <div class="card-icon quotation-icon">
+                    📝
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Quotation Editor
+                    </h3>
+
+                    <p>
+                        Create and edit transportation quotations
+                        quickly and easily.
+                    </p>
+
+                    <button onclick="openQuotation()">
+                        Open Quotation →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- GALLERY -->
+
+            <div class="card">
+
+                <div class="card-icon gallery-icon">
+                    📸
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Packing Gallery
+                    </h3>
+
+                    <p>
+                        View packing materials, packing photos
+                        and operational videos.
+                    </p>
+
+                    <button onclick="openGallery()">
+                        Open Gallery →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CAR RATE -->
+
+            <div class="card">
+
+                <div class="card-icon car-icon">
+                    🚗
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Car Transportation
+                    </h3>
+
+                    <p>
+                        Check car transportation rates and
+                        calculate movement charges.
+                    </p>
+
+                    <button onclick="openCarRate()">
+                        View Car Rates →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CALCULATOR -->
+
+            <div class="card">
+
+                <div class="card-icon calculator-icon">
+                    🧮
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Amount Calculator
+                    </h3>
+
+                    <p>
+                        Quickly calculate transportation charges
+                        and final quotation amounts.
+                    </p>
+
+                    <button onclick="openCalculator()">
+                        Open Calculator →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- INFO SECTION -->
+
+    <section class="info-section">
+
+        <div class="info-box">
+
+            <div class="info-icon">
+                🚚
+            </div>
+
+            <div>
+
+                <h3>
+                    APML Transportation Management
+                </h3>
+
+                <p>
+                    Manage quotations, packing information,
+                    vehicle rates and operational calculations
+                    from one convenient portal.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
     <footer>
-        <p>&copy; 2026 APML Portal. All rights reserved.</p>
+
+        <div class="footer-content">
+
+            <div>
+                <strong>APML Portal</strong>
+                <p>
+                    Quotation & Transportation Management
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    © 2026 APML Portal
+                </p>
+            </div>
+
+        </div>
+
     </footer>
 
+
     <script src="script.js"></script>
+
 </body>
+
 </html>
