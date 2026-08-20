@@ -1,24 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APML Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <h1>APML Packing Gallery</h1>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">APML <span>Portal</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="#" onclick="openQuotation()">Quotation</a></li>
+                <li><a href="#" onclick="openCarRate()">Car Rates</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <h2>Photos</h2>
+    <div class="container main-content">
+        <header class="page-header">
+            <h1>APML Packing Gallery</h1>
+            <div class="divider"></div>
+        </header>
 
-    <img src="./Image/packing1.jpg" width="300">
-    <img src="./Image/packing2.jpg" width="300">
-    <img src="./Image/packing3.jpg" width="300">
+        <section>
+            <h2>Photos</h2>
+            <div class="gallery-grid">
+                <div class="media-card">
+                    <img src="images/packing1.jpg" alt="Packing Photo 1">
+                </div>
+                <div class="media-card">
+                    <img src="images/packing2.jpg" alt="Packing Photo 2">
+                </div>
+                <div class="media-card">
+                    <img src="images/packing3.jpg" alt="Packing Photo 3">
+                </div>
+                <div class="media-card">
+                    <img src="images/packing4.jpg" alt="Packing Photo 4">
+                </div>
+            </div>
+        </section>
 
-    <h2>Video</h2>
+        <section>
+            <h2>Videos</h2>
+            <div class="video-grid">
+                <div class="media-card video-card">
+                    <video controls>
+                        <source src="images/packing-video1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="media-card video-card">
+                    <video controls>
+                        <source src="images/packing-video2.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <video width="500" controls>
-        <source src="./Image/packing-video1.mp4" type="video/mp4">
-    </video>
+    <footer>
+        <p>&copy; 2026 APML Portal. All rights reserved.</p>
+    </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
