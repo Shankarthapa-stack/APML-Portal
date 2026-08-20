@@ -1,27 +1,68 @@
-<!-- Photos Section -->
-<div class="media-card">
-    <img src="images/packing1.jpg" alt="APML Packing Photo 1">
-</div>
-<div class="media-card">
-    <img src="images/packing2.jpg" alt="APML Packing Photo 2">
-</div>
-<div class="media-card">
-    <img src="images/packing3.jpg" alt="APML Packing Photo 3">
-</div>
-<div class="media-card">
-    <img src="images/packing4.jpg" alt="APML Packing Photo 4">
-</div>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APML Portal - Packing Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<!-- Videos Section -->
-<div class="media-card video-card">
-    <video controls>
-        <source src="images/packing-video1.mp4" type="video/mp4">
-    </video>
-    <p class="video-caption">Packing Video 1</p>
-</div>
-<div class="media-card video-card">
-    <video controls>
-        <source src="images/packing-video2.mp4" type="video/mp4">
-    </video>
-    <p class="video-caption">Packing Video 2</p>
-</div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">APML <span>Portal</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="#" onclick="openQuotation()">Quotation</a></li>
+                <li><a href="#" onclick="openCarRate()">Car Rates</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <header class="page-header">
+            <h1>APML Packing Gallery</h1>
+            <div class="divider"></div>
+        </header>
+
+        <section>
+            <h2>Photos</h2>
+            <div class="gallery-grid">
+                <div class="media-card">
+                    <img src="images/packing1.jpg" alt="Packed Household Items">
+                </div>
+                <div class="media-card">
+                    <img src="images/packing2.jpg" alt="APML Worker Carrying Box">
+                </div>
+                <div class="media-card">
+                    <img src="images/packing3.jpg" alt="APML Packing Handling">
+                </div>
+                <div class="media-card">
+                    <img src="images/packing4.jpg" alt="Packed Cabinet">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Videos</h2>
+            <div class="video-grid">
+                <div class="media-card video-card">
+                    <video controls>
+                        <source src="images/packing-video1.mp4" type="video/mp4">
+                        आपका ब्राउज़र वीडियो सपोर्ट नहीं करता है।
+                    </video>
+                    <p class="video-caption">Unpacking & Inspection Video</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 APML Portal. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
