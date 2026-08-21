@@ -1,534 +1,243 @@
+/* ==========================================
+   1. GLOBAL RESET & BASE STYLES
+   ========================================== */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-    font-family: "Inter", Arial, sans-serif;
-    background: #f5f8fc;
-    color: #172033;
+  background-color: #17388e; /* Main Dark Blue Theme */
+  color: #ffffff;
+  padding: 40px 20px;
+  min-height: 100vh;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-    background: #ffffff;
-    border-bottom: 1px solid #e5eaf1;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* ==========================================
+   2. HEADER & BADGE SECTION
+   ========================================== */
+.header {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 30px auto;
 }
 
+.guideline-badge {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header h1 {
+  font-size: 38px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.header h1 span {
+  color: #38b6ff; /* Sky Blue Highlight */
+}
+
+.header p {
+  font-size: 13px;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   3. BUTTONS & NAVIGATION (Click Fix Included)
+   ========================================== */
 .nav-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 18px 25px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 999; /* Fixes overlap issue blocking clicks */
 }
 
-.logo {
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: 800;
-    color: #0b3d91;
+.btn {
+  background-color: #ffffff;
+  color: #0d2b7a;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer !important; /* Enforces click pointer */
+  pointer-events: auto !important; /* Guarantees click events */
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  user-select: none;
 }
 
-.logo span {
-    color: #172033;
-    font-weight: 500;
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
-.nav-links {
-    display: flex;
-    gap: 30px;
+.btn:active {
+  transform: translateY(0);
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #555f70;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.3s;
+/* APML Portal Button Styling */
+.btn.portal-btn {
+  background-color: #ff9900; /* Orange Accent */
+  color: #ffffff;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: #0b3d91;
+.btn.portal-btn:hover {
+  background-color: #e68a00;
 }
 
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    background:
-        linear-gradient(
-            135deg,
-            #07347e,
-            #0b4fa8
-        );
-
-    color: white;
-
-    padding: 85px 25px;
-
-    text-align: center;
+/* Active Category Button State */
+.btn.active {
+  background-color: #00bcd4; /* Cyan Active Color */
+  color: #ffffff;
 }
 
-.hero-content {
-    max-width: 850px;
-    margin: auto;
-}
-
-.hero-badge {
-    display: inline-block;
-
-    background: rgba(255, 255, 255, 0.12);
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-
-    padding: 8px 16px;
-
-    border-radius: 30px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 20px;
-}
-
-.hero h1 {
-    font-size: 52px;
-    line-height: 1.15;
-
-    margin-bottom: 20px;
-
-    font-weight: 800;
-}
-
-.hero h1 span {
-    color: #dbeafe;
-}
-
-.hero p {
-    max-width: 700px;
-
-    margin: auto;
-
-    font-size: 17px;
-
-    line-height: 1.7;
-
-    color: #e7efff;
-}
-
-.hero-buttons {
-    margin-top: 32px;
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 15px;
-
-    flex-wrap: wrap;
-}
-
-.primary-btn,
-.secondary-btn {
-    border: none;
-
-    padding: 14px 24px;
-
-    border-radius: 8px;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.primary-btn {
-    background: white;
-    color: #0b3d91;
-}
-
-.primary-btn:hover {
-    transform: translateY(-2px);
-}
-
-.secondary-btn {
-    background: transparent;
-
-    color: white;
-
-    border: 1px solid rgba(255,255,255,0.5);
-}
-
-.secondary-btn:hover {
-    background: rgba(255,255,255,0.12);
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-.dashboard {
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 70px 25px;
-}
-
-.section-heading {
-    text-align: center;
-
-    margin-bottom: 40px;
-}
-
-.small-heading {
-    color: #0b3d91;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    margin-bottom: 8px;
-}
-
-.section-heading h2 {
-    font-size: 32px;
-
-    margin-bottom: 8px;
-}
-
-.section-heading > p:last-child {
-    color: #70798a;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   CARDS
-========================= */
-
-.cards {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 24px;
+/* ==========================================
+   4. GALLERY GRID & CARDS
+   ========================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card {
-    background: white;
-
-    border: 1px solid #e5eaf1;
-
-    border-radius: 14px;
-
-    padding: 28px;
-
-    display: flex;
-
-    gap: 20px;
-
-    min-height: 210px;
-
-    box-shadow:
-        0 8px 25px rgba(20, 45, 90, 0.06);
-
-    transition:
-        transform 0.3s,
-        box-shadow 0.3s;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  color: #333333;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 15px 35px rgba(20, 45, 90, 0.12);
+  transform: translateY(-4px);
 }
 
-.card-icon {
-    min-width: 60px;
-    height: 60px;
-
-    border-radius: 12px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 28px;
+.card-media {
+  height: 230px;
+  background-color: #0b1528;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.quotation-icon {
-    background: #eaf2ff;
+.card-media img, 
+.card-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.gallery-icon {
-    background: #f0edff;
+.card-body {
+  padding: 18px 20px 12px 20px;
+  flex-grow: 1;
 }
 
-.car-icon {
-    background: #eaf8f0;
+.card-subtitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0088cc;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
 }
 
-.calculator-icon {
-    background: #fff4df;
+.card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1f2937;
 }
 
-.card-content {
-    flex: 1;
+/* Card Footer & Action Links */
+.card-footer {
+  padding: 14px 20px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
 }
 
-.card h3 {
-    font-size: 20px;
-
-    margin-bottom: 10px;
+.action-link {
+  color: #0088cc;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.card p {
-    color: #687386;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-    margin-bottom: 20px;
+.action-link:hover {
+  color: #005580;
+  text-decoration: underline;
 }
 
-.card button {
-    border: none;
-
-    background: none;
-
-    color: #0b3d91;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    padding: 0;
-
-    font-size: 14px;
+.download-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-.card button:hover {
-    text-decoration: underline;
+.download-btn:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
 }
 
-
-/* =========================
-   INFO SECTION
-========================= */
-
-.info-section {
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 0 25px 70px;
-}
-
-.info-box {
-    background: white;
-
-    border: 1px solid #e5eaf1;
-
-    border-radius: 14px;
-
-    padding: 25px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-}
-
-.info-icon {
-    width: 55px;
-    height: 55px;
-
-    border-radius: 12px;
-
-    background: #eaf2ff;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
+/* ==========================================
+   5. RESPONSIVE DESIGN (MOBILE FIXES)
+   ========================================== */
+@media (max-width: 600px) {
+  .header h1 {
     font-size: 26px;
-}
-
-.info-box h3 {
-    margin-bottom: 6px;
-}
-
-.info-box p {
-    color: #6b7484;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    background: #0b1f3a;
-
-    color: white;
-
-    padding: 30px 25px;
-}
-
-.footer-content {
-    max-width: 1200px;
-
-    margin: auto;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 20px;
-}
-
-.footer-content strong {
-    font-size: 18px;
-}
-
-.footer-content p {
-    color: #aebbd0;
-
-    font-size: 13px;
-
-    margin-top: 5px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .nav-container {
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-    .nav-links {
-        gap: 15px;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-    }
-
-    .hero {
-        padding: 60px 20px;
-    }
-
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero p {
-        font-size: 15px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .card {
-        min-height: auto;
-    }
-
-    .info-box {
-        align-items: flex-start;
-    }
-
-    .footer-content {
-        flex-direction: column;
-
-        text-align: center;
-    }
-}
-
-
-@media (max-width: 480px) {
-
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .primary-btn,
-    .secondary-btn {
-        width: 100%;
-    }
-
-    .card {
-        flex-direction: column;
-    }
-
-}<!-- Header Navigation Section -->
-<div class="nav-container">
-  <!-- APML Portal Button -->
-  <a href="https://your-apml-portal-url.com" class="portal-btn">
-    🌐 APML Portal
-  </a>
-
-  <!-- Category Filter Buttons -->
-  <button class="filter-btn active" onclick="filterGallery('truck')">🚚 Truck</button>
-  <button class="filter-btn" onclick="filterGallery('packing')">📦 Packing Images</button>
-  <button class="filter-btn" onclick="filterGallery('bike')">🏍️ Bike Packing</button>
-  <button class="filter-btn" onclick="filterGallery('car')">🚗 Car Transportation</button>
-  <button class="filter-btn" onclick="filterGallery('solidbox')">📦 Solid BOX</button>
-  <button class="filter-btn" onclick="filterGallery('tvbox')">📺 TV BOX</button>
-</div>
-
-<script>
-  function filterGallery(category) {
-    console.log("Selected category:", category);
-    // Dynamic image/video filtering logic yahan likhein
   }
-</script>
+
+  .nav-container {
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
