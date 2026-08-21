@@ -510,4 +510,25 @@ footer {
         flex-direction: column;
     }
 
-}
+}<!-- Header Navigation Section -->
+<div class="nav-container">
+  <!-- APML Portal Button -->
+  <a href="https://your-apml-portal-url.com" class="portal-btn">
+    🌐 APML Portal
+  </a>
+
+  <!-- Category Filter Buttons -->
+  <button class="filter-btn active" onclick="filterGallery('truck')">🚚 Truck</button>
+  <button class="filter-btn" onclick="filterGallery('packing')">📦 Packing Images</button>
+  <button class="filter-btn" onclick="filterGallery('bike')">🏍️ Bike Packing</button>
+  <button class="filter-btn" onclick="filterGallery('car')">🚗 Car Transportation</button>
+  <button class="filter-btn" onclick="filterGallery('solidbox')">📦 Solid BOX</button>
+  <button class="filter-btn" onclick="filterGallery('tvbox')">📺 TV BOX</button>
+</div>
+
+<script>
+  function filterGallery(category) {
+    console.log("Selected category:", category);
+    // Dynamic image/video filtering logic yahan likhein
+  }
+</script>
