@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APML Packing Gallery</title>
+  <title>APML Portal - Main Dashboard</title>
   <style>
-    /* Global Reset & Theme */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,11 +19,10 @@
       min-height: 100vh;
     }
 
-    /* Top Badge & Header */
     .header {
       text-align: center;
       max-width: 900px;
-      margin: 0 auto 30px auto;
+      margin: 0 auto 40px auto;
     }
 
     .guideline-badge {
@@ -37,7 +35,6 @@
       padding: 6px 16px;
       border-radius: 20px;
       margin-bottom: 15px;
-      letter-spacing: 0.5px;
     }
 
     .header h1 {
@@ -51,252 +48,117 @@
     }
 
     .header p {
-      font-size: 13px;
+      font-size: 14px;
       color: #d1d5db;
-      line-height: 1.5;
     }
 
-    /* Navigation / Buttons Section */
-    .nav-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 9999; /* Click overlay fix */
-    }
-
-    .btn {
-      background-color: #ffffff;
-      color: #0d2b7a;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 25px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer !important;
-      pointer-events: auto !important;
-      transition: all 0.2s ease-in-out;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      user-select: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    }
-
-    .btn.portal-btn {
-      background-color: #ff9900;
-      color: #ffffff;
-    }
-
-    .btn.portal-btn:hover {
-      background-color: #e68a00;
-    }
-
-    .btn.active {
-      background-color: #00bcd4;
-      color: #ffffff;
-    }
-
-    /* Gallery Grid Section */
-    .gallery-grid {
+    .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
     .card {
       background: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
+      border-radius: 16px;
+      padding: 25px;
       color: #333333;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    .card-media {
-      height: 220px;
-      background-color: #111a33;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
     }
 
-    .card-media img, .card-media video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 15px 20px;
-      flex-grow: 1;
-    }
-
-    .card-subtitle {
-      font-size: 11px;
-      font-weight: bold;
-      color: #0088cc;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 5px;
-    }
-
-    .card-title {
-      font-size: 18px;
-      font-weight: bold;
+    .card h3 {
+      font-size: 20px;
       color: #1f2937;
+      margin-bottom: 10px;
     }
 
-    .card-footer {
-      padding: 12px 20px;
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .action-link {
-      color: #0088cc;
-      text-decoration: none;
+    .card p {
       font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      background-color: #00bcd4;
+      color: #ffffff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+      transition: all 0.2s;
     }
 
-    .action-link:hover {
-      text-decoration: underline;
+    .btn:hover {
+      background-color: #0097a7;
+      transform: translateY(-2px);
     }
 
-    .download-btn {
-      background: #f3f4f6;
-      border: 1px solid #d1d5db;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s;
+    .btn-orange {
+      background-color: #ff9900;
     }
 
-    .download-btn:hover {
-      background: #e5e7eb;
+    .btn-orange:hover {
+      background-color: #e68a00;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header Section -->
   <div class="header">
-    <div class="guideline-badge">📋 Standard Packaging Guidelines</div>
-    <h1>APML <span>Packing Gallery</span></h1>
-    <p>Comprehensive reference guidelines, fleet operations, specialized Solid & TV cartons, vehicle loading protocols, carrier lashing, and packing demonstration videos.</p>
+    <div class="guideline-badge">Official Portal</div>
+    <h1>APML <span>Operations Dashboard</span></h1>
+    <p>Agarwal Packers and Movers Limited - Operations & Resource Management Portal</p>
   </div>
 
-  <!-- Navigation Buttons Row -->
-  <div class="nav-container">
-    <!-- APML Portal Button (Is href me apna main page link dalein) -->
-    <a href="https://your-apml-portal-link.com" target="_blank" class="btn portal-btn">🌐 APML Portal</a>
+  <div class="dashboard-grid">
 
-    <!-- Category Filters -->
-    <button type="button" class="btn active" onclick="filterGallery(this, 'truck')">🚚 Truck</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'bike')">🏍️ Bike Packing</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'car')">🚗 Car Transportation</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'solidbox')">📦 Solid BOX</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'tvbox')">📺 TV BOX</button>
-  </div>
-
-  <!-- Gallery Grid Items -->
-  <div class="gallery-grid">
-
-    <!-- Card 1 -->
-    <div class="card gallery-item truck">
-      <div class="card-media">
-        <img src="truck1.jpg" alt="Truck Fleet Image 1" onerror="this.style.display='none'">
+    <!-- Card 1: Gallery -->
+    <div class="card">
+      <div>
+        <div class="card-icon">📦</div>
+        <h3>Packing Gallery</h3>
+        <p>View standard packaging guidelines, truck fleet images, bike packing, and loading videos.</p>
       </div>
-      <div class="card-body">
-        <div class="card-subtitle">Truck Fleet</div>
-        <div class="card-title">Image 1</div>
-      </div>
-      <div class="card-footer">
-        <a href="#" class="action-link">View Fullscreen 🔍</a>
-        <button type="button" class="download-btn" title="Download">⬇️</button>
-      </div>
+      <a href="gallery.html" class="btn">Open Gallery ➔</a>
     </div>
 
-    <!-- Card 2 -->
-    <div class="card gallery-item truck">
-      <div class="card-media">
-        <img src="truck2.jpg" alt="Truck Fleet Image 2" onerror="this.style.display='none'">
+    <!-- Card 2: Calculator -->
+    <div class="card">
+      <div>
+        <div class="card-icon">🧮</div>
+        <h3>Amount Calculator</h3>
+        <p>Calculate estimated packing and moving costs instantly for customer quotes.</p>
       </div>
-      <div class="card-body">
-        <div class="card-subtitle">Truck Fleet</div>
-        <div class="card-title">Image 2</div>
-      </div>
-      <div class="card-footer">
-        <a href="#" class="action-link">View Fullscreen 🔍</a>
-        <button type="button" class="download-btn" title="Download">⬇️</button>
-      </div>
+      <button type="button" class="btn btn-orange">Calculate Amount ➔</button>
     </div>
 
-    <!-- Card 3 -->
-    <div class="card gallery-item truck">
-      <div class="card-media">
-        <video controls style="width:100%; height:100%;">
-          <source src="video1.mp4" type="video/mp4">
-          Your browser does not support video playback.
-        </video>
+    <!-- Card 3: Guidelines -->
+    <div class="card">
+      <div>
+        <div class="card-icon">📋</div>
+        <h3>Standard Guidelines</h3>
+        <p>Official vehicle loading protocols, carrier lashing, and safety demonstration instructions.</p>
       </div>
-      <div class="card-body">
-        <div class="card-subtitle">Truck Fleet • Video</div>
-        <div class="card-title">Video 1</div>
-      </div>
-      <div class="card-footer">
-        <a href="#" class="action-link">Play Video ▶️</a>
-        <button type="button" class="download-btn" title="Download">⬇️</button>
-      </div>
+      <button type="button" class="btn" style="background-color: #333;">View Guidelines ➔</button>
     </div>
 
   </div>
 
-  <!-- Dynamic Filter Logic -->
-  <script>
-    function filterGallery(element, category) {
-      // 1. Subhi buttons se active state hatayein
-      const buttons = document.querySelectorAll('.nav-container .btn:not(.portal-btn)');
-      buttons.forEach(btn => btn.classList.remove('active'));
-
-      // 2. Selected button ko active karein
-      element.classList.add('active');
-
-      // 3. Category show/hide logic
-      const items = document.querySelectorAll('.gallery-item');
-      items.forEach(item => {
-        if (category === 'all' || item.classList.contains(category)) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-  </script>
 </body>
 </html>
