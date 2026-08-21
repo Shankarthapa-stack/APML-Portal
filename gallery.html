@@ -1,131 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APML Packing Gallery</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #17388e;
+      color: #ffffff;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+    }
+
+    .guideline-badge {
+      display: inline-block;
+      background: #ffffff;
+      color: #333333;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .header h1 span {
+      color: #38b6ff;
+    }
+
+    .header p {
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 9999;
+    }
+
+    .btn {
+      background-color: #ffffff;
+      color: #0d2b7a;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer !important;
+      pointer-events: auto !important;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      user-select: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    .btn.portal-btn {
+      background-color: #ff9900;
+      color: #ffffff;
+    }
+
+    .btn.portal-btn:hover {
+      background-color: #e68a00;
+    }
+
+    .btn.active {
+      background-color: #00bcd4;
+      color: #ffffff;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #333333;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .card-media {
+      height: 240px;
+      background-color: #111a33;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-media img, .card-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px 20px;
+      flex-grow: 1;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      font-weight: bold;
+      color: #0088cc;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1f2937;
+    }
+
+    .card-footer {
+      padding: 12px 20px;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action-link {
+      color: #0088cc;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
+
+    .download-btn {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .download-btn:hover {
+      background: #e5e7eb;
+    }
+  </style>
 </head>
-<body class="bg-blue-900 text-white min-h-screen p-8">
+<body>
 
-  <!-- Header Section -->
-  <div class="text-center max-w-3xl mx-auto mb-8">
-    <span class="inline-block bg-white text-gray-800 text-xs font-bold uppercase px-4 py-1.5 rounded-full mb-4 shadow">
-      📋 Standard Packaging Guidelines
-    </span>
-    <h1 class="text-4xl font-extrabold mb-3">APML <span class="text-sky-400">Packing Gallery</span></h1>
-    <p class="text-sm text-gray-200">
-      Comprehensive reference guidelines, fleet operations, specialized Solid & TV cartons, vehicle loading protocols, carrier lashing, and packing demonstration videos.
-    </p>
+  <!-- Top Header Section -->
+  <div class="header">
+    <div class="guideline-badge">📋 Standard Packaging Guidelines</div>
+    <h1>APML <span>Packing Gallery</span></h1>
+    <p>Comprehensive reference guidelines, fleet operations, specialized Solid & TV cartons, vehicle loading protocols, carrier lashing, and packing demonstration videos.</p>
   </div>
 
-  <!-- Navigation & Category Buttons -->
-  <div class="flex flex-wrap justify-center gap-3 mb-10 max-w-5xl mx-auto">
-    <!-- APML Portal Button (Index Page Link) -->
-    <a href="index.html" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-2 rounded-full border-2 border-black inline-flex items-center gap-2 shadow-sm transition">
-      🌐 APML Portal
-    </a>
+  <!-- Navigation Buttons Row -->
+  <div class="nav-container">
+    <a href="index.html" class="btn portal-btn">🌐 APML Portal</a>
 
-    <!-- Category Filter Buttons -->
-    <button type="button" class="filter-btn bg-sky-500 text-white border-2 border-black px-5 py-2 rounded-full font-bold shadow-sm transition" onclick="filterGallery(this, 'truck')">
-      🚚 Truck
-    </button>
-    <button type="button" class="filter-btn border border-black bg-white text-sky-600 px-5 py-2 rounded-full font-bold shadow-sm transition" onclick="filterGallery(this, 'packing')">
-      📦 Packing Images
-    </button>
-    <button type="button" class="filter-btn border border-black bg-white text-sky-600 px-5 py-2 rounded-full font-bold shadow-sm transition" onclick="filterGallery(this, 'bike')">
-      🏍️ Bike Packing
-    </button>
-    <button type="button" class="filter-btn border border-black bg-white text-sky-600 px-5 py-2 rounded-full font-bold shadow-sm transition" onclick="filterGallery(this, 'car')">
-      🚗 Car Transportation
-    </button>
-    <button type="button" class="filter-btn border border-black bg-white text-sky-600 px-5 py-2 rounded-full font-bold shadow-sm transition" onclick="filterGallery(this, 'solidbox')">
-      📦 Solid BOX
-    </button>
-    <button type="button" class="filter-btn border border-black bg-white text-sky-600 px-5 py-2 rounded-full font-bold shadow-sm transition" onclick="filterGallery(this, 'tvbox')">
-      📺 TV BOX
-    </button>
+    <button type="button" class="btn active" onclick="filterGallery(this, 'all')">✨ Show All</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'truck')">🚚 Truck Fleet</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'bike')">🏍️ Bike Packing</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'car')">🚗 Car Transportation</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'solidbox')">📦 Solid BOX</button>
   </div>
 
-  <!-- Gallery Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+  <!-- Gallery Grid Items -->
+  <div class="gallery-grid">
 
-    <!-- Item 1: Truck Image -->
-    <div class="gallery-item truck bg-white rounded-2xl border border-black shadow-sm overflow-hidden text-gray-800 flex flex-col">
-      <div class="h-56 bg-slate-900 flex items-center justify-center overflow-hidden">
-        <img src="images/packing1.jpg" alt="Truck Fleet Image 1" class="w-full h-full object-cover" onerror="this.style.display='none'">
+    <!-- Packing Image 1: Small Items / Crockery -->
+    <div class="card gallery-item packing">
+      <div class="card-media">
+        <img src="images/Image1 (2).jpg" alt="Small Items Packing">
       </div>
-      <div class="p-5 flex-1">
-        <span class="text-xs font-bold text-sky-500 uppercase tracking-wide">Truck Fleet</span>
-        <h3 class="text-xl font-bold text-gray-900 mt-1">Image 1</h3>
+      <div class="card-body">
+        <div class="card-subtitle">Packing Images</div>
+        <div class="card-title">Small Items & Crockery</div>
       </div>
-      <div class="p-4 border-t border-gray-200 flex justify-between items-center bg-gray-50">
-        <button type="button" class="text-sky-600 font-bold hover:underline flex items-center gap-1 text-sm">
-          View Fullscreen 🔍
-        </button>
-        <a href="images/packing1.jpg" download class="p-2 bg-white border border-gray-300 rounded-full hover:bg-gray-100 shadow-sm" title="Download">
-          ⬇️
-        </a>
+      <div class="card-footer">
+        <a href="images/Image1 (2).jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
+        <a href="images/Image1 (2).jpg" download class="download-btn" title="Download">⬇️</a>
       </div>
     </div>
 
-    <!-- Item 2: Packing Image -->
-    <div class="gallery-item packing bg-white rounded-2xl border border-black shadow-sm overflow-hidden text-gray-800 flex flex-col">
-      <div class="h-56 bg-slate-900 flex items-center justify-center overflow-hidden">
-        <img src="images/packing2.jpg" alt="Packing Image 2" class="w-full h-full object-cover" onerror="this.style.display='none'">
+    <!-- Packing Image 2: Fridge Packing -->
+    <div class="card gallery-item packing">
+      <div class="card-media">
+        <img src="images/Image2.jpg" alt="Fridge Packing">
       </div>
-      <div class="p-5 flex-1">
-        <span class="text-xs font-bold text-sky-500 uppercase tracking-wide">Packing Operations</span>
-        <h3 class="text-xl font-bold text-gray-900 mt-1">Image 2</h3>
+      <div class="card-body">
+        <div class="card-subtitle">Packing Images • Appliance</div>
+        <div class="card-title">Fridge Packing</div>
       </div>
-      <div class="p-4 border-t border-gray-200 flex justify-between items-center bg-gray-50">
-        <button type="button" class="text-sky-600 font-bold hover:underline flex items-center gap-1 text-sm">
-          View Fullscreen 🔍
-        </button>
-        <a href="images/packing2.jpg" download class="p-2 bg-white border border-gray-300 rounded-full hover:bg-gray-100 shadow-sm" title="Download">
-          ⬇️
-        </a>
+      <div class="card-footer">
+        <a href="images/Image2.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
+        <a href="images/Image2.jpg" download class="download-btn" title="Download">⬇️</a>
       </div>
     </div>
 
-    <!-- Item 3: Video -->
-    <div class="gallery-item truck packing bg-white rounded-2xl border border-black shadow-sm overflow-hidden text-gray-800 flex flex-col">
-      <div class="h-56 bg-slate-900 flex items-center justify-center">
-        <video controls class="w-full h-full object-cover">
+    <!-- Packing Image 3: Washing Machine -->
+    <div class="card gallery-item packing">
+      <div class="card-media">
+        <img src="images/Image3.jpg" alt="Washing Machine Packing">
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Packing Images • Appliance</div>
+        <div class="card-title">Washing Machine Packing</div>
+      </div>
+      <div class="card-footer">
+        <a href="images/Image3.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
+        <a href="images/Image3.jpg" download class="download-btn" title="Download">⬇️</a>
+      </div>
+    </div>
+
+    <!-- Packing Image 4: Wooden Crating -->
+    <div class="card gallery-item packing">
+      <div class="card-media">
+        <img src="images/Image4.jpg" alt="Wooden Crating">
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Packing Images • Crating</div>
+        <div class="card-title">Wooden Frame Crating</div>
+      </div>
+      <div class="card-footer">
+        <a href="images/Image4.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
+        <a href="images/Image4.jpg" download class="download-btn" title="Download">⬇️</a>
+      </div>
+    </div>
+
+    <!-- Packing Image 5: Crockery Cabinet -->
+    <div class="card gallery-item packing">
+      <div class="card-media">
+        <img src="images/Image5.jpg" alt="Crockery Cabinet Packing">
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Packing Images • Furniture</div>
+        <div class="card-title">Crockery Cabinet Packing</div>
+      </div>
+      <div class="card-footer">
+        <a href="images/Image5.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
+        <a href="images/Image5.jpg" download class="download-btn" title="Download">⬇️</a>
+      </div>
+    </div>
+
+    <!-- Packing Image 6: Temple / Mandir -->
+    <div class="card gallery-item packing">
+      <div class="card-media">
+        <img src="images/Image6.jpg" alt="Temple Mandir Packing">
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Packing Images • Fragile</div>
+        <div class="card-title">Temple / Mandir Packing</div>
+      </div>
+      <div class="card-footer">
+        <a href="images/Image6.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
+        <a href="images/Image6.jpg" download class="download-btn" title="Download">⬇️</a>
+      </div>
+    </div>
+
+    <!-- Truck Video Sample -->
+    <div class="card gallery-item truck">
+      <div class="card-media">
+        <video controls style="width:100%; height:100%;">
           <source src="images/packing-video1.mp4" type="video/mp4">
           Your browser does not support video playback.
         </video>
       </div>
-      <div class="p-5 flex-1">
-        <span class="text-xs font-bold text-sky-500 uppercase tracking-wide">Truck Fleet • Video</span>
-        <h3 class="text-xl font-bold text-gray-900 mt-1">Video 1</h3>
+      <div class="card-body">
+        <div class="card-subtitle">Truck Fleet • Video</div>
+        <div class="card-title">Fleet Video 1</div>
       </div>
-      <div class="p-4 border-t border-gray-200 flex justify-between items-center bg-gray-50">
-        <span class="text-sky-600 font-bold text-sm flex items-center gap-1">
-          Play Video ▶️
-        </span>
-        <a href="images/packing-video1.mp4" download class="p-2 bg-white border border-gray-300 rounded-full hover:bg-gray-100 shadow-sm" title="Download">
-          ⬇️
-        </a>
+      <div class="card-footer">
+        <span class="action-link">Play Video ▶️</span>
+        <a href="images/packing-video1.mp4" download class="download-btn" title="Download">⬇️</a>
       </div>
     </div>
 
   </div>
 
-  <!-- Filter Functionality JavaScript -->
+  <!-- Dynamic Filtering Logic -->
   <script>
-    function filterGallery(selectedBtn, category) {
-      // 1. Unselected buttons ko reset karein
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      filterButtons.forEach(btn => {
-        btn.className = 'filter-btn border border-black bg-white text-sky-600 px-5 py-2 rounded-full font-bold shadow-sm transition';
-      });
+    function filterGallery(element, category) {
+      const buttons = document.querySelectorAll('.nav-container .btn:not(.portal-btn)');
+      buttons.forEach(btn => btn.classList.remove('active'));
 
-      // 2. Clicked button ko blue active highlight karein
-      selectedBtn.className = 'filter-btn bg-sky-500 text-white border-2 border-black px-5 py-2 rounded-full font-bold shadow-sm transition';
+      element.classList.add('active');
 
-      // 3. Category show/hide logic
       const items = document.querySelectorAll('.gallery-item');
       items.forEach(item => {
         if (category === 'all' || item.classList.contains(category)) {
