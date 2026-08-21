@@ -58,15 +58,18 @@ body {
 /* ==========================================
    3. BUTTONS & NAVIGATION (Click Fix Included)
    ========================================== */
-.nav-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 999; /* Fixes overlap issue blocking clicks */
+<div class="nav-container">
+  <!-- Main Page par redirect karne ke liye href mein apne main page ka path/URL dalein -->
+  <a href="index.html" class="btn portal-btn">🌐 APML Portal</a>
+
+  <!-- Baaki Gallery Category Buttons -->
+  <button class="btn active" onclick="filterGallery(this, 'truck')">🚚 Truck</button>
+  <button class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
+  <button class="btn" onclick="filterGallery(this, 'bike')">🏍️ Bike Packing</button>
+  <button class="btn" onclick="filterGallery(this, 'car')">🚗 Car Transportation</button>
+  <button class="btn" onclick="filterGallery(this, 'solidbox')">📦 Solid BOX</button>
+  <button class="btn" onclick="filterGallery(this, 'tvbox')">📺 TV BOX</button>
+</div> */
 }
 
 .btn {
