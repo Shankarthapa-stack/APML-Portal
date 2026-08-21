@@ -1,288 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APML Packing Gallery</title>
+  <style>
+    /* Global Reset & Theme */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-    <title>APML Portal</title>
+    body {
+      background-color: #17388e;
+      color: #ffffff;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    /* Top Badge & Header */
+    .header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+    }
 
-    <link rel="stylesheet" href="style.css">
+    .guideline-badge {
+      display: inline-block;
+      background: #ffffff;
+      color: #333333;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .header h1 span {
+      color: #38b6ff;
+    }
+
+    .header p {
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    /* Navigation / Buttons Section */
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 100; /* Click issue fix */
+    }
+
+    .btn {
+      background-color: #ffffff;
+      color: #0d2b7a;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer !important; /* Forces pointer cursor */
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      user-select: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    .btn.portal-btn {
+      background-color: #ff9900;
+      color: #ffffff;
+    }
+
+    .btn.active {
+      background-color: #00bcd4;
+      color: #ffffff;
+    }
+
+    /* Gallery Grid Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #333333;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .card-media {
+      height: 220px;
+      background-color: #111a33;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-media img, .card-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px 20px;
+      flex-grow: 1;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      font-weight: bold;
+      color: #0088cc;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1f2937;
+    }
+
+    .card-footer {
+      padding: 12px 20px;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action-link {
+      color: #0088cc;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
+
+    .download-btn {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .download-btn:hover {
+      background: #e5e7eb;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-
-        <div class="nav-container">
-
-            <a href="index.html" class="logo">
-                APML <span>Portal</span>
-            </a>
-
-            <div class="nav-links">
-
-                <a href="index.html" class="active">
-                    Home
-                </a>
-
-                <a href="gallery.html">
-                    Gallery
-                </a>
-
-                <a href="#" onclick="openQuotation()">
-                    Quotation
-                </a>
-
-                <a href="#" onclick="openCarRate()">
-                    Car Rates
-                </a>
-
-            </div>
-
-        </div>
-
-    </nav>
-
-
-    <!-- HERO SECTION -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="hero-badge">
-                APML INTERNAL PORTAL
-            </div>
-
-            <h1>
-                Welcome to <span>APML Portal</span>
-            </h1>
-
-            <p>
-                Your centralized platform for transportation quotations,
-                packing gallery, car transportation rates and calculations.
-            </p>
-
-            <div class="hero-buttons">
-
-                <button class="primary-btn"
-                    onclick="openQuotation()">
-                    📝 Create Quotation
-                </button>
-
-                <button class="secondary-btn"
-                    onclick="openGallery()">
-                    📸 View Packing Gallery
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- QUICK ACTIONS -->
-
-    <section class="dashboard">
-
-        <div class="section-heading">
-
-            <p class="small-heading">
-                QUICK ACCESS
-            </p>
-
-            <h2>
-                APML Operations
-            </h2>
-
-            <p>
-                Select a service to continue
-            </p>
-
-        </div>
-
-
-        <div class="cards">
-
-
-            <!-- QUOTATION -->
-
-            <div class="card">
-
-                <div class="card-icon quotation-icon">
-                    📝
-                </div>
-
-                <div class="card-content">
-
-                    <h3>
-                        Quotation Editor
-                    </h3>
-
-                    <p>
-                        Create and edit transportation quotations
-                        quickly and easily.
-                    </p>
-
-                    <button onclick="openQuotation()">
-                        Open Quotation →
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- GALLERY -->
-
-            <div class="card">
-
-                <div class="card-icon gallery-icon">
-                    📸
-                </div>
-
-                <div class="card-content">
-
-                    <h3>
-                        Packing Gallery
-                    </h3>
-
-                    <p>
-                        View packing materials, packing photos
-                        and operational videos.
-                    </p>
-
-                    <button onclick="openGallery()">
-                        Open Gallery →
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CAR RATE -->
-
-            <div class="card">
-
-                <div class="card-icon car-icon">
-                    🚗
-                </div>
-
-                <div class="card-content">
-
-                    <h3>
-                        Car Transportation
-                    </h3>
-
-                    <p>
-                        Check car transportation rates and
-                        calculate movement charges.
-                    </p>
-
-                    <button onclick="openCarRate()">
-                        View Car Rates →
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CALCULATOR -->
-
-            <div class="card">
-
-                <div class="card-icon calculator-icon">
-                    🧮
-                </div>
-
-                <div class="card-content">
-
-                    <h3>
-                        Amount Calculator
-                    </h3>
-
-                    <p>
-                        Quickly calculate transportation charges
-                        and final quotation amounts.
-                    </p>
-
-                    <button onclick="openCalculator()">
-                        Open Calculator →
-                    </button>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- INFO SECTION -->
-
-    <section class="info-section">
-
-        <div class="info-box">
-
-            <div class="info-icon">
-                🚚
-            </div>
-
-            <div>
-
-                <h3>
-                    APML Transportation Management
-                </h3>
-
-                <p>
-                    Manage quotations, packing information,
-                    vehicle rates and operational calculations
-                    from one convenient portal.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <div class="footer-content">
-
-            <div>
-                <strong>APML Portal</strong>
-                <p>
-                    Quotation & Transportation Management
-                </p>
-            </div>
-
-            <div>
-                <p>
-                    © 2026 APML Portal
-                </p>
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <script src="script.js"></script>
-
+  <!-- Top Guidelines Badge & Title -->
+  <div class="header">
+    <div class="guideline-badge">📋 Standard Packaging Guidelines</div>
+    <h1>APML <span>Packing Gallery</span></h1>
+    <p>Comprehensive reference guidelines, fleet operations, specialized Solid & TV cartons, vehicle loading protocols, carrier lashing, and packing demonstration videos.</p>
+  </div>
+
+  <!-- Navigation Buttons Row -->
+  <div class="nav-container">
+    <!-- APML Portal Button -->
+    <a href="https://your-apml-portal-link.com" target="_blank" class="btn portal-btn">🌐 APML Portal</a>
+
+    <!-- Category Filters -->
+    <button class="btn active" onclick="filterGallery(this, 'truck')">🚚 Truck</button>
+    <button class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
+    <button class="btn" onclick="filterGallery(this, 'bike')">🏍️ Bike Packing</button>
+    <button class="btn" onclick="filterGallery(this, 'car')">🚗 Car Transportation</button>
+    <button class="btn" onclick="filterGallery(this, 'solidbox')">📦 Solid BOX</button>
+    <button class="btn" onclick="filterGallery(this, 'tvbox')">📺 TV BOX</button>
+  </div>
+
+  <!-- Gallery Grid Items -->
+  <div class="gallery-grid">
+
+    <!-- Card 1 (Image) -->
+    <div class="card gallery-item truck">
+      <div class="card-media">
+        <!-- Apni image ka path src mein daalein -->
+        <img src="truck1.jpg" alt="Truck Fleet Image 1" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Truck Fleet</div>
+        <div class="card-title">Image 1</div>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="action-link">View Fullscreen 🔍</a>
+        <button class="download-btn" title="Download">⬇️</button>
+      </div>
+    </div>
+
+    <!-- Card 2 (Image) -->
+    <div class="card gallery-item truck">
+      <div class="card-media">
+        <!-- Apni image ka path src mein daalein -->
+        <img src="truck2.jpg" alt="Truck Fleet Image 2" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Truck Fleet</div>
+        <div class="card-title">Image 2</div>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="action-link">View Fullscreen 🔍</a>
+        <button class="download-btn" title="Download">⬇️</button>
+      </div>
+    </div>
+
+    <!-- Card 3 (Video) -->
+    <div class="card gallery-item truck">
+      <div class="card-media">
+        <!-- Apni video ka path src mein daalein -->
+        <video controls style="width:100%; height:100%;">
+          <source src="video1.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Truck Fleet • Video</div>
+        <div class="card-title">Video 1</div>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="action-link">Play Video ▶️</a>
+        <button class="download-btn" title="Download">⬇️</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dynamic Filter Logic -->
+  <script>
+    function filterGallery(element, category) {
+      // 1. Remove active class from all category buttons
+      const buttons = document.querySelectorAll('.nav-container .btn:not(.portal-btn)');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // 2. Add active class to clicked button
+      element.classList.add('active');
+
+      // 3. Filter items (Expandable for future categories)
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
 </body>
-
 </html>
