@@ -57,7 +57,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       max-width: 1000px;
-      margin: 0 auto;
+      margin: 0 auto 30px auto;
     }
 
     .card {
@@ -116,16 +116,65 @@
     .btn-orange:hover {
       background-color: #e68a00;
     }
+
+    /* FRONT PAGE BOTTOM QUOTATION SECTION */
+    .bottom-quotation-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 16px;
+      padding: 30px;
+      color: #333333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      border-left: 6px solid #ff9900;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .bottom-quotation-info h3 {
+      font-size: 22px;
+      color: #17388e;
+      margin-bottom: 6px;
+    }
+
+    .bottom-quotation-info p {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .btn-bottom-quote {
+      background-color: #ff9900;
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.2s ease-in-out;
+      white-space: nowrap;
+    }
+
+    .btn-bottom-quote:hover {
+      background-color: #e68a00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
   </style>
 </head>
 <body>
 
+  <!-- Top Header -->
   <div class="header">
     <div class="guideline-badge">Official Portal</div>
     <h1>APML <span>Operations Dashboard</span></h1>
     <p>Agarwal Packers and Movers Limited - Operations & Resource Management Portal</p>
   </div>
 
+  <!-- Top Grid Cards -->
   <div class="dashboard-grid">
 
     <!-- Card 1: Gallery -->
@@ -145,7 +194,7 @@
         <h3>Amount Calculator</h3>
         <p>Calculate estimated packing and moving costs instantly for customer quotes.</p>
       </div>
-      <button type="button" class="btn btn-orange">Calculate Amount ➔</button>
+      <button type="button" class="btn btn-orange" onclick="window.location.href='quotation.html'">Calculate Amount ➔</button>
     </div>
 
     <!-- Card 3: Guidelines -->
@@ -160,67 +209,13 @@
 
   </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APML Portal - Main Dashboard</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-blue-900 text-white min-h-screen p-8">
-
-  <!-- Header Section -->
-  <div class="text-center max-w-3xl mx-auto mb-10">
-    <span class="inline-block bg-white text-gray-800 text-xs font-bold uppercase px-4 py-1.5 rounded-full mb-4 shadow">
-      Official Portal
-    </span>
-    <h1 class="text-4xl font-extrabold mb-2">APML <span class="text-sky-400">Operations Portal</span></h1>
-    <p class="text-gray-200 text-sm">Agarwal Packers and Movers Limited - Operations & Resource Management</p>
-  </div>
-
-  <!-- Main Cards Navigation Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-
-    <!-- Card 1: Packing Gallery Link -->
-    <div class="bg-white text-gray-800 rounded-2xl p-6 shadow-lg border border-black flex flex-col justify-between">
-      <div>
-        <div class="text-4xl mb-3">📦</div>
-        <h3 class="text-xl font-bold mb-2 text-gray-900">Packing Gallery</h3>
-        <p class="text-sm text-gray-600 mb-4">View standard packaging guidelines, truck fleet, car and bike loading demonstration videos.</p>
-      </div>
-      <a href="gallery.html" class="bg-sky-500 hover:bg-sky-600 text-white font-bold text-center py-2.5 px-4 rounded-xl transition shadow">
-        Open Gallery ➔
-      </a>
+  <!-- BOTTOM SECTION: Dedicated Quotation Editor Banner -->
+  <div class="bottom-quotation-card">
+    <div class="bottom-quotation-info">
+      <h3>📄 Official Quotation Editor</h3>
+      <p>Create, edit, calculate GST (18%), and print official APML customer quotations directly.</p>
     </div>
-
-    <!-- Card 2: Amount Calculator -->
-    <div class="bg-white text-gray-800 rounded-2xl p-6 shadow-lg border border-black flex flex-col justify-between">
-      <div>
-        <div class="text-4xl mb-3">🧮</div>
-        <h3 class="text-xl font-bold mb-2 text-gray-900">Amount Calculator</h3>
-        <p class="text-sm text-gray-600 mb-4">Calculate estimated packing and moving costs instantly for customer quotes.</p>
-      </div>
-      <button type="button" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-center py-2.5 px-4 rounded-xl transition shadow">
-        Calculate Amount ➔
-      </button>
-    </div>
-
-    <!-- Card 3: Standard Guidelines -->
-    <div class="bg-white text-gray-800 rounded-2xl p-6 shadow-lg border border-black flex flex-col justify-between">
-      <div>
-        <div class="text-4xl mb-3">📋</div>
-        <h3 class="text-xl font-bold mb-2 text-gray-900">Standard Guidelines</h3>
-        <p class="text-sm text-gray-600 mb-4">Official vehicle loading protocols, carrier lashing, and safety instructions.</p>
-      </div>
-      <button type="button" class="bg-gray-800 hover:bg-gray-900 text-white font-bold text-center py-2.5 px-4 rounded-xl transition shadow">
-        View Guidelines ➔
-      </button>
-    </div>
-
+    <a href="quotation.html" class="btn-bottom-quote">📝 Open Quotation Editor ➔</a>
   </div>
 
 </body>
