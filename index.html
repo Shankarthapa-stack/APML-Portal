@@ -65,7 +65,7 @@
       flex-wrap: wrap;
       margin-bottom: 40px;
       position: relative;
-      z-index: 100; /* Click issue fix */
+      z-index: 9999; /* Click overlay fix */
     }
 
     .btn {
@@ -76,7 +76,8 @@
       border-radius: 25px;
       font-size: 13px;
       font-weight: bold;
-      cursor: pointer !important; /* Forces pointer cursor */
+      cursor: pointer !important;
+      pointer-events: auto !important;
       transition: all 0.2s ease-in-out;
       text-decoration: none;
       display: inline-flex;
@@ -94,6 +95,10 @@
     .btn.portal-btn {
       background-color: #ff9900;
       color: #ffffff;
+    }
+
+    .btn.portal-btn:hover {
+      background-color: #e68a00;
     }
 
     .btn.active {
@@ -198,7 +203,7 @@
 </head>
 <body>
 
-  <!-- Top Guidelines Badge & Title -->
+  <!-- Header Section -->
   <div class="header">
     <div class="guideline-badge">📋 Standard Packaging Guidelines</div>
     <h1>APML <span>Packing Gallery</span></h1>
@@ -207,25 +212,24 @@
 
   <!-- Navigation Buttons Row -->
   <div class="nav-container">
-    <!-- APML Portal Button -->
+    <!-- APML Portal Button (Is href me apna main page link dalein) -->
     <a href="https://your-apml-portal-link.com" target="_blank" class="btn portal-btn">🌐 APML Portal</a>
 
     <!-- Category Filters -->
-    <button class="btn active" onclick="filterGallery(this, 'truck')">🚚 Truck</button>
-    <button class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
-    <button class="btn" onclick="filterGallery(this, 'bike')">🏍️ Bike Packing</button>
-    <button class="btn" onclick="filterGallery(this, 'car')">🚗 Car Transportation</button>
-    <button class="btn" onclick="filterGallery(this, 'solidbox')">📦 Solid BOX</button>
-    <button class="btn" onclick="filterGallery(this, 'tvbox')">📺 TV BOX</button>
+    <button type="button" class="btn active" onclick="filterGallery(this, 'truck')">🚚 Truck</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'bike')">🏍️ Bike Packing</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'car')">🚗 Car Transportation</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'solidbox')">📦 Solid BOX</button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'tvbox')">📺 TV BOX</button>
   </div>
 
   <!-- Gallery Grid Items -->
   <div class="gallery-grid">
 
-    <!-- Card 1 (Image) -->
+    <!-- Card 1 -->
     <div class="card gallery-item truck">
       <div class="card-media">
-        <!-- Apni image ka path src mein daalein -->
         <img src="truck1.jpg" alt="Truck Fleet Image 1" onerror="this.style.display='none'">
       </div>
       <div class="card-body">
@@ -234,14 +238,13 @@
       </div>
       <div class="card-footer">
         <a href="#" class="action-link">View Fullscreen 🔍</a>
-        <button class="download-btn" title="Download">⬇️</button>
+        <button type="button" class="download-btn" title="Download">⬇️</button>
       </div>
     </div>
 
-    <!-- Card 2 (Image) -->
+    <!-- Card 2 -->
     <div class="card gallery-item truck">
       <div class="card-media">
-        <!-- Apni image ka path src mein daalein -->
         <img src="truck2.jpg" alt="Truck Fleet Image 2" onerror="this.style.display='none'">
       </div>
       <div class="card-body">
@@ -250,14 +253,13 @@
       </div>
       <div class="card-footer">
         <a href="#" class="action-link">View Fullscreen 🔍</a>
-        <button class="download-btn" title="Download">⬇️</button>
+        <button type="button" class="download-btn" title="Download">⬇️</button>
       </div>
     </div>
 
-    <!-- Card 3 (Video) -->
+    <!-- Card 3 -->
     <div class="card gallery-item truck">
       <div class="card-media">
-        <!-- Apni video ka path src mein daalein -->
         <video controls style="width:100%; height:100%;">
           <source src="video1.mp4" type="video/mp4">
           Your browser does not support video playback.
@@ -269,7 +271,7 @@
       </div>
       <div class="card-footer">
         <a href="#" class="action-link">Play Video ▶️</a>
-        <button class="download-btn" title="Download">⬇️</button>
+        <button type="button" class="download-btn" title="Download">⬇️</button>
       </div>
     </div>
 
@@ -278,14 +280,14 @@
   <!-- Dynamic Filter Logic -->
   <script>
     function filterGallery(element, category) {
-      // 1. Remove active class from all category buttons
+      // 1. Subhi buttons se active state hatayein
       const buttons = document.querySelectorAll('.nav-container .btn:not(.portal-btn)');
       buttons.forEach(btn => btn.classList.remove('active'));
 
-      // 2. Add active class to clicked button
+      // 2. Selected button ko active karein
       element.classList.add('active');
 
-      // 3. Filter items (Expandable for future categories)
+      // 3. Category show/hide logic
       const items = document.querySelectorAll('.gallery-item');
       items.forEach(item => {
         if (category === 'all' || item.classList.contains(category)) {
@@ -298,25 +300,3 @@
   </script>
 </body>
 </html>
-<!-- Header Navigation Section -->
-<div class="nav-container">
-  <!-- APML Portal Button -->
-  <a href="https://your-apml-portal-url.com" class="portal-btn">
-    🌐 APML Portal
-  </a>
-
-  <!-- Category Filter Buttons -->
-  <button class="filter-btn active" onclick="filterGallery('truck')">🚚 Truck</button>
-  <button class="filter-btn" onclick="filterGallery('packing')">📦 Packing Images</button>
-  <button class="filter-btn" onclick="filterGallery('bike')">🏍️ Bike Packing</button>
-  <button class="filter-btn" onclick="filterGallery('car')">🚗 Car Transportation</button>
-  <button class="filter-btn" onclick="filterGallery('solidbox')">📦 Solid BOX</button>
-  <button class="filter-btn" onclick="filterGallery('tvbox')">📺 TV BOX</button>
-</div>
-
-<script>
-  function filterGallery(category) {
-    console.log("Selected category:", category);
-    // Dynamic image/video filtering logic yahan likhein
-  }
-</script>
