@@ -19,6 +19,7 @@
       min-height: 100vh;
     }
 
+    /* Top Header Section */
     .header {
       text-align: center;
       max-width: 900px;
@@ -52,12 +53,13 @@
       color: #d1d5db;
     }
 
+    /* Dashboard Grid Cards Section */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
-      max-width: 1000px;
-      margin: 0 auto 30px auto;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .card {
@@ -69,6 +71,11 @@
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
     }
 
     .card-icon {
@@ -80,6 +87,7 @@
       font-size: 20px;
       color: #1f2937;
       margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .card p {
@@ -102,66 +110,27 @@
       text-align: center;
       display: block;
       transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     .btn:hover {
       background-color: #0097a7;
-      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
 
-    .btn-orange {
-      background-color: #ff9900;
-    }
-
-    .btn-orange:hover {
-      background-color: #e68a00;
-    }
-
-    /* FRONT PAGE BOTTOM QUOTATION SECTION */
-    .bottom-quotation-card {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      border-radius: 16px;
-      padding: 30px;
-      color: #333333;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      border-left: 6px solid #ff9900;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .bottom-quotation-info h3 {
-      font-size: 22px;
-      color: #17388e;
-      margin-bottom: 6px;
-    }
-
-    .bottom-quotation-info p {
-      font-size: 13px;
-      color: #555;
-    }
-
-    .btn-bottom-quote {
+    /* Quotation Editor Special Button */
+    .btn-quote {
       background-color: #ff9900;
       color: #ffffff;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-size: 15px;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: all 0.2s ease-in-out;
-      white-space: nowrap;
     }
 
-    .btn-bottom-quote:hover {
+    .btn-quote:hover {
       background-color: #e68a00;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+
+    /* Highlight Border for Quotation Card */
+    .card.highlight-card {
+      border: 2px solid #ff9900;
     }
   </style>
 </head>
@@ -174,10 +143,20 @@
     <p>Agarwal Packers and Movers Limited - Operations & Resource Management Portal</p>
   </div>
 
-  <!-- Top Grid Cards -->
+  <!-- Dashboard Grid -->
   <div class="dashboard-grid">
 
-    <!-- Card 1: Gallery -->
+    <!-- Card 1: Quotation Editor (Main Highlight) -->
+    <div class="card highlight-card">
+      <div>
+        <div class="card-icon">📝</div>
+        <h3>Quotation Editor</h3>
+        <p>Create, edit, calculate GST (18%), and print official APML moving quotations instantly.</p>
+      </div>
+      <a href="quotation.html" class="btn btn-quote">📝 Open Quotation Editor ➔</a>
+    </div>
+
+    <!-- Card 2: Packing Gallery -->
     <div class="card">
       <div>
         <div class="card-icon">📦</div>
@@ -187,17 +166,17 @@
       <a href="gallery.html" class="btn">Open Gallery ➔</a>
     </div>
 
-    <!-- Card 2: Calculator -->
+    <!-- Card 3: Amount Calculator -->
     <div class="card">
       <div>
         <div class="card-icon">🧮</div>
         <h3>Amount Calculator</h3>
         <p>Calculate estimated packing and moving costs instantly for customer quotes.</p>
       </div>
-      <button type="button" class="btn btn-orange" onclick="window.location.href='quotation.html'">Calculate Amount ➔</button>
+      <a href="quotation.html" class="btn">Calculate Amount ➔</a>
     </div>
 
-    <!-- Card 3: Guidelines -->
+    <!-- Card 4: Standard Guidelines -->
     <div class="card">
       <div>
         <div class="card-icon">📋</div>
@@ -207,15 +186,6 @@
       <button type="button" class="btn" style="background-color: #333;">View Guidelines ➔</button>
     </div>
 
-  </div>
-
-  <!-- BOTTOM SECTION: Dedicated Quotation Editor Banner -->
-  <div class="bottom-quotation-card">
-    <div class="bottom-quotation-info">
-      <h3>📄 Official Quotation Editor</h3>
-      <p>Create, edit, calculate GST (18%), and print official APML customer quotations directly.</p>
-    </div>
-    <a href="quotation.html" class="btn-bottom-quote">📝 Open Quotation Editor ➔</a>
   </div>
 
 </body>
