@@ -17,7 +17,12 @@
       color: #ffffff;
       padding: 40px 20px;
       min-height: 100vh;
-      position: relative;
+      opacity: 1;
+      transition: opacity 0.25s ease-in-out;
+    }
+
+    body.fade-out {
+      opacity: 0;
     }
 
     .header {
@@ -55,37 +60,52 @@
       line-height: 1.5;
     }
 
-    /* TOP RIGHT SQUARE PORTAL BUTTON STYLING */
+    /* SMART FLOATING TOP-RIGHT BUTTON */
     .top-portal-wrapper {
-      position: absolute;
+      position: fixed;
       top: 20px;
       right: 20px;
       z-index: 10000;
     }
 
     .btn.portal-btn {
-      background-color: #0d2b7a;
+      background: linear-gradient(135deg, #0b1e54 0%, #17388e 100%);
       color: #ffffff;
-      border: 1px solid #38b6ff;
+      border: 1.5px solid #38b6ff;
       padding: 10px 18px;
       font-size: 13px;
-      font-weight: bold;
-      border-radius: 6px; /* Square shape */
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
       cursor: pointer !important;
-      pointer-events: auto !important;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(8px);
     }
 
     .btn.portal-btn:hover {
-      background-color: #38b6ff;
-      color: #0d2b7a;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, #38b6ff 0%, #0088cc 100%);
+      color: #ffffff;
+      border-color: #ffffff;
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(56, 182, 255, 0.5);
+    }
+
+    .btn.portal-btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn.portal-btn span.icon {
+      font-size: 15px;
+      transition: transform 0.2s ease;
+    }
+
+    .btn.portal-btn:hover span.icon {
+      transform: rotate(-15deg);
     }
 
     .nav-container {
@@ -108,7 +128,6 @@
       font-size: 13px;
       font-weight: bold;
       cursor: pointer !important;
-      pointer-events: auto !important;
       transition: all 0.2s ease-in-out;
       text-decoration: none;
       display: inline-flex;
@@ -126,6 +145,19 @@
     .btn.active {
       background-color: #00bcd4;
       color: #ffffff;
+    }
+
+    /* BADGE FOR COUNT LOGIC */
+    .count-badge {
+      background: rgba(0, 0, 0, 0.15);
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 12px;
+      margin-left: 2px;
+    }
+
+    .btn.active .count-badge {
+      background: rgba(255, 255, 255, 0.25);
     }
 
     .gallery-grid {
@@ -245,9 +277,11 @@
 </head>
 <body>
 
-  <!-- TOP RIGHT CORNER SQUARE BUTTON -->
+  <!-- FLOATING TOP-RIGHT BUTTON WITH SMART NAVIGATION LOGIC -->
   <div class="top-portal-wrapper">
-    <button type="button" class="btn portal-btn" onclick="window.location.href='index.html'">🌐 APML Portal</button>
+    <button type="button" class="btn portal-btn" onclick="navigateToDashboard(this)">
+      <span class="icon">🌐</span> APML Portal
+    </button>
   </div>
 
   <!-- Header Section -->
@@ -259,16 +293,23 @@
 
   <!-- Category Filters Row -->
   <div class="nav-container">
-    <button type="button" class="btn active" onclick="filterGallery(this, 'all')">✨ Show All</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'video')">🎥 Packing Videos</button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'truck')">🚚 Truck Fleet</button>
+    <button type="button" class="btn active" onclick="filterGallery(this, 'all')">
+      ✨ Show All <span class="count-badge" id="count-all">0</span>
+    </button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'packing')">
+      📦 Packing Images <span class="count-badge" id="count-packing">0</span>
+    </button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'video')">
+      🎥 Packing Videos <span class="count-badge" id="count-video">0</span>
+    </button>
+    <button type="button" class="btn" onclick="filterGallery(this, 'truck')">
+      🚚 Truck Fleet <span class="count-badge" id="count-truck">0</span>
+    </button>
   </div>
 
   <!-- Gallery Grid Items -->
   <div class="gallery-grid">
 
-    <!-- Packing Image 1 -->
     <div class="card gallery-item packing">
       <div class="card-media">
         <img src="image/Image1 (2).jpg.jpg" alt="Small Items Packing">
@@ -283,7 +324,6 @@
       </div>
     </div>
 
-    <!-- Packing Image 2 -->
     <div class="card gallery-item packing">
       <div class="card-media">
         <img src="image/Image2.jpg.jpg" alt="Fridge Packing">
@@ -298,7 +338,6 @@
       </div>
     </div>
 
-    <!-- Packing Image 3 -->
     <div class="card gallery-item packing">
       <div class="card-media">
         <img src="image/Image3.jpg.jpg" alt="Washing Machine Packing">
@@ -313,7 +352,6 @@
       </div>
     </div>
 
-    <!-- Packing Image 4 -->
     <div class="card gallery-item packing">
       <div class="card-media">
         <img src="image/Image4.jpg.jpg" alt="Wooden Crating">
@@ -328,7 +366,6 @@
       </div>
     </div>
 
-    <!-- Packing Image 5 -->
     <div class="card gallery-item packing">
       <div class="card-media">
         <img src="image/Image5.jpg.jpg" alt="Crockery Cabinet Packing">
@@ -343,7 +380,6 @@
       </div>
     </div>
 
-    <!-- Packing Image 6 -->
     <div class="card gallery-item packing">
       <div class="card-media">
         <img src="image/Image6.jpg.jpg" alt="Temple Mandir Packing">
@@ -358,7 +394,6 @@
       </div>
     </div>
 
-    <!-- Compact Video Item -->
     <div class="card gallery-item video">
       <div class="card-media">
         <video controls>
@@ -378,8 +413,22 @@
 
   </div>
 
-  <!-- Dynamic Filter Logic -->
+  <!-- JAVASCRIPT LOGIC SECTION -->
   <script>
+    // 1. DYNAMIC CATEGORY COUNTER LOGIC
+    document.addEventListener("DOMContentLoaded", () => {
+      const allItems = document.querySelectorAll('.gallery-item');
+      const packingItems = document.querySelectorAll('.gallery-item.packing');
+      const videoItems = document.querySelectorAll('.gallery-item.video');
+      const truckItems = document.querySelectorAll('.gallery-item.truck');
+
+      document.getElementById('count-all').innerText = allItems.length;
+      document.getElementById('count-packing').innerText = packingItems.length;
+      document.getElementById('count-video').innerText = videoItems.length;
+      document.getElementById('count-truck').innerText = truckItems.length;
+    });
+
+    // 2. FILTERING LOGIC
     function filterGallery(element, category) {
       const buttons = document.querySelectorAll('.nav-container .btn');
       buttons.forEach(btn => btn.classList.remove('active'));
@@ -394,6 +443,14 @@
           item.style.display = 'none';
         }
       });
+    }
+
+    // 3. SMOOTH NAVIGATION LOGIC WITH FADE TRANSITION
+    function navigateToDashboard(buttonElement) {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 180);
     }
   </script>
 </body>
