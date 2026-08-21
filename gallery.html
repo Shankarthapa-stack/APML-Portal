@@ -200,19 +200,24 @@
 </head>
 <body>
 
+  <!-- Top Header Section -->
   <div class="header">
     <div class="guideline-badge">📋 Standard Packaging Guidelines</div>
     <h1>APML <span>Packing Gallery</span></h1>
     <p>Comprehensive reference guidelines, fleet operations, specialized Solid & TV cartons, vehicle loading protocols, carrier lashing, and packing demonstration videos.</p>
   </div>
 
+  <!-- Navigation Buttons Row -->
   <div class="nav-container">
     <a href="index.html" class="btn portal-btn">🌐 APML Portal</a>
     <button type="button" class="btn active" onclick="filterGallery(this, 'all')">✨ Show All</button>
     <button type="button" class="btn" onclick="filterGallery(this, 'packing')">📦 Packing Images</button>
+    <!-- Naya Packing Videos Button -->
+    <button type="button" class="btn" onclick="filterGallery(this, 'video')">🎥 Packing Videos</button>
     <button type="button" class="btn" onclick="filterGallery(this, 'truck')">🚚 Truck Fleet</button>
   </div>
 
+  <!-- Gallery Grid Items -->
   <div class="gallery-grid">
 
     <!-- Packing Image 1 -->
@@ -305,8 +310,8 @@
       </div>
     </div>
 
-    <!-- Sample Video -->
-    <div class="card gallery-item truck">
+    <!-- Packing Video 1 -->
+    <div class="card gallery-item video">
       <div class="card-media">
         <video controls style="width:100%; height:100%;">
           <source src="packing-video1.mp4" type="video/mp4">
@@ -314,8 +319,8 @@
         </video>
       </div>
       <div class="card-body">
-        <div class="card-subtitle">Truck Fleet • Video</div>
-        <div class="card-title">Fleet Video 1</div>
+        <div class="card-subtitle">Packing Video • Demonstration</div>
+        <div class="card-title">Packing Video 1</div>
       </div>
       <div class="card-footer">
         <span class="action-link">Play Video ▶️</span>
@@ -323,8 +328,27 @@
       </div>
     </div>
 
+    <!-- Packing Video 2 -->
+    <div class="card gallery-item video">
+      <div class="card-media">
+        <video controls style="width:100%; height:100%;">
+          <source src="packing-video2.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+      </div>
+      <div class="card-body">
+        <div class="card-subtitle">Packing Video • Demonstration</div>
+        <div class="card-title">Packing Video 2</div>
+      </div>
+      <div class="card-footer">
+        <span class="action-link">Play Video ▶️</span>
+        <a href="packing-video2.mp4" download class="download-btn" title="Download">⬇️</a>
+      </div>
+    </div>
+
   </div>
 
+  <!-- Dynamic Filter Logic -->
   <script>
     function filterGallery(element, category) {
       const buttons = document.querySelectorAll('.nav-container .btn:not(.portal-btn)');
