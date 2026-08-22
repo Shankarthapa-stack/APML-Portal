@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APML Official PDF Quotation Editor</title>
+  <title>APML Official Quotation Editor</title>
 
   <!-- HTML2PDF Generator Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -35,7 +35,7 @@
       height: 60px;
     }
 
-    /* NEW APML PORTAL HYPERLINK BUTTON */
+    /* APML PORTAL HYPERLINK BUTTON */
     .apml-brand-btn {
       display: inline-flex;
       align-items: center;
@@ -330,7 +330,7 @@
 </head>
 <body>
 
-  <!-- Top Navigation with APML Portal Hyperlink Button -->
+  <!-- Clean Top Navigation without Standard Guidelines Badge -->
   <div class="navbar">
     <a href="index.html" class="apml-brand-btn" title="Go to Home Dashboard">
       <span class="globe-icon">🌐</span>
@@ -344,7 +344,7 @@
 
     <!-- LEFT PANEL: FORM EDITOR -->
     <div class="sidebar">
-      <div class="sidebar-title">Quotation Editor</div>
+      <div class="sidebar-title">Quotation Form</div>
 
       <!-- TEMPLATE SWITCHER BUTTONS -->
       <div class="tpl-btn-group">
@@ -390,10 +390,10 @@
         </div>
       </div>
 
-      <!-- Items Section -->
+      <!-- Amount Particulars Section -->
       <div>
         <div class="items-header">
-          <label style="font-size:10px; font-weight:700; color:#475569; text-transform:uppercase;">Cost Particulars</label>
+          <label style="font-size:10px; font-weight:700; color:#475569; text-transform:uppercase;">Amount Particulars</label>
           <button type="button" class="btn-add-item" onclick="addItemRow()">+ Add Item</button>
         </div>
         <div id="items-inputs-container">
@@ -632,6 +632,7 @@
           </div>
         `;
       } else {
+        /* MAXCARE PACKERS & MOVERS TEMPLATE */
         let rowsHtml = '';
         itemsData.maxcare.forEach((item, idx) => {
           rowsHtml += `
