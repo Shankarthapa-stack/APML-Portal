@@ -22,9 +22,9 @@
       min-height: 100vh;
     }
 
-    /* Top Control Bar */
+    /* Top Control Panel */
     .top-action-bar {
-      max-width: 800px;
+      max-width: 740px;
       margin: 0 auto 15px auto;
       display: flex;
       justify-content: space-between;
@@ -76,23 +76,23 @@
     .btn-print { background: #00bcd4; color: white; }
     .btn-add { background: #ff9900; color: white; margin: 10px 0; }
 
-    /* EXACT PDF PRINTABLE SHEET (Identical to uploaded PDFs) */
+    /* EXACT A4 PDF SHEET CONTAINER (Fits 100% without right-side cutting) */
     .pdf-page {
       background: #ffffff;
-      width: 800px;
+      width: 710px;
       margin: 0 auto;
-      padding: 40px 45px;
+      padding: 30px 35px;
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
       color: #000000;
-      font-size: 11.5px;
-      line-height: 1.4;
+      font-size: 11px;
+      line-height: 1.38;
     }
 
     /* Universal Editable Inputs */
     input {
       border: 1px dashed #aaaaaa;
       padding: 2px 4px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-family: inherit;
       color: #000000;
       background-color: #f8fafc;
@@ -105,9 +105,18 @@
       background: #ffffff;
     }
 
-    /* Exact Company Titles */
+    /* Hides input boxes during PDF download for exact clean text look */
+    .exporting-pdf input {
+      border: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    /* Header Formats */
     .comp-name {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       text-transform: uppercase;
       color: #000000;
@@ -115,7 +124,7 @@
     }
 
     .comp-details {
-      font-size: 10.5px;
+      font-size: 10px;
       color: #000000;
       margin-bottom: 12px;
       line-height: 1.35;
@@ -123,26 +132,27 @@
 
     /* Quotation Header */
     .quote-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
       text-align: center;
-      margin: 12px 0;
+      margin: 10px 0;
       letter-spacing: 0.5px;
+      text-decoration: underline;
     }
 
-    /* Exact Meta Layout */
+    /* Meta Info Box */
     .meta-box {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px 20px;
+      gap: 3px 15px;
       margin-bottom: 12px;
-      font-size: 11px;
+      font-size: 10.5px;
     }
 
     .meta-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .meta-item label {
@@ -150,17 +160,19 @@
       white-space: nowrap;
     }
 
-    /* Exact Table Formatting */
+    /* Tables */
     table.pdf-table {
       width: 100%;
       border-collapse: collapse;
       margin: 10px 0;
+      table-layout: fixed;
     }
 
     table.pdf-table th, table.pdf-table td {
       border: 1px solid #000000;
-      padding: 5px 8px;
-      font-size: 11px;
+      padding: 4px 6px;
+      font-size: 10.5px;
+      word-wrap: break-word;
     }
 
     table.pdf-table th {
@@ -170,7 +182,7 @@
     }
 
     .num-input {
-      width: 100px;
+      width: 75px;
       text-align: right;
     }
 
@@ -184,35 +196,35 @@
 
     /* Terms & Conditions */
     .terms-sec {
-      margin-top: 15px;
-      font-size: 10px;
+      margin-top: 12px;
+      font-size: 9.5px;
     }
 
     .terms-sec h4 {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: bold;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .terms-sec ol {
-      padding-left: 16px;
-      line-height: 1.4;
+      padding-left: 15px;
+      line-height: 1.35;
     }
 
     .closing-sec {
-      margin-top: 15px;
-      font-size: 11px;
+      margin-top: 12px;
+      font-size: 10.5px;
       line-height: 1.4;
     }
 
     .footer-address {
-      margin-top: 20px;
+      margin-top: 15px;
       border-top: 1px solid #000000;
-      padding-top: 8px;
-      font-size: 10px;
+      padding-top: 5px;
+      font-size: 9.5px;
     }
 
-    /* CLEAN EXPORT STYLES */
+    /* Clean Export Rules */
     .no-export { display: table-cell; }
     
     @media print {
@@ -250,21 +262,21 @@
   <!-- PDF CONTENT SHEET -->
   <div class="pdf-page" id="pdfContent">
     
-    <!-- Header -->
+    <!-- Company Header -->
     <div class="comp-name" id="comp-title">EXACT CONTAINER LOGISTIC PVT. LTD.</div>
     <div class="comp-details" id="comp-details">
       CIN: U74899DL2000PTC107846<br>
       GST No: 23AAACL1838J1ZO
     </div>
 
-    <!-- Meta Info -->
+    <!-- Document Meta Grid -->
     <div class="meta-box" id="meta-box">
       <!-- Populated via JS -->
     </div>
 
     <div class="quote-title">QUOTATION</div>
 
-    <p style="margin-bottom: 10px;" id="opening-text">
+    <p style="margin-bottom: 8px; font-size: 10.5px;" id="opening-text">
       <!-- Opening text loaded dynamically -->
     </p>
 
@@ -291,7 +303,7 @@
       </ol>
     </div>
 
-    <!-- Footer / Closing -->
+    <!-- Footer Section -->
     <div id="footer-section"></div>
 
   </div>
@@ -301,15 +313,19 @@
       exact: {
         title: "EXACT CONTAINER LOGISTIC PVT. LTD.",
         details: "CIN: U74899DL2000PTC107846<br>GST No: 23AAACL1838J1ZO",
+        fileName: "EXACT_CONTAINER_LOGISTIC_PVT_LTD_Quotation",
         meta: [
-          { label: "Date:", val: "22nd Aug 2026" },
-          { label: "Estimate No.:", val: "2025323429" },
-          { label: "MR./MS.:", val: "Ranu" },
-          { label: "Company Name:", val: "Unregistered" },
-          { label: "GST No:", val: "GST Exempted" }
+          { label: "Date:", val: "22nd Aug 2026", id: "quote-date" },
+          { label: "Estimate No.:", val: "2025323429", id: "quote-ref" },
+          { label: "MR./MS.:", val: "Ranu", id: "cust-name" },
+          { label: "Company Name:", val: "Unregistered", id: "cust-comp" },
+          { label: "GST No:", val: "GST Exempted", id: "cust-gst" }
         ],
-        opening: 'Dear Sir / Mam,<br>Below are our best prices for moving your <input type="text" value="mumbai to pune" style="font-weight:bold; width:150px;">. We hope you will find our price competitive enough & will give us an opportunity to service you.',
-        columns: ["Cost Item", "Cost (in INR)"],
+        opening: 'Dear Sir / Mam,<br>Below are our best prices for moving your <input type="text" value="mumbai to pune" style="font-weight:bold; width:130px;">. We hope you will find our price competitive enough & will give us an opportunity to service you.',
+        columns: [
+          { title: "Cost Item", width: "70%" },
+          { title: "Cost (in INR)", width: "30%" }
+        ],
         items: [
           { name: "Freight", amount: 4800 },
           { name: "Car Freight", amount: 0 },
@@ -319,7 +335,6 @@
           { name: "Unpacking Charges", amount: 240 },
           { name: "Other Charges (Toll etc.)", amount: 160 }
         ],
-        gstRate: 0,
         terms: [
           "Please keep your cash/jewelry in your custody.",
           "Carrying liquor, gas cylinder, acid or any type of liquid/explosive and illegal items is prohibited.",
@@ -339,22 +354,26 @@
       maxcare: {
         title: "MAXCARE PACKERS & MOVERS PVT. LTD.",
         details: "CIN: U63090DL2009PTC196378<br>Regd. Office: 308, Neelkanth Plaza, Pitampura Community Centre, New Delhi-110034.<br>Phone: 9311204263 Email: maxcaremoverspvtltd@gmail.com<br>GSTN (ours): 07AAICM9877E1ZX",
+        fileName: "MAXCARE_PACKERS_MOVERS_PVT_LTD_Quotation",
         meta: [
-          { label: "Reference No.:", val: "MAX202526954" },
-          { label: "Date:", val: "22nd Aug 2026" },
-          { label: "TO:", val: "Ranu" },
-          { label: "Company Name:", val: "Unregistered" },
-          { label: "GST No:", val: "GST Exempted" }
+          { label: "Reference No.:", val: "MAX202526954", id: "quote-ref" },
+          { label: "Date:", val: "22nd Aug 2026", id: "quote-date" },
+          { label: "TO:", val: "Ranu", id: "cust-name" },
+          { label: "Company Name:", val: "Unregistered", id: "cust-comp" },
+          { label: "GST No:", val: "GST Exempted", id: "cust-gst" }
         ],
-        opening: 'We thank you for your inquiry to move your household goods from <input type="text" value="mumbai to pune" style="font-weight:bold; width:150px;">. We have pleasure in quoting our charges as follows:',
-        columns: ["S.No", "Particulars", "Amount"],
+        opening: 'We thank you for your inquiry to move your household goods from <input type="text" value="mumbai to pune" style="font-weight:bold; width:130px;">. We have pleasure in quoting our charges as follows:',
+        columns: [
+          { title: "S.No", width: "10%" },
+          { title: "Particulars", width: "65%" },
+          { title: "Amount", width: "25%" }
+        ],
         items: [
           { name: "Transportation Cost", amount: 0 },
           { name: "Packing + Loading + Unloading + Unpacking", amount: 0 },
           { name: "Car Transportation (if any)", amount: 0 },
           { name: "Toll Tax + Risk Cover + Misc. Cost", amount: 0 }
         ],
-        gstRate: 0,
         terms: [
           "Please note that lorry transportation charges without quotes are the present prevailing rates and will be charged on actuals at the time of transportation. Extra charges will be charged extra as actual.",
           "The carrier or agent shall be exempted from any loss or damage through accident, pilferage, fire, rain, collision or any other road-driven hazard; we therefore recommend that goods be insured covering risk. While on carrier risk, no individual policy/receipt from the insurance co. will be given.",
@@ -382,7 +401,7 @@
         metaBox.innerHTML += `
           <div class="meta-item">
             <label>${item.label}</label>
-            <input type="text" value="${item.val}">
+            <input type="text" id="${item.id}" value="${item.val}" style="width: 140px;">
           </div>
         `;
       });
@@ -391,7 +410,7 @@
       const thead = document.getElementById('table-head');
       thead.innerHTML = '';
       tpl.columns.forEach(col => {
-        thead.innerHTML += `<th>${col}</th>`;
+        thead.innerHTML += `<th style="width: ${col.width};">${col.title}</th>`;
       });
       thead.innerHTML += `<th class="no-export" style="width: 40px; text-align: center;">Action</th>`;
 
@@ -418,9 +437,9 @@
 
       if (type === 'maxcare') {
         tr.innerHTML = `
-          <td class="sno-cell" style="width: 40px; text-align: center;">${sno}</td>
+          <td class="sno-cell" style="text-align: center;">${sno}</td>
           <td><input type="text" value="${name}" style="width:100%;"></td>
-          <td style="width: 120px; text-align: right;">
+          <td style="text-align: right;">
             ₹ <input type="number" class="num-input" value="${amount}" oninput="calculateTotals()">
           </td>
           <td class="no-export" style="text-align: center;">
@@ -430,7 +449,7 @@
       } else {
         tr.innerHTML = `
           <td><input type="text" value="${name}" style="width:100%;"></td>
-          <td style="width: 140px; text-align: right;">
+          <td style="text-align: right;">
             ₹ <input type="number" class="num-input" value="${amount}" oninput="calculateTotals()">
           </td>
           <td class="no-export" style="text-align: center;">
@@ -463,7 +482,6 @@
     }
 
     function calculateTotals() {
-      // Remove old subtotal / total rows
       document.querySelectorAll('.calc-row').forEach(row => row.remove());
 
       const key = document.getElementById('templateSelector').value;
@@ -515,24 +533,31 @@
       }
     }
 
+    /* DYNAMIC PDF DOWNLOAD LOGIC */
     function downloadPDF() {
-      const inputs = document.querySelectorAll('#pdfContent input');
-      inputs.forEach(input => input.style.border = 'none');
+      const key = document.getElementById('templateSelector').value;
+      const tpl = templates[key];
+      const custName = document.getElementById('cust-name')?.value || 'Customer';
+      
+      // Dynamic Filename Matching Selected Company
+      const downloadFileName = `${tpl.fileName}_${custName}.pdf`;
+
+      const container = document.getElementById('pdfContent');
+      container.classList.add('exporting-pdf');
 
       const noExports = document.querySelectorAll('.no-export');
       noExports.forEach(el => el.style.display = 'none');
 
-      const element = document.getElementById('pdfContent');
       const opt = {
         margin:       [5, 5, 5, 5],
-        filename:     'APML_Quotation.pdf',
+        filename:     downloadFileName,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
+        html2canvas:  { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      html2pdf().set(opt).from(element).save().then(() => {
-        inputs.forEach(input => input.style.border = '1px dashed #aaaaaa');
+      html2pdf().set(opt).from(container).save().then(() => {
+        container.classList.remove('exporting-pdf');
         noExports.forEach(el => el.style.display = '');
       });
     }
