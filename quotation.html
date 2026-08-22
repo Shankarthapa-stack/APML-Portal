@@ -35,41 +35,42 @@
       height: 60px;
     }
 
-    /* NEW MODERN APML PORTAL BUTTON DESIGN */
-    .apml-portal-btn {
+    /* NEW APML PORTAL HYPERLINK BUTTON */
+    .apml-brand-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 20px;
-      font-size: 14px;
+      padding: 8px 18px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #ffffff;
-      background: linear-gradient(135deg, #0b1e54 0%, #17388e 100%);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
       border: 1.5px solid #38b6ff;
-      border-radius: 12px;
+      border-radius: 10px;
       text-decoration: none;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .apml-portal-btn:hover {
+    .apml-brand-btn:hover {
       background: linear-gradient(135deg, #38b6ff 0%, #0077cc 100%);
       border-color: #ffffff;
       color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(56, 182, 255, 0.5);
+      box-shadow: 0 6px 20px rgba(56, 182, 255, 0.45);
     }
 
-    .apml-portal-btn .globe-icon {
+    .apml-brand-btn .globe-icon {
       font-size: 16px;
       display: inline-block;
       transition: transform 0.3s ease;
     }
 
-    .apml-portal-btn:hover .globe-icon {
-      transform: rotate(20deg) scale(1.1);
+    .apml-brand-btn:hover .globe-icon {
+      transform: rotate(20deg) scale(1.15);
     }
 
     .portal-link {
@@ -111,7 +112,6 @@
       padding-bottom: 8px;
     }
 
-    /* TEMPLATE SWITCHER TAB BUTTONS */
     .tpl-btn-group {
       display: flex;
       gap: 6px;
@@ -139,7 +139,6 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
-    /* Form Section Controls */
     .form-group {
       display: flex;
       flex-direction: column;
@@ -183,7 +182,6 @@
       box-shadow: 0 0 0 2px rgba(23, 56, 142, 0.15);
     }
 
-    /* Items List Section */
     .items-header {
       display: flex;
       justify-content: space-between;
@@ -242,7 +240,6 @@
       background-color: #0d235d;
     }
 
-    /* RIGHT SIDE: LIVE A4 PDF PREVIEW CANVAS */
     .preview-area {
       flex-grow: 1;
       background-color: #0b1a40;
@@ -252,7 +249,6 @@
       justify-content: center;
     }
 
-    /* EXACT 100% MATCH A4 PAGE CANVAS */
     .pdf-page {
       background: #ffffff;
       width: 210mm;
@@ -334,9 +330,9 @@
 </head>
 <body>
 
-  <!-- Top Navigation with New APML Portal Button Design -->
+  <!-- Top Navigation with APML Portal Hyperlink Button -->
   <div class="navbar">
-    <a href="index.html" class="apml-portal-btn">
+    <a href="index.html" class="apml-brand-btn" title="Go to Home Dashboard">
       <span class="globe-icon">🌐</span>
       <span>APML Portal</span>
     </a>
@@ -524,7 +520,6 @@
       return num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    /* LIVE PREVIEW GENERATION LOGIC */
     function updatePreview() {
       const rawDate = document.getElementById('in-date').value;
       const formattedDate = getFormattedDate(rawDate);
@@ -637,7 +632,6 @@
           </div>
         `;
       } else {
-        /* MAXCARE PACKERS & MOVERS TEMPLATE */
         let rowsHtml = '';
         itemsData.maxcare.forEach((item, idx) => {
           rowsHtml += `
@@ -726,7 +720,6 @@
       }
     }
 
-    /* DOWNLOAD PDF WITH DYNAMIC FILENAME */
     function downloadPDF() {
       const custName = document.getElementById('in-cust-name').value || 'Customer';
       const fileName = currentTemplate === 'exact' 
