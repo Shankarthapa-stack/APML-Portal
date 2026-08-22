@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APML Portal - Main Dashboard</title>
+  <title>APML Operations Dashboard</title>
   <style>
     * {
       box-sizing: border-box;
@@ -36,6 +36,7 @@
       padding: 6px 16px;
       border-radius: 20px;
       margin-bottom: 15px;
+      letter-spacing: 0.5px;
     }
 
     .header h1 {
@@ -49,61 +50,63 @@
     }
 
     .header p {
-      font-size: 14px;
+      font-size: 13px;
       color: #d1d5db;
     }
 
-    /* Dashboard Grid Cards Section */
+    /* BALANCED 4-CARD GRID LAYOUT */
     .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     .card {
       background: #ffffff;
       border-radius: 16px;
-      padding: 25px;
+      padding: 22px;
       color: #333333;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
 
     .card-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
+      font-size: 36px;
+      margin-bottom: 12px;
     }
 
     .card h3 {
-      font-size: 20px;
+      font-size: 18px;
       color: #1f2937;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 700;
     }
 
     .card p {
-      font-size: 13px;
+      font-size: 12px;
       color: #6b7280;
       margin-bottom: 20px;
       line-height: 1.5;
+      flex-grow: 1;
     }
 
     .btn {
       background-color: #00bcd4;
       color: #ffffff;
       border: none;
-      padding: 12px 20px;
-      border-radius: 25px;
-      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 13px;
       font-weight: bold;
       cursor: pointer;
       text-decoration: none;
@@ -118,17 +121,16 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
 
-    /* Quotation Editor Special Button */
-    .btn-quote {
+    /* PDF Editor Special Button */
+    .btn-pdf {
       background-color: #ff9900;
       color: #ffffff;
     }
 
-    .btn-quote:hover {
+    .btn-pdf:hover {
       background-color: #e68a00;
     }
 
-    /* Highlight Border for Quotation Card */
     .card.highlight-card {
       border: 2px solid #ff9900;
     }
@@ -143,17 +145,17 @@
     <p>Agarwal Packers and Movers Limited - Operations & Resource Management Portal</p>
   </div>
 
-  <!-- Dashboard Grid -->
+  <!-- Balanced 4-Card Grid -->
   <div class="dashboard-grid">
 
-    <!-- Card 1: Quotation Editor (Main Highlight) -->
+    <!-- Card 1: PDF Editor -->
     <div class="card highlight-card">
       <div>
-        <div class="card-icon">📝</div>
-        <h3>Quotation Editor</h3>
-        <p>Create, edit, calculate GST (18%), and print official APML moving quotations instantly.</p>
+        <div class="card-icon">📄</div>
+        <h3>PDF Editor</h3>
+        <p>Create, edit, calculate GST (18%), and export official APML PDF documents directly.</p>
       </div>
-      <a href="quotation.html" class="btn btn-quote">📝 Open Quotation Editor ➔</a>
+      <a href="quotation.html" class="btn btn-pdf">📄 Open PDF Editor ➔</a>
     </div>
 
     <!-- Card 2: Packing Gallery -->
@@ -183,7 +185,7 @@
         <h3>Standard Guidelines</h3>
         <p>Official vehicle loading protocols, carrier lashing, and safety demonstration instructions.</p>
       </div>
-      <button type="button" class="btn" style="background-color: #333;">View Guidelines ➔</button>
+      <a href="gallery.html" class="btn" style="background-color: #333;">View Guidelines ➔</a>
     </div>
 
   </div>
