@@ -35,18 +35,41 @@
       height: 60px;
     }
 
-    .brand-logo {
-      display: flex;
+    /* NEW MODERN APML PORTAL BUTTON DESIGN */
+    .apml-portal-btn {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-weight: 800;
-      font-size: 18px;
+      gap: 10px;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: 700;
       color: #ffffff;
+      background: linear-gradient(135deg, #0b1e54 0%, #17388e 100%);
+      border: 1.5px solid #38b6ff;
+      border-radius: 12px;
       text-decoration: none;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .brand-logo span {
-      color: #38b6ff;
+    .apml-portal-btn:hover {
+      background: linear-gradient(135deg, #38b6ff 0%, #0077cc 100%);
+      border-color: #ffffff;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(56, 182, 255, 0.5);
+    }
+
+    .apml-portal-btn .globe-icon {
+      font-size: 16px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .apml-portal-btn:hover .globe-icon {
+      transform: rotate(20deg) scale(1.1);
     }
 
     .portal-link {
@@ -88,32 +111,32 @@
       padding-bottom: 8px;
     }
 
-    /* Template Switcher Buttons */
+    /* TEMPLATE SWITCHER TAB BUTTONS */
     .tpl-btn-group {
       display: flex;
       gap: 6px;
       background-color: #e2e8f0;
-      padding: 4px;
-      border-radius: 8px;
+      padding: 5px;
+      border-radius: 10px;
     }
 
     .tpl-btn {
       flex: 1;
       border: none;
-      padding: 8px 6px;
-      font-size: 11px;
+      padding: 10px 8px;
+      font-size: 11.5px;
       font-weight: 700;
-      border-radius: 6px;
+      border-radius: 7px;
       cursor: pointer;
       background: transparent;
       color: #64748b;
-      transition: all 0.2s;
+      transition: all 0.2s ease-in-out;
     }
 
     .tpl-btn.active {
       background-color: #ffffff;
       color: #17388e;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
     /* Form Section Controls */
@@ -149,6 +172,10 @@
       outline: none;
       background-color: #ffffff;
       color: #0f172a;
+    }
+
+    input[type="date"].form-control {
+      cursor: pointer;
     }
 
     input.form-control:focus {
@@ -238,7 +265,6 @@
       position: relative;
     }
 
-    /* EXACT COMPANY HEADER FORMATTING */
     .comp-title-exact {
       font-size: 13pt;
       font-weight: bold;
@@ -271,7 +297,6 @@
       text-decoration: underline;
     }
 
-    /* 100% EXACT TABLE BORDERS & PADDING */
     table.pdf-data-table {
       width: 100%;
       border-collapse: collapse;
@@ -309,10 +334,11 @@
 </head>
 <body>
 
-  <!-- Top Navigation -->
+  <!-- Top Navigation with New APML Portal Button Design -->
   <div class="navbar">
-    <a href="index.html" class="brand-logo">
-      <span>🌐 APML</span> Operations Portal
+    <a href="index.html" class="apml-portal-btn">
+      <span class="globe-icon">🌐</span>
+      <span>APML Portal</span>
     </a>
     <a href="index.html" class="portal-link">Dashboard ➔</a>
   </div>
@@ -324,16 +350,16 @@
     <div class="sidebar">
       <div class="sidebar-title">Quotation Editor</div>
 
-      <!-- Template Switcher -->
+      <!-- TEMPLATE SWITCHER BUTTONS -->
       <div class="tpl-btn-group">
-        <button type="button" class="tpl-btn active" id="btn-exact" onclick="setTemplate('exact')">Exact Container Logistics</button>
-        <button type="button" class="tpl-btn" id="btn-maxcare" onclick="setTemplate('maxcare')">Maxcare Packers & Movers</button>
+        <button type="button" class="tpl-btn active" id="btn-exact" onclick="switchCompany('exact')">Exact Container Logistics</button>
+        <button type="button" class="tpl-btn" id="btn-maxcare" onclick="switchCompany('maxcare')">Maxcare Packers & Movers</button>
       </div>
 
-      <!-- Form Inputs -->
+      <!-- Calendar Date Picker -->
       <div class="form-group">
-        <label>Date</label>
-        <input type="text" id="in-date" class="form-control" value="22nd Aug 2026" oninput="updatePreview()">
+        <label>Date (Calendar Select)</label>
+        <input type="date" id="in-date" class="form-control" value="2026-08-22" onchange="updatePreview()" oninput="updatePreview()">
       </div>
 
       <div class="form-group">
@@ -375,7 +401,7 @@
           <button type="button" class="btn-add-item" onclick="addItemRow()">+ Add Item</button>
         </div>
         <div id="items-inputs-container">
-          <!-- Form Inputs generated dynamically -->
+          <!-- Inputs populated dynamically -->
         </div>
       </div>
 
@@ -415,7 +441,7 @@
       ]
     };
 
-    function setTemplate(tpl) {
+    function switchCompany(tpl) {
       currentTemplate = tpl;
       document.getElementById('btn-exact').classList.toggle('active', tpl === 'exact');
       document.getElementById('btn-maxcare').classList.toggle('active', tpl === 'maxcare');
@@ -428,6 +454,27 @@
 
       renderItemInputs();
       updatePreview();
+    }
+
+    function getFormattedDate(dateStr) {
+      if (!dateStr) return '22nd Aug 2026';
+      
+      const parts = dateStr.split('-');
+      if (parts.length !== 3) return dateStr;
+
+      const year = parts[0];
+      const monthIdx = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[2], 10);
+
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const monthName = months[monthIdx] || "";
+
+      let suffix = "th";
+      if (day === 1 || day === 21 || day === 31) suffix = "st";
+      else if (day === 2 || day === 22) suffix = "nd";
+      else if (day === 3 || day === 23) suffix = "rd";
+
+      return `${day}${suffix} ${monthName} ${year}`;
     }
 
     function renderItemInputs() {
@@ -477,9 +524,11 @@
       return num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    /* LIVE PREVIEW GENERATION LOGIC WITH 100% MATCH SPECIFICATIONS */
+    /* LIVE PREVIEW GENERATION LOGIC */
     function updatePreview() {
-      const date = document.getElementById('in-date').value;
+      const rawDate = document.getElementById('in-date').value;
+      const formattedDate = getFormattedDate(rawDate);
+      
       const ref = document.getElementById('in-ref').value;
       const custName = document.getElementById('in-cust-name').value;
       const custComp = document.getElementById('in-cust-comp').value;
@@ -514,7 +563,7 @@
 
           <table style="width:100%; border:none; font-size:9.5pt; margin-bottom:8px;">
             <tr>
-              <td style="border:none; padding:1px 0; width:50%;">Date: ${date}</td>
+              <td style="border:none; padding:1px 0; width:50%;">Date: ${formattedDate}</td>
               <td style="border:none; padding:1px 0; width:50%; text-align:right;">Estimate No.: ${ref}</td>
             </tr>
             <tr>
@@ -588,7 +637,7 @@
           </div>
         `;
       } else {
-        /* MAXCARE PACKERS & MOVERS 100% SCREENSHOT MATCH FORMAT */
+        /* MAXCARE PACKERS & MOVERS TEMPLATE */
         let rowsHtml = '';
         itemsData.maxcare.forEach((item, idx) => {
           rowsHtml += `
@@ -603,7 +652,6 @@
         const numItems = itemsData.maxcare.length;
 
         previewContainer.innerHTML = `
-          <!-- YELLOW HEADER BANNER WITH BLUE TITLE -->
           <div style="background-color: #fef08a; padding: 12px 10px; text-align: center; margin: -12mm -16mm 10mm -16mm; border-bottom: 3px solid #17388e;">
             <div style="font-size: 13.5pt; font-weight: bold; color: #17388e; text-transform: uppercase; letter-spacing: 0.3px;">MAXCARE PACKERS & MOVERS PVT. LTD.</div>
             <div style="font-size: 8.5pt; color: #000000; margin-top: 3px; font-weight: bold;">
@@ -611,10 +659,9 @@
             </div>
           </div>
 
-          <!-- META DETAILS SECTION -->
           <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 9.5pt; margin-bottom: 6px;">
             <span>GSTN (ours): 07AAICM9877E1ZX</span>
-            <span>Date: ${date}</span>
+            <span>Date: ${formattedDate}</span>
           </div>
 
           <div style="font-size: 9.5pt; line-height: 1.45; margin-bottom: 10px;">
@@ -624,14 +671,12 @@
             <div>GST No: ${custGst}</div>
           </div>
 
-          <!-- BLUE QUOTATION TITLE -->
           <div style="text-align: center; font-size: 11.5pt; font-weight: bold; color: #17388e; margin: 12px 0 8px 0; letter-spacing: 0.5px;">QUOTATION</div>
 
           <div style="font-size: 9.5pt; margin-bottom: 10px; line-height: 1.4;">
             We thank you for your inquiry to move your household goods from <b>${moveFrom}</b> to <b>${moveTo}</b> . We have pleasure in quoting our charges as follows:
           </div>
 
-          <!-- TABLE WITH BLUE HEADER & YELLOW TOTAL ROWS -->
           <table class="pdf-data-table">
             <thead>
               <tr style="background-color: #17388e; color: #ffffff;">
@@ -661,7 +706,6 @@
             </tfoot>
           </table>
 
-          <!-- BLUE TERMS SECTION -->
           <div class="terms-sec" style="color: #17388e;">
             <h4 style="color: #17388e; font-size: 9.5pt;">TERMS & CONDITION:</h4>
             <ol style="color: #000000;">
@@ -682,7 +726,7 @@
       }
     }
 
-    /* DOWNLOAD PDF WITH EXACT FILENAME */
+    /* DOWNLOAD PDF WITH DYNAMIC FILENAME */
     function downloadPDF() {
       const custName = document.getElementById('in-cust-name').value || 'Customer';
       const fileName = currentTemplate === 'exact' 
