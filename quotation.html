@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Official PDF Editor - APML Portal</title>
-  
-  <!-- Direct PDF Generator Library -->
+  <title>APML Official PDF Quotation Editor</title>
+
+  <!-- HTML2PDF Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
@@ -22,19 +22,19 @@
       min-height: 100vh;
     }
 
-    /* Top Controls Bar */
+    /* Top Control Bar */
     .top-action-bar {
-      max-width: 850px;
+      max-width: 800px;
       margin: 0 auto 15px auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.12);
+      background: #ffffff;
       padding: 12px 18px;
       border-radius: 8px;
-      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     .btn-back {
@@ -50,7 +50,7 @@
     .template-select {
       padding: 8px 12px;
       border-radius: 6px;
-      border: 1px solid #38b6ff;
+      border: 1.5px solid #17388e;
       font-weight: bold;
       font-size: 13px;
       background: #ffffff;
@@ -70,31 +70,29 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .btn-pdf { background: #28a745; color: white; }
     .btn-print { background: #00bcd4; color: white; }
-    .btn-add-row { background: #ff9900; color: white; margin-top: 8px; }
+    .btn-add { background: #ff9900; color: white; margin: 10px 0; }
 
-    /* PDF Printable Sheet */
+    /* EXACT PDF PRINTABLE SHEET (Identical to uploaded PDFs) */
     .pdf-page {
       background: #ffffff;
       width: 800px;
       margin: 0 auto;
-      padding: 35px 40px;
+      padding: 40px 45px;
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
       color: #000000;
-      font-size: 12px;
+      font-size: 11.5px;
       line-height: 1.4;
     }
 
-    input, select {
-      border: 1px dashed #999999;
-      padding: 3px 6px;
-      font-size: 12px;
+    /* Universal Editable Inputs */
+    input {
+      border: 1px dashed #aaaaaa;
+      padding: 2px 4px;
+      font-size: 11.5px;
       font-family: inherit;
       color: #000000;
       background-color: #f8fafc;
@@ -103,67 +101,70 @@
 
     input:focus {
       outline: none;
-      border: 1px solid #0088cc;
+      border: 1px solid #17388e;
       background: #ffffff;
     }
 
-    .company-title {
-      font-size: 18px;
+    /* Exact Company Titles */
+    .comp-name {
+      font-size: 16px;
       font-weight: bold;
       text-transform: uppercase;
       color: #000000;
       margin-bottom: 2px;
     }
 
-    .company-info {
-      font-size: 11px;
-      color: #222222;
+    .comp-details {
+      font-size: 10.5px;
+      color: #000000;
       margin-bottom: 12px;
       line-height: 1.35;
     }
 
-    .quote-badge {
-      font-size: 15px;
+    /* Quotation Header */
+    .quote-title {
+      font-size: 14px;
       font-weight: bold;
       text-align: center;
-      margin: 10px 0;
+      margin: 12px 0;
       letter-spacing: 0.5px;
-      text-decoration: underline;
     }
 
-    .meta-grid {
+    /* Exact Meta Layout */
+    .meta-box {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px 20px;
-      margin-bottom: 15px;
-      font-size: 11.5px;
+      gap: 4px 20px;
+      margin-bottom: 12px;
+      font-size: 11px;
     }
 
-    .meta-row {
+    .meta-item {
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .meta-row label {
+    .meta-item label {
       font-weight: bold;
       white-space: nowrap;
     }
 
+    /* Exact Table Formatting */
     table.pdf-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 10px 0 5px 0;
+      margin: 10px 0;
     }
 
     table.pdf-table th, table.pdf-table td {
       border: 1px solid #000000;
-      padding: 6px 8px;
-      font-size: 11.5px;
+      padding: 5px 8px;
+      font-size: 11px;
     }
 
     table.pdf-table th {
-      background-color: #f2f2f2;
+      background-color: #ffffff;
       font-weight: bold;
       text-align: left;
     }
@@ -179,56 +180,46 @@
       border: none;
       font-weight: bold;
       cursor: pointer;
-      font-size: 14px;
     }
 
-    .summary-box {
-      width: 280px;
-      margin-left: auto;
-      margin-top: 10px;
-      margin-bottom: 15px;
-      font-size: 12px;
+    /* Terms & Conditions */
+    .terms-sec {
+      margin-top: 15px;
+      font-size: 10px;
     }
 
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .terms-sec h4 {
+      font-size: 10.5px;
+      font-weight: bold;
       margin-bottom: 4px;
     }
 
-    .summary-row.grand-total {
-      font-weight: bold;
-      border-top: 1px solid #000;
-      padding-top: 4px;
-      margin-top: 4px;
+    .terms-sec ol {
+      padding-left: 16px;
+      line-height: 1.4;
     }
 
-    .terms-container {
+    .closing-sec {
       margin-top: 15px;
-      font-size: 10.5px;
-    }
-
-    .terms-container h4 {
       font-size: 11px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      text-transform: uppercase;
+      line-height: 1.4;
     }
 
-    .terms-container ol {
-      padding-left: 18px;
-      line-height: 1.45;
+    .footer-address {
+      margin-top: 20px;
+      border-top: 1px solid #000000;
+      padding-top: 8px;
+      font-size: 10px;
     }
 
-    /* Print & Export Cleanup */
+    /* CLEAN EXPORT STYLES */
     .no-export { display: table-cell; }
     
     @media print {
       body { background: white; padding: 0; }
-      .top-action-bar, .no-export, .btn-add-row { display: none !important; }
+      .top-action-bar, .no-export, .btn-add { display: none !important; }
       .pdf-page { box-shadow: none; width: 100%; padding: 0; }
-      input, select {
+      input {
         border: none !important;
         background: transparent !important;
         padding: 0 !important;
@@ -239,7 +230,7 @@
 </head>
 <body>
 
-  <!-- Top Controls Bar -->
+  <!-- Top Action Controls -->
   <div class="top-action-bar">
     <a href="index.html" class="btn-back">🌐 APML Portal</a>
     
@@ -256,56 +247,32 @@
     </div>
   </div>
 
-  <!-- Editable Document Sheet -->
+  <!-- PDF CONTENT SHEET -->
   <div class="pdf-page" id="pdfContent">
     
     <!-- Header -->
-    <div class="company-title" id="comp-title">EXACT CONTAINER LOGISTIC PVT. LTD.</div>
-    <div class="company-info" id="comp-info">
+    <div class="comp-name" id="comp-title">EXACT CONTAINER LOGISTIC PVT. LTD.</div>
+    <div class="comp-details" id="comp-details">
       CIN: U74899DL2000PTC107846<br>
-      GST No: 23AAACL1838J1ZO | Registered Address: 7737/XV RAM NAGAR QUTUB ROAD, PAHARGANJ NEW DELHI 110063<br>
-      Phone: 9667724226
+      GST No: 23AAACL1838J1ZO
     </div>
 
-    <!-- Details Grid -->
-    <div class="meta-grid">
-      <div class="meta-row">
-        <label>Date:</label>
-        <input type="text" id="quote-date" value="22nd Aug 2026">
-      </div>
-      <div class="meta-row">
-        <label id="ref-label">Estimate No.:</label>
-        <input type="text" id="quote-ref" value="2025323429">
-      </div>
-      <div class="meta-row">
-        <label>MR./MS.:</label>
-        <input type="text" id="cust-name" value="Ranu">
-      </div>
-      <div class="meta-row">
-        <label>Company Name:</label>
-        <input type="text" id="cust-comp" value="Unregistered">
-      </div>
-      <div class="meta-row">
-        <label>GST No:</label>
-        <input type="text" id="cust-gst" value="GST Exempted">
-      </div>
+    <!-- Meta Info -->
+    <div class="meta-box" id="meta-box">
+      <!-- Populated via JS -->
     </div>
 
-    <div class="quote-badge">QUOTATION</div>
+    <div class="quote-title">QUOTATION</div>
 
-    <p style="margin-bottom: 10px; font-size: 11.5px;">
-      Dear Sir / Mam,<br>
-      Below are our best prices for moving your <input type="text" id="move-route" value="mumbai to pune" style="width: 200px; font-weight: bold;">. We hope you will find our price competitive enough & will give us an opportunity to service you.
+    <p style="margin-bottom: 10px;" id="opening-text">
+      <!-- Opening text loaded dynamically -->
     </p>
 
-    <!-- Particulars Table with EDIT & ADD Rows -->
-    <table class="pdf-table" id="itemsTable">
+    <!-- Table -->
+    <table class="pdf-table" id="pdf-table">
       <thead>
-        <tr>
-          <th style="width: 40px;">S.No</th>
-          <th>Cost Item / Particular Description</th>
-          <th style="width: 130px; text-align: right;">Cost (in INR)</th>
-          <th style="width: 40px; text-align: center;" class="no-export">Action</th>
+        <tr id="table-head">
+          <!-- Headings loaded dynamically -->
         </tr>
       </thead>
       <tbody id="itemsBody">
@@ -314,51 +281,35 @@
     </table>
 
     <!-- Amount Add Button -->
-    <button type="button" class="btn-action btn-add-row" onclick="addNewRow()">➕ Add Amount Row</button>
+    <button type="button" class="btn-action btn-add no-export" onclick="addNewRow()">➕ Add Amount Item</button>
 
-    <!-- Calculation Summary -->
-    <div class="summary-box">
-      <div class="summary-row">
-        <span>Subtotal Amount:</span>
-        <span>₹ <span id="subtotalVal">0.00</span></span>
-      </div>
-      <div class="summary-row">
-        <span>GST Rate:</span>
-        <select id="gstRate" onchange="calculateTotal()" style="width: 60px;">
-          <option value="0" selected>0%</option>
-          <option value="5">5%</option>
-          <option value="12">12%</option>
-          <option value="18">18%</option>
-        </select>
-      </div>
-      <div class="summary-row">
-        <span>GST Charges:</span>
-        <span>₹ <span id="gstVal">0.00</span></span>
-      </div>
-      <div class="summary-row grand-total">
-        <span>Total with GST:</span>
-        <span>₹ <span id="grandTotalVal">0.00</span></span>
-      </div>
-    </div>
-
-    <!-- Terms & Conditions -->
-    <div class="terms-container">
+    <!-- Terms -->
+    <div class="terms-sec">
       <h4>TERMS & CONDITION:</h4>
       <ol id="termsList">
-        <!-- Dynamically Loaded -->
+        <!-- Terms loaded dynamically -->
       </ol>
     </div>
+
+    <!-- Footer / Closing -->
+    <div id="footer-section"></div>
 
   </div>
 
   <script>
-    // Templates Configuration
     const templates = {
       exact: {
         title: "EXACT CONTAINER LOGISTIC PVT. LTD.",
-        info: "CIN: U74899DL2000PTC107846<br>GST No: 23AAACL1838J1ZO | Registered address: 7737/XV RAM NAGAR QUTUB ROAD, PAHARGANJ NEW DELHI 110063<br>Phone: 9667724226",
-        refLabel: "Estimate No.:",
-        refVal: "2025323429",
+        details: "CIN: U74899DL2000PTC107846<br>GST No: 23AAACL1838J1ZO",
+        meta: [
+          { label: "Date:", val: "22nd Aug 2026" },
+          { label: "Estimate No.:", val: "2025323429" },
+          { label: "MR./MS.:", val: "Ranu" },
+          { label: "Company Name:", val: "Unregistered" },
+          { label: "GST No:", val: "GST Exempted" }
+        ],
+        opening: 'Dear Sir / Mam,<br>Below are our best prices for moving your <input type="text" value="mumbai to pune" style="font-weight:bold; width:150px;">. We hope you will find our price competitive enough & will give us an opportunity to service you.',
+        columns: ["Cost Item", "Cost (in INR)"],
         items: [
           { name: "Freight", amount: 4800 },
           { name: "Car Freight", amount: 0 },
@@ -368,35 +319,50 @@
           { name: "Unpacking Charges", amount: 240 },
           { name: "Other Charges (Toll etc.)", amount: 160 }
         ],
+        gstRate: 0,
         terms: [
           "Please keep your cash/jewelry in your custody.",
           "Carrying liquor, gas cylinder, acid or any type of liquid/explosive and illegal items is prohibited.",
-          "Minimum 15 litres of fuel should be available in the car to run up to the car carrier point and back.",
-          "We don't undertake electrical, carpentry & plumbing work.",
+          "Minimum 15 litres of fuel should be available in the car to run up to the car carrier point and the same way from the car carrier point to the destination.",
+          "We don't undertake electrical, carpentry & plumbing work. It can be provided depending on availability and charged accordingly.",
+          "If there is any extra packing of any article, or an article outside the article list, it will be charged accordingly.",
           "Extra services provided other than mentioned will be charged accordingly.",
-          "20% advance payment along with work order, balance on completion at loading point.",
-          "Payment in cash/cheque/draft in favor of Exact Container Logistics (P) Ltd.",
+          "20% of the amount to be paid in advance along with the work order and the balance amount on completion of work at the loading point.",
+          "Payment in cash/cheque/draft should be in favor of Exact Container Logistics (P) Ltd.",
+          "In case of carrier risk, no individual policy / receipt from the insurance company will be given.",
+          "In case of monsoon / rainy season / foggy weather / riots / vehicle breakdown / any other natural calamity, 7 extra days will be added to the transit time.",
+          "No responsibility on the breakage of flower pots.",
           "This quotation is valid for 15 days."
-        ]
+        ],
+        footer: `<div class="footer-address">Registered address: 7737/XV RAM NAGAR QUTUB ROAD, PAHARGANJ NEW DELHI 110063<br>Phone: 9667724226</div>`
       },
       maxcare: {
         title: "MAXCARE PACKERS & MOVERS PVT. LTD.",
-        info: "CIN: U63090DL2009PTC196378 | GSTN: 07AAICM9877E1ZX<br>Regd. Office: 308, Neelkanth Plaza, Pitampura Community Centre, New Delhi-110034 | Phone: 9311204263 | Email: maxcaremoverspvtltd@gmail.com",
-        refLabel: "Reference No.:",
-        refVal: "MAX202526954",
-        items: [
-          { name: "Transportation Cost", amount: 5000 },
-          { name: "Packing + Loading + Unloading + Unpacking", amount: 3000 },
-          { name: "Car Transportation (if any)", amount: 0 },
-          { name: "Toll Tax + Risk Cover + Misc. Cost", amount: 500 }
+        details: "CIN: U63090DL2009PTC196378<br>Regd. Office: 308, Neelkanth Plaza, Pitampura Community Centre, New Delhi-110034.<br>Phone: 9311204263 Email: maxcaremoverspvtltd@gmail.com<br>GSTN (ours): 07AAICM9877E1ZX",
+        meta: [
+          { label: "Reference No.:", val: "MAX202526954" },
+          { label: "Date:", val: "22nd Aug 2026" },
+          { label: "TO:", val: "Ranu" },
+          { label: "Company Name:", val: "Unregistered" },
+          { label: "GST No:", val: "GST Exempted" }
         ],
+        opening: 'We thank you for your inquiry to move your household goods from <input type="text" value="mumbai to pune" style="font-weight:bold; width:150px;">. We have pleasure in quoting our charges as follows:',
+        columns: ["S.No", "Particulars", "Amount"],
+        items: [
+          { name: "Transportation Cost", amount: 0 },
+          { name: "Packing + Loading + Unloading + Unpacking", amount: 0 },
+          { name: "Car Transportation (if any)", amount: 0 },
+          { name: "Toll Tax + Risk Cover + Misc. Cost", amount: 0 }
+        ],
+        gstRate: 0,
         terms: [
-          "Lorry transportation charges without quotes are prevailing rates.",
-          "Carrier exempted from loss/damage by accident, pilferage, fire, rain. Insurance recommended.",
-          "25% advance along with order, balance on completion of packing.",
-          "Quotation prepared keeping in view basic standards with best packing material.",
-          "Payment in favor of M/S Max Care Packers & Movers Pvt. Ltd."
-        ]
+          "Please note that lorry transportation charges without quotes are the present prevailing rates and will be charged on actuals at the time of transportation. Extra charges will be charged extra as actual.",
+          "The carrier or agent shall be exempted from any loss or damage through accident, pilferage, fire, rain, collision or any other road-driven hazard; we therefore recommend that goods be insured covering risk. While on carrier risk, no individual policy/receipt from the insurance co. will be given.",
+          "We would request you to please pay 25% of all charges in advance along with your order, and the balance charges on completion of the packing. For insurance, the full amount of the premium value is to be paid at the packing location before departure of the consignment.",
+          "Please note that the above quotation has been prepared keeping in view our basic standards of packing with the best packing material, as the type of packing will depend on our discretion.",
+          "We would be grateful if you could please give us one week's advance notice as to when we may commence the above job. Payment will be done in favor of M/S Max Care Packers & Movers Pvt. Ltd."
+        ],
+        footer: `<div class="closing-sec">Thanking you and looking forward to rendering our service to you.<br><br>With Regards,<br><b>M/s MAXCARE PACKERS & MOVERS Pvt. Ltd.</b></div>`
       }
     };
 
@@ -405,99 +371,168 @@
       const tpl = templates[key];
 
       document.getElementById('comp-title').innerText = tpl.title;
-      document.getElementById('comp-info').innerHTML = tpl.info;
-      document.getElementById('ref-label').innerText = tpl.refLabel;
-      document.getElementById('quote-ref').value = tpl.refVal;
+      document.getElementById('comp-details').innerHTML = tpl.details;
+      document.getElementById('opening-text').innerHTML = tpl.opening;
+      document.getElementById('footer-section').innerHTML = tpl.footer;
 
-      const tbody = document.getElementById('itemsBody');
-      tbody.innerHTML = '';
-      
-      tpl.items.forEach((item, index) => {
-        appendRow(index + 1, item.name, item.amount);
+      // Meta Box
+      const metaBox = document.getElementById('meta-box');
+      metaBox.innerHTML = '';
+      tpl.meta.forEach(item => {
+        metaBox.innerHTML += `
+          <div class="meta-item">
+            <label>${item.label}</label>
+            <input type="text" value="${item.val}">
+          </div>
+        `;
       });
 
+      // Table Headers
+      const thead = document.getElementById('table-head');
+      thead.innerHTML = '';
+      tpl.columns.forEach(col => {
+        thead.innerHTML += `<th>${col}</th>`;
+      });
+      thead.innerHTML += `<th class="no-export" style="width: 40px; text-align: center;">Action</th>`;
+
+      // Items
+      const tbody = document.getElementById('itemsBody');
+      tbody.innerHTML = '';
+      tpl.items.forEach((item, idx) => {
+        appendRow(key, idx + 1, item.name, item.amount);
+      });
+
+      // Terms
       const termsList = document.getElementById('termsList');
       termsList.innerHTML = '';
       tpl.terms.forEach(term => {
-        const li = document.createElement('li');
-        li.innerHTML = `<input type="text" value="${term}" style="width:100%;">`;
-        termsList.appendChild(li);
+        termsList.innerHTML += `<li><input type="text" value="${term}" style="width:100%;"></li>`;
       });
 
-      calculateTotal();
+      calculateTotals();
     }
 
-    // Amount Edit & Calculation Logic
-    function calculateTotal() {
-      let subtotal = 0;
-      const inputs = document.querySelectorAll('.num-input');
-      inputs.forEach(input => {
-        subtotal += parseFloat(input.value) || 0;
-      });
-
-      const rate = parseFloat(document.getElementById('gstRate').value) || 0;
-      const gstVal = subtotal * (rate / 100);
-      const grandTotal = subtotal + gstVal;
-
-      document.getElementById('subtotalVal').innerText = subtotal.toFixed(2);
-      document.getElementById('gstVal').innerText = gstVal.toFixed(2);
-      document.getElementById('grandTotalVal').innerText = grandTotal.toFixed(2);
-    }
-
-    // Amount Add Logic (Adds new row dynamically)
-    function addNewRow() {
-      const tbody = document.getElementById('itemsBody');
-      const rowCount = tbody.children.length + 1;
-      appendRow(rowCount, "New Additional Charge", 0);
-      calculateTotal();
-    }
-
-    function appendRow(sno, name, amount) {
+    function appendRow(type, sno, name, amount) {
       const tbody = document.getElementById('itemsBody');
       const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="sno-col" style="text-align:center;">${sno}</td>
-        <td><input type="text" value="${name}" style="width:100%;"></td>
-        <td style="text-align: right;">
-          ₹ <input type="number" class="num-input" value="${amount}" oninput="calculateTotal()" onchange="calculateTotal()">
-        </td>
-        <td style="text-align: center;" class="no-export">
-          <button type="button" class="btn-del" onclick="deleteRow(this)">✖</button>
-        </td>
-      `;
+
+      if (type === 'maxcare') {
+        tr.innerHTML = `
+          <td class="sno-cell" style="width: 40px; text-align: center;">${sno}</td>
+          <td><input type="text" value="${name}" style="width:100%;"></td>
+          <td style="width: 120px; text-align: right;">
+            ₹ <input type="number" class="num-input" value="${amount}" oninput="calculateTotals()">
+          </td>
+          <td class="no-export" style="text-align: center;">
+            <button type="button" class="btn-del" onclick="deleteRow(this)">✖</button>
+          </td>
+        `;
+      } else {
+        tr.innerHTML = `
+          <td><input type="text" value="${name}" style="width:100%;"></td>
+          <td style="width: 140px; text-align: right;">
+            ₹ <input type="number" class="num-input" value="${amount}" oninput="calculateTotals()">
+          </td>
+          <td class="no-export" style="text-align: center;">
+            <button type="button" class="btn-del" onclick="deleteRow(this)">✖</button>
+          </td>
+        `;
+      }
       tbody.appendChild(tr);
     }
 
-    // Delete Row Logic
-    function deleteRow(btn) {
-      const row = btn.closest('tr');
-      row.remove();
-      reindexRows();
-      calculateTotal();
+    function addNewRow() {
+      const key = document.getElementById('templateSelector').value;
+      const tbody = document.getElementById('itemsBody');
+      const totalRows = tbody.querySelectorAll('tr:not(.calc-row)').length;
+      appendRow(key, totalRows + 1, "New Additional Charge", 0);
+      calculateTotals();
     }
 
-    function reindexRows() {
-      const rows = document.querySelectorAll('#itemsBody tr');
-      rows.forEach((tr, idx) => {
-        tr.querySelector('.sno-col').innerText = idx + 1;
+    function deleteRow(btn) {
+      btn.closest('tr').remove();
+      reindexSno();
+      calculateTotals();
+    }
+
+    function reindexSno() {
+      const cells = document.querySelectorAll('.sno-cell');
+      cells.forEach((cell, idx) => {
+        cell.innerText = idx + 1;
       });
     }
 
-    // Direct PDF Export Function
+    function calculateTotals() {
+      // Remove old subtotal / total rows
+      document.querySelectorAll('.calc-row').forEach(row => row.remove());
+
+      const key = document.getElementById('templateSelector').value;
+      const inputs = document.querySelectorAll('.num-input');
+      let subtotal = 0;
+      inputs.forEach(inp => subtotal += parseFloat(inp.value) || 0);
+
+      const tbody = document.getElementById('itemsBody');
+
+      if (key === 'exact') {
+        tbody.innerHTML += `
+          <tr class="calc-row" style="font-weight: bold;">
+            <td>Total</td>
+            <td style="text-align: right;">₹ ${subtotal.toFixed(2)}</td>
+            <td class="no-export"></td>
+          </tr>
+          <tr class="calc-row">
+            <td>GST Charges @ 0%</td>
+            <td style="text-align: right;">₹ 0.00</td>
+            <td class="no-export"></td>
+          </tr>
+          <tr class="calc-row" style="font-weight: bold;">
+            <td>Total with GST</td>
+            <td style="text-align: right;">₹ ${subtotal.toFixed(2)}</td>
+            <td class="no-export"></td>
+          </tr>
+        `;
+      } else {
+        const rowNum = tbody.querySelectorAll('tr:not(.calc-row)').length;
+        tbody.innerHTML += `
+          <tr class="calc-row" style="font-weight: bold;">
+            <td style="text-align: center;">${rowNum + 1}</td>
+            <td>Total</td>
+            <td style="text-align: right;">₹ ${subtotal.toFixed(2)}</td>
+            <td class="no-export"></td>
+          </tr>
+          <tr class="calc-row">
+            <td style="text-align: center;">${rowNum + 2}</td>
+            <td>GST Charges @ 0%</td>
+            <td style="text-align: right;">₹ 0.00</td>
+            <td class="no-export"></td>
+          </tr>
+          <tr class="calc-row" style="font-weight: bold;">
+            <td colspan="2">Total Charges with GST</td>
+            <td style="text-align: right;">₹ ${subtotal.toFixed(2)}</td>
+            <td class="no-export"></td>
+          </tr>
+        `;
+      }
+    }
+
     function downloadPDF() {
-      const noExports = document.querySelectorAll('.no-export, .btn-add-row');
+      const inputs = document.querySelectorAll('#pdfContent input');
+      inputs.forEach(input => input.style.border = 'none');
+
+      const noExports = document.querySelectorAll('.no-export');
       noExports.forEach(el => el.style.display = 'none');
 
       const element = document.getElementById('pdfContent');
       const opt = {
-        margin:       [8, 8, 8, 8],
-        filename:     'APML_Official_Quotation.pdf',
+        margin:       [5, 5, 5, 5],
+        filename:     'APML_Quotation.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2, useCORS: true },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
       html2pdf().set(opt).from(element).save().then(() => {
+        inputs.forEach(input => input.style.border = '1px dashed #aaaaaa');
         noExports.forEach(el => el.style.display = '');
       });
     }
