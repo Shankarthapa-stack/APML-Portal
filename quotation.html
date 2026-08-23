@@ -162,7 +162,7 @@
       flex: 1;
     }
 
-    input.form-control {
+    input.form-control, select.form-control {
       width: 100%;
       padding: 8px 10px;
       border: 1px solid #cbd5e1;
@@ -177,7 +177,7 @@
       cursor: pointer;
     }
 
-    input.form-control:focus {
+    input.form-control:focus, select.form-control:focus {
       border-color: #17388e;
       box-shadow: 0 0 0 2px rgba(23, 56, 142, 0.15);
     }
@@ -377,9 +377,18 @@
           <input type="text" id="in-cust-comp" class="form-control" value="Unregistered" oninput="updatePreview()">
         </div>
         <div class="form-group">
-          <label>Customer GST</label>
+          <label>Customer GST Text</label>
           <input type="text" id="in-cust-gst" class="form-control" value="GST Exempted" oninput="updatePreview()">
         </div>
+      </div>
+
+      <!-- GST ON / OFF TOGGLE SELECTOR -->
+      <div class="form-group">
+        <label>GST Calculation Mode</label>
+        <select id="in-gst-toggle" class="form-control" onchange="updatePreview()">
+          <option value="off">GST Charges @ 0% (Exempted)</option>
+          <option value="on">GST Charges @ 18% (ON)</option>
+        </select>
       </div>
 
       <div class="form-row">
@@ -523,7 +532,7 @@
       return num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    /* 100% MATCH RENDERING ENGINE WITH GREY TABLE HEADERS & TOTAL WITH GST */
+    /* RENDERING ENGINE WITH DYNAMIC 18% / 0% GST CALCULATION */
     function updatePreview() {
       const rawDate = document.getElementById('in-date').value;
       const formattedDate = getFormattedDate(rawDate);
@@ -534,6 +543,8 @@
       const custGst = document.getElementById('in-cust-gst').value;
       const moveFrom = document.getElementById('in-move-from').value;
       const moveTo = document.getElementById('in-move-to').value;
+      
+      const gstToggle = document.getElementById('in-gst-toggle')?.value || 'off';
 
       const previewContainer = document.getElementById('pdfContent');
 
@@ -542,7 +553,13 @@
         totalSum += parseNum(item.amount);
       });
 
+      let gstRate = (gstToggle === 'on') ? 18 : 0;
+      let gstAmount = (gstToggle === 'on') ? (totalSum * 0.18) : 0;
+      let grandTotal = totalSum + gstAmount;
+
       const formattedTotal = formatNum(totalSum);
+      const formattedGst = formatNum(gstAmount);
+      const formattedGrandTotal = formatNum(grandTotal);
 
       if (currentTemplate === 'exact') {
         let rowsHtml = '';
@@ -594,12 +611,12 @@
                 <td style="text-align: right;">${formattedTotal}</td>
               </tr>
               <tr>
-                <td>GST Charges @ 0%</td>
-                <td style="text-align: right;">0.00</td>
+                <td>GST Charges @ ${gstRate}%</td>
+                <td style="text-align: right;">${formattedGst}</td>
               </tr>
               <tr style="font-weight: bold; background-color: #e2e8f0;">
                 <td>Total with GST</td>
-                <td style="text-align: right;">${formattedTotal}</td>
+                <td style="text-align: right;">${formattedGrandTotal}</td>
               </tr>
             </tfoot>
           </table>
@@ -687,12 +704,12 @@
               </tr>
               <tr>
                 <td style="text-align: center;">${numItems + 2}</td>
-                <td>GST Charges @ 0%</td>
-                <td style="text-align: right;">0.00</td>
+                <td>GST Charges @ ${gstRate}%</td>
+                <td style="text-align: right;">${formattedGst}</td>
               </tr>
               <tr style="background-color: #fde047; font-weight: bold;">
                 <td colspan="2">Total Charges with GST</td>
-                <td style="text-align: right;">${formattedTotal}</td>
+                <td style="text-align: right;">${formattedGrandTotal}</td>
               </tr>
             </tfoot>
           </table>
