@@ -35,42 +35,53 @@
       height: 60px;
     }
 
-    /* APML PORTAL HYPERLINK BUTTON */
+    /* LIVE MOVING APML PORTAL BUTTON CSS (WITHOUT GLOBE ICON) */
+    @keyframes liveGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulseGreen {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+      70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(0, 255, 136, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+    }
+
     .apml-brand-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       padding: 8px 18px;
       font-size: 13.5px;
       font-weight: 700;
       color: #ffffff;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+      background: linear-gradient(-45deg, #17388e, #0088cc, #38b6ff, #0b1a40);
+      background-size: 300% 300%;
+      animation: liveGradient 4s ease infinite;
       border: 1.5px solid #38b6ff;
-      border-radius: 10px;
+      border-radius: 12px;
       text-decoration: none;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 12px rgba(56, 182, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
     }
 
     .apml-brand-btn:hover {
-      background: linear-gradient(135deg, #38b6ff 0%, #0077cc 100%);
       border-color: #ffffff;
-      color: #ffffff;
+      box-shadow: 0 0 20px rgba(56, 182, 255, 0.8);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(56, 182, 255, 0.45);
     }
 
-    .apml-brand-btn .globe-icon {
-      font-size: 16px;
+    /* Live Green Indicator Dot */
+    .apml-brand-btn .live-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #00ff88;
+      border-radius: 50%;
       display: inline-block;
-      transition: transform 0.3s ease;
-    }
-
-    .apml-brand-btn:hover .globe-icon {
-      transform: rotate(20deg) scale(1.15);
+      animation: pulseGreen 1.8s infinite;
     }
 
     .portal-link {
@@ -335,8 +346,8 @@
 
   <!-- Top Navigation Bar -->
   <div class="navbar">
-    <a href="index.html" class="apml-brand-btn" title="Go to Home Dashboard">
-      <span class="globe-icon">🌐</span>
+    <a href="index.html" class="apml-brand-btn" title="Return to APML Home Dashboard">
+      <span class="live-dot"></span>
       <span>APML Portal</span>
     </a>
     <a href="index.html" class="portal-link">Dashboard ➔</a>
@@ -393,7 +404,7 @@
         </div>
       </div>
 
-      <!-- GST ON / OFF TOGGLE SELECTOR (PLACED ABOVE AMOUNT PARTICULARS) -->
+      <!-- GST ON / OFF TOGGLE SELECTOR -->
       <div class="form-group">
         <label>GST Calculation Mode</label>
         <select id="in-gst-toggle" class="form-control" onchange="updatePreview()">
