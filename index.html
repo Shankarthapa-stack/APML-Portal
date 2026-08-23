@@ -23,9 +23,10 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      position: relative;
     }
 
-    /* Top Badge - Primary Accent */
+    /* Top Badge */
     .portal-badge {
       background: #c2410c;
       color: #fff7ed;
@@ -68,7 +69,7 @@
       width: 100%;
     }
 
-    /* Card Box Design - Soft Dark Charcoal Background */
+    /* Card Box Design */
     .dash-card {
       background: #292524;
       color: #ffedd5;
@@ -90,7 +91,6 @@
       box-shadow: 0 15px 35px rgba(234, 88, 12, 0.25);
     }
 
-    /* Active Card Highlight */
     .dash-card.active-card {
       border: 2px solid #ea580c;
     }
@@ -114,7 +114,6 @@
       margin-bottom: 25px;
     }
 
-    /* Card Action Buttons */
     .card-btn {
       display: inline-flex;
       align-items: center;
@@ -138,24 +137,147 @@
       transform: translateY(-1px);
     }
 
-    .btn-pdf {
+    .btn-pdf { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); }
+    .btn-gallery { background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); }
+    .btn-calc { background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%); }
+
+    /* FLOATING ABOUT ME BUTTON (BOTTOM RIGHT) */
+    .about-me-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
       background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      color: #ffffff;
+      border: 1.5px solid #f97316;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 13.5px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(234, 88, 12, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .btn-gallery {
-      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+    .about-me-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.7);
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
     }
 
-    .btn-calc {
-      background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%);
+    /* MODAL POPUP STYLING */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
 
-    /* Responsive Adjustments */
+    .modal-card {
+      background: #292524;
+      border: 2px solid #ea580c;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 480px;
+      padding: 25px;
+      color: #ffedd5;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      position: relative;
+      animation: popIn 0.3s ease-out;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      background: transparent;
+      border: none;
+      color: #fdba74;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .dev-badge {
+      background: rgba(234, 88, 12, 0.2);
+      border: 1px solid #ea580c;
+      color: #f97316;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .stats-box {
+      background: #1c1917;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 12px 0;
+      border: 1px solid #44403c;
+    }
+
+    .stats-title {
+      font-size: 12px;
+      color: #fdba74;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .stats-count {
+      font-size: 26px;
+      font-weight: 800;
+      color: #00ff88;
+    }
+
+    .user-list {
+      max-height: 120px;
+      overflow-y: auto;
+      list-style: none;
+      padding: 0;
+      margin-top: 8px;
+    }
+
+    .user-list li {
+      padding: 6px 10px;
+      background: #292524;
+      margin-bottom: 4px;
+      border-radius: 6px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      color: #e7e5e4;
+    }
+
+    .online-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #00ff88;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00ff88;
+      margin-right: 6px;
+    }
+
     @media (max-width: 900px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-      }
+      .dashboard-grid { grid-template-columns: 1fr; max-width: 400px; }
     }
   </style>
 </head>
@@ -170,44 +292,96 @@
 
   <!-- Dashboard 3 Cards Grid -->
   <div class="dashboard-grid">
-
-    <!-- Card 1: PDF Editor -->
     <div class="dash-card active-card">
       <div>
         <div class="card-icon">📄</div>
         <div class="card-title">PDF Editor</div>
         <p class="card-desc">Create, edit, calculate GST, and export official APML PDF documents directly.</p>
       </div>
-      <a href="quotation.html" class="card-btn btn-pdf">
-        📄 Open PDF Editor ➔
-      </a>
+      <a href="quotation.html" class="card-btn btn-pdf">📄 Open PDF Editor ➔</a>
     </div>
 
-    <!-- Card 2: Packing Gallery -->
     <div class="dash-card">
       <div>
         <div class="card-icon">📦</div>
         <div class="card-title">Packing Gallery</div>
         <p class="card-desc">View standard packaging guidelines, truck fleet images, bike packing, and loading videos.</p>
       </div>
-      <a href="gallery.html" class="card-btn btn-gallery">
-        Open Gallery ➔
-      </a>
+      <a href="gallery.html" class="card-btn btn-gallery">Open Gallery ➔</a>
     </div>
 
-    <!-- Card 3: Amount Calculator -->
     <div class="dash-card">
       <div>
         <div class="card-icon">🧮</div>
         <div class="card-title">Amount Calculator</div>
         <p class="card-desc">Calculate estimated packing and moving costs instantly for customer quotes.</p>
       </div>
-      <a href="calculator.html" class="card-btn btn-calc">
-        Calculate Amount ➔
-      </a>
+      <a href="calculator.html" class="card-btn btn-calc">Calculate Amount ➔</a>
     </div>
-
   </div>
+
+  <!-- FLOATING ABOUT ME BUTTON -->
+  <button class="about-me-btn" onclick="openAboutModal()">
+    👨‍💻 About Me & Stats
+  </button>
+
+  <!-- ABOUT ME POPUP MODAL -->
+  <div class="modal-overlay" id="aboutModal">
+    <div class="modal-card">
+      <button class="close-modal-btn" onclick="closeAboutModal()">✖</button>
+      
+      <div class="dev-badge">Developed by Shankar Thapa</div>
+
+      <!-- Total Download Count -->
+      <div class="stats-box">
+        <div class="stats-title">📊 Total Quotation PDFs Downloaded</div>
+        <div class="stats-count" id="pdfCount">0</div>
+      </div>
+
+      <!-- Downloaded Customer List -->
+      <div class="stats-box">
+        <div class="stats-title">📋 Download History (Recent Customers)</div>
+        <ul class="user-list" id="downloadList">
+          <li>No downloads yet</li>
+        </ul>
+      </div>
+
+      <!-- Live Online Users -->
+      <div class="stats-box">
+        <div class="stats-title">🌐 Active Users Online</div>
+        <ul class="user-list">
+          <li><span><span class="online-indicator"></span>Shankar Thapa (Developer)</span> <b style="color:#00ff88">Active</b></li>
+          <li><span><span class="online-indicator"></span>APML Admin Session</span> <b style="color:#00ff88">Active</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openAboutModal() {
+      // Fetch download count from LocalStorage
+      const count = localStorage.getItem('apml_pdf_download_count') || 0;
+      document.getElementById('pdfCount').innerText = count;
+
+      // Fetch download list from LocalStorage
+      const history = JSON.parse(localStorage.getItem('apml_pdf_download_history') || '[]');
+      const listContainer = document.getElementById('downloadList');
+      
+      if (history.length === 0) {
+        listContainer.innerHTML = '<li><span>No downloads recorded yet</span></li>';
+      } else {
+        listContainer.innerHTML = history.slice(-5).reverse().map(item => 
+          `<li><span>👤 ${item.name}</span> <span style="color:#fdba74">${item.time}</span></li>`
+        ).join('');
+      }
+
+      document.getElementById('aboutModal').style.display = 'flex';
+    }
+
+    function closeAboutModal() {
+      document.getElementById('aboutModal').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
