@@ -13,7 +13,6 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Eye-Friendly Dark Warm Background */
     body {
       background-color: #1c1917;
       color: #ffedd5;
@@ -149,27 +148,28 @@
       background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
       color: #ffffff;
       border: 1.5px solid #f97316;
-      padding: 12px 22px;
       border-radius: 30px;
+      padding: 12px 22px;
       font-weight: 800;
       font-size: 13.5px;
       cursor: pointer;
-      box-shadow: 0 8px 25px rgba(234, 88, 12, 0.5);
+      box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
       display: flex;
       align-items: center;
       gap: 8px;
-      z-index: 100;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      transition: all 0.3s ease;
     }
 
     .about-me-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.7);
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 28px rgba(234, 88, 12, 0.6);
+      border-color: #ffffff;
     }
 
-    /* MODAL POPUP STYLING */
+    /* ABOUT ME MODAL DIALOG */
     .modal-overlay {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
@@ -177,102 +177,157 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(5px);
-      display: none;
+      z-index: 2000;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
+      padding: 20px;
     }
 
-    .modal-card {
+    .modal-content {
       background: #292524;
       border: 2px solid #ea580c;
       border-radius: 20px;
-      width: 90%;
+      width: 100%;
       max-width: 480px;
+      max-height: 85vh;
+      overflow-y: auto;
       padding: 25px;
-      color: #ffedd5;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       position: relative;
-      animation: popIn 0.3s ease-out;
+      color: #ffedd5;
     }
 
-    @keyframes popIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .close-modal-btn {
+    .close-btn {
       position: absolute;
       top: 15px;
-      right: 18px;
-      background: transparent;
-      border: none;
-      color: #fdba74;
-      font-size: 22px;
+      right: 20px;
+      font-size: 24px;
       font-weight: bold;
+      color: #fdba74;
       cursor: pointer;
+      transition: color 0.2s;
     }
 
-    .dev-badge {
-      background: rgba(234, 88, 12, 0.2);
-      border: 1px solid #ea580c;
-      color: #f97316;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
+    .close-btn:hover {
+      color: #ffffff;
+    }
+
+    .dev-profile {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .dev-avatar {
+      font-size: 45px;
+      margin-bottom: 5px;
+    }
+
+    .dev-title {
+      font-size: 20px;
       font-weight: 800;
-      display: inline-block;
-      margin-bottom: 15px;
+      color: #fff7ed;
     }
 
-    .stats-box {
+    .dev-subtitle {
+      font-size: 13px;
+      color: #f97316;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 8px 16px;
       background: #1c1917;
+      border: 1px solid #ea580c;
+      color: #38b6ff;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .github-link:hover {
+      background: #ea580c;
+      color: #ffffff;
+    }
+
+    .modal-divider {
+      border: none;
+      border-top: 1px solid #44403c;
+      margin: 18px 0;
+    }
+
+    .stat-box {
+      background: #1c1917;
+      border: 1px solid #7c2d12;
       border-radius: 12px;
       padding: 15px;
-      margin: 12px 0;
-      border: 1px solid #44403c;
+      text-align: center;
+      margin-bottom: 16px;
     }
 
-    .stats-title {
-      font-size: 12px;
-      color: #fdba74;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .stats-count {
-      font-size: 26px;
+    .stat-number {
+      font-size: 28px;
       font-weight: 800;
-      color: #00ff88;
+      color: #f59e0b;
     }
 
-    .user-list {
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #fdba74;
+      margin-top: 2px;
+    }
+
+    .info-group {
+      margin-bottom: 16px;
+    }
+
+    .info-group h4 {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .data-list {
+      list-style: none;
+      background: #1c1917;
+      border-radius: 10px;
+      padding: 10px 14px;
+      border: 1px solid #44403c;
+      font-size: 12.5px;
       max-height: 120px;
       overflow-y: auto;
-      list-style: none;
-      padding: 0;
-      margin-top: 8px;
     }
 
-    .user-list li {
-      padding: 6px 10px;
-      background: #292524;
-      margin-bottom: 4px;
-      border-radius: 6px;
-      font-size: 12px;
+    .data-list li {
+      padding: 5px 0;
+      border-bottom: 1px solid #292524;
       display: flex;
       justify-content: space-between;
-      color: #e7e5e4;
+      align-items: center;
     }
 
-    .online-indicator {
-      display: inline-block;
+    .data-list li:last-child {
+      border-bottom: none;
+    }
+
+    .online-dot {
       width: 8px;
       height: 8px;
-      background-color: #00ff88;
+      background: #00ff88;
       border-radius: 50%;
-      box-shadow: 0 0 8px #00ff88;
+      box-shadow: 0 0 6px #00ff88;
+      display: inline-block;
       margin-right: 6px;
     }
 
@@ -292,96 +347,132 @@
 
   <!-- Dashboard 3 Cards Grid -->
   <div class="dashboard-grid">
+
+    <!-- Card 1: PDF Editor -->
     <div class="dash-card active-card">
       <div>
         <div class="card-icon">📄</div>
         <div class="card-title">PDF Editor</div>
         <p class="card-desc">Create, edit, calculate GST, and export official APML PDF documents directly.</p>
       </div>
-      <a href="quotation.html" class="card-btn btn-pdf">📄 Open PDF Editor ➔</a>
+      <a href="quotation.html" class="card-btn btn-pdf">
+        📄 Open PDF Editor ➔
+      </a>
     </div>
 
+    <!-- Card 2: Packing Gallery -->
     <div class="dash-card">
       <div>
         <div class="card-icon">📦</div>
         <div class="card-title">Packing Gallery</div>
         <p class="card-desc">View standard packaging guidelines, truck fleet images, bike packing, and loading videos.</p>
       </div>
-      <a href="gallery.html" class="card-btn btn-gallery">Open Gallery ➔</a>
+      <a href="gallery.html" class="card-btn btn-gallery">
+        Open Gallery ➔
+      </a>
     </div>
 
+    <!-- Card 3: Amount Calculator -->
     <div class="dash-card">
       <div>
         <div class="card-icon">🧮</div>
         <div class="card-title">Amount Calculator</div>
         <p class="card-desc">Calculate estimated packing and moving costs instantly for customer quotes.</p>
       </div>
-      <a href="calculator.html" class="card-btn btn-calc">Calculate Amount ➔</a>
+      <a href="calculator.html" class="card-btn btn-calc">
+        Calculate Amount ➔
+      </a>
     </div>
+
   </div>
 
   <!-- FLOATING ABOUT ME BUTTON -->
   <button class="about-me-btn" onclick="openAboutModal()">
-    👨‍💻 About Me & Stats
+    👨‍💻 About Me
   </button>
 
-  <!-- ABOUT ME POPUP MODAL -->
-  <div class="modal-overlay" id="aboutModal">
-    <div class="modal-card">
-      <button class="close-modal-btn" onclick="closeAboutModal()">✖</button>
-      
-      <div class="dev-badge">Developed by Shankar Thapa</div>
+  <!-- ABOUT ME MODAL -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeOnOutsideClick(event)">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeAboutModal()">&times;</span>
 
-      <!-- Total Download Count -->
-      <div class="stats-box">
-        <div class="stats-title">📊 Total Quotation PDFs Downloaded</div>
-        <div class="stats-count" id="pdfCount">0</div>
+      <div class="dev-profile">
+        <div class="dev-avatar">👨‍💻</div>
+        <div class="dev-title">Developed by Shankar Thapa</div>
+        <div class="dev-subtitle">APML Portal Developer</div>
+        
+        <a href="https://github.com" target="_blank" class="github-link">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub Profile
+        </a>
       </div>
 
-      <!-- Downloaded Customer List -->
-      <div class="stats-box">
-        <div class="stats-title">📋 Download History (Recent Customers)</div>
-        <ul class="user-list" id="downloadList">
-          <li>No downloads yet</li>
+      <hr class="modal-divider">
+
+      <!-- Total Download Counter -->
+      <div class="stat-box">
+        <div class="stat-number" id="pdfCount">0</div>
+        <div class="stat-label">Total PDFs Downloaded</div>
+      </div>
+
+      <!-- Online Active Users List -->
+      <div class="info-group">
+        <h4>🟢 Online Users Status</h4>
+        <ul class="data-list">
+          <li><span><span class="online-dot"></span>Shankar Thapa (Developer)</span> <span style="color:#00ff88; font-size:11px;">Active</span></li>
+          <li><span><span class="online-dot"></span>Active Session User</span> <span style="color:#00ff88; font-size:11px;">Online</span></li>
         </ul>
       </div>
 
-      <!-- Live Online Users -->
-      <div class="stats-box">
-        <div class="stats-title">🌐 Active Users Online</div>
-        <ul class="user-list">
-          <li><span><span class="online-indicator"></span>Shankar Thapa (Developer)</span> <b style="color:#00ff88">Active</b></li>
-          <li><span><span class="online-indicator"></span>APML Admin Session</span> <b style="color:#00ff88">Active</b></li>
+      <!-- Download History (Customer Names) -->
+      <div class="info-group">
+        <h4>📋 PDF Downloaded By (Customer Log)</h4>
+        <ul class="data-list" id="downloadHistoryList">
+          <li style="color:#a8a29e; justify-content:center;">No downloads recorded yet</li>
         </ul>
       </div>
+
     </div>
   </div>
 
   <script>
     function openAboutModal() {
-      // Fetch download count from LocalStorage
-      const count = localStorage.getItem('apml_pdf_download_count') || 0;
-      document.getElementById('pdfCount').innerText = count;
-
-      // Fetch download list from LocalStorage
-      const history = JSON.parse(localStorage.getItem('apml_pdf_download_history') || '[]');
-      const listContainer = document.getElementById('downloadList');
-      
-      if (history.length === 0) {
-        listContainer.innerHTML = '<li><span>No downloads recorded yet</span></li>';
-      } else {
-        listContainer.innerHTML = history.slice(-5).reverse().map(item => 
-          `<li><span>👤 ${item.name}</span> <span style="color:#fdba74">${item.time}</span></li>`
-        ).join('');
-      }
-
+      loadStatsData();
       document.getElementById('aboutModal').style.display = 'flex';
     }
 
     function closeAboutModal() {
       document.getElementById('aboutModal').style.display = 'none';
     }
-  </script>
 
+    function closeOnOutsideClick(event) {
+      if (event.target.id === 'aboutModal') {
+        closeAboutModal();
+      }
+    }
+
+    function loadStatsData() {
+      // Fetch stats from LocalStorage
+      const count = localStorage.getItem('apml_pdf_download_count') || 0;
+      document.getElementById('pdfCount').innerText = count;
+
+      const historyStr = localStorage.getItem('apml_pdf_download_history');
+      const historyList = document.getElementById('downloadHistoryList');
+
+      if (historyStr) {
+        const history = JSON.parse(historyStr);
+        if (history.length > 0) {
+          historyList.innerHTML = history.reverse().map(item => `
+            <li>
+              <span style="font-weight:bold; color:#fff7ed;">👤 ${item.name}</span>
+              <span style="font-size:11px; color:#fdba74;">${item.time}</span>
+            </li>
+          `).join('');
+          return;
+        }
+      }
+      historyList.innerHTML = '<li style="color:#a8a29e; justify-content:center;">No downloads recorded yet</li>';
+    }
+  </script>
 </body>
 </html>
