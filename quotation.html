@@ -382,15 +382,6 @@
         </div>
       </div>
 
-      <!-- GST ON / OFF TOGGLE SELECTOR -->
-      <div class="form-group">
-        <label>GST Calculation Mode</label>
-        <select id="in-gst-toggle" class="form-control" onchange="updatePreview()">
-          <option value="off">GST Charges @ 0% (Exempted)</option>
-          <option value="on">GST Charges @ 18% (ON)</option>
-        </select>
-      </div>
-
       <div class="form-row">
         <div class="form-group">
           <label>Moving From *</label>
@@ -400,6 +391,15 @@
           <label>Moving To *</label>
           <input type="text" id="in-move-to" class="form-control" value="pune" oninput="updatePreview()">
         </div>
+      </div>
+
+      <!-- GST ON / OFF TOGGLE SELECTOR (PLACED ABOVE AMOUNT PARTICULARS) -->
+      <div class="form-group">
+        <label>GST Calculation Mode</label>
+        <select id="in-gst-toggle" class="form-control" onchange="updatePreview()">
+          <option value="off">GST Charges @ 0% (Exempted)</option>
+          <option value="on">GST Charges @ 18% (ON)</option>
+        </select>
       </div>
 
       <!-- Amount Particulars Section -->
