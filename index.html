@@ -13,9 +13,10 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+    /* Eye-Friendly Dark Warm Background */
     body {
-      background-color: #17388e;
-      color: #ffffff;
+      background-color: #1c1917;
+      color: #ffedd5;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -24,10 +25,10 @@
       padding: 20px;
     }
 
-    /* Top Badge */
+    /* Top Badge - Primary Accent */
     .portal-badge {
-      background: #ffffff;
-      color: #0b1a40;
+      background: #c2410c;
+      color: #fff7ed;
       font-size: 11px;
       font-weight: 800;
       padding: 6px 18px;
@@ -35,24 +36,25 @@
       letter-spacing: 1px;
       margin-bottom: 15px;
       text-transform: uppercase;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(194, 65, 12, 0.35);
     }
 
-    /* Main Title */
+    /* Main Heading */
     .main-title {
       font-size: 38px;
       font-weight: 800;
       text-align: center;
       margin-bottom: 8px;
+      color: #fff7ed;
     }
 
     .main-title span {
-      color: #38b6ff;
+      color: #f97316;
     }
 
     .sub-title {
       font-size: 14px;
-      color: #cbd5e1;
+      color: #fdba74;
       text-align: center;
       margin-bottom: 45px;
     }
@@ -66,28 +68,31 @@
       width: 100%;
     }
 
-    /* Card Box Design */
+    /* Card Box Design - Soft Dark Charcoal Background */
     .dash-card {
-      background: #ffffff;
-      color: #1e293b;
+      background: #292524;
+      color: #ffedd5;
       border-radius: 16px;
       padding: 30px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-height: 250px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #44403c;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       position: relative;
     }
 
     .dash-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      border-color: #ea580c;
+      box-shadow: 0 15px 35px rgba(234, 88, 12, 0.25);
     }
 
+    /* Active Card Highlight */
     .dash-card.active-card {
-      border: 2px solid #ff9900;
+      border: 2px solid #ea580c;
     }
 
     .card-icon {
@@ -98,13 +103,13 @@
     .card-title {
       font-size: 20px;
       font-weight: 800;
-      color: #0f172a;
+      color: #fff7ed;
       margin-bottom: 8px;
     }
 
     .card-desc {
       font-size: 13px;
-      color: #64748b;
+      color: #d6d3d1;
       line-height: 1.4;
       margin-bottom: 25px;
     }
@@ -124,24 +129,25 @@
       color: #ffffff;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transition: opacity 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.2s, transform 0.2s;
     }
 
     .card-btn:hover {
-      opacity: 0.9;
+      opacity: 0.92;
+      transform: translateY(-1px);
     }
 
     .btn-pdf {
-      background: linear-gradient(135deg, #ff9900 0%, #e68a00 100%);
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
     }
 
     .btn-gallery {
-      background: linear-gradient(135deg, #00c4cc 0%, #0099a0 100%);
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
     }
 
     .btn-calc {
-      background: linear-gradient(135deg, #00bcd4 0%, #008ba3 100%);
+      background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%);
     }
 
     /* Responsive Adjustments */
