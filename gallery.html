@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APML Packing Gallery</title>
-<!-- Browser Tab Logo Icon -->
-<link rel="icon" type="image/png" href="logo.png">
+
+  <link rel="icon" type="image/png" href="logo.png">
+
   <style>
     * {
       box-sizing: border-box;
@@ -20,7 +21,6 @@
       min-height: 100vh;
     }
 
-    /* TOP NAVBAR */
     .navbar {
       background-color: rgba(11, 30, 84, 0.95);
       border-bottom: 1px solid rgba(56, 182, 255, 0.25);
@@ -35,7 +35,6 @@
       z-index: 100;
     }
 
-    /* UNIFIED APML PORTAL BUTTON CSS */
     @keyframes moveTempo {
       0% { transform: translateX(0) translateY(0); }
       25% { transform: translateX(4px) translateY(-1px); }
@@ -122,7 +121,6 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* MAIN GALLERY CONTAINER */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -148,7 +146,6 @@
       line-height: 1.5;
     }
 
-    /* CATEGORY FILTER BUTTONS */
     .filter-group {
       display: flex;
       justify-content: center;
@@ -182,7 +179,6 @@
       transform: translateY(-2px);
     }
 
-    /* GALLERY CARDS GRID */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -272,7 +268,6 @@
 </head>
 <body>
 
-  <!-- Top Navigation Bar with Moving Tempo APML Portal Button -->
   <div class="navbar">
     <a href="index.html" class="apml-brand-btn" title="Return to APML Home Dashboard">
       <span class="badge-dot"></span>
@@ -282,26 +277,20 @@
     <a href="index.html" class="portal-link">Dashboard ➔</a>
   </div>
 
-  <!-- Main Content -->
   <div class="container">
-
-    <!-- Header Section -->
     <div class="gallery-header">
       <h1>APML <span>Packing Gallery</span></h1>
       <p>Comprehensive reference guidelines, fleet operations, specialized Solid & TV cartons, vehicle loading protocols, carrier lashing, and packing demonstration videos.</p>
     </div>
 
-    <!-- Category Filters -->
     <div class="filter-group">
       <button class="filter-btn active" onclick="filterGallery('all', this)">✨ Show All <span>(5)</span></button>
       <button class="filter-btn" onclick="filterGallery('images', this)">📦 Packing Images <span>(4)</span></button>
       <button class="filter-btn" onclick="filterGallery('videos', this)">🎥 Packing Videos <span>(1)</span></button>
     </div>
 
-    <!-- Gallery Grid -->
     <div class="gallery-grid" id="galleryGrid">
 
-      <!-- Packing Image 1 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
           <img src="packing1.jpg" alt="Packing 1">
@@ -315,7 +304,6 @@
         </div>
       </div>
 
-      <!-- Packing Image 2 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
           <img src="packing2.jpg" alt="Packing 2">
@@ -329,7 +317,6 @@
         </div>
       </div>
 
-      <!-- Packing Image 3 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
           <img src="packing3.jpg" alt="Packing 3">
@@ -343,7 +330,6 @@
         </div>
       </div>
 
-      <!-- Packing Image 4 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
           <img src="packing4.jpg" alt="Packing 4">
@@ -357,7 +343,6 @@
         </div>
       </div>
 
-      <!-- Video 1 -->
       <div class="gallery-card" data-category="videos">
         <div class="card-img-wrap">
           <video controls>
@@ -375,17 +360,14 @@
       </div>
 
     </div>
-
   </div>
 
   <script>
     function filterGallery(category, btnElem) {
-      // Toggle Active Filter Button
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
       btnElem.classList.add('active');
 
-      // Filter Cards
       const cards = document.querySelectorAll('.gallery-card');
       cards.forEach(card => {
         if (category === 'all' || card.getAttribute('data-category') === category) {
