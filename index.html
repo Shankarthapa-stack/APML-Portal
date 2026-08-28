@@ -10,6 +10,7 @@
   <link rel="icon" type="image/png" href="logo.png?v=7">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -29,7 +30,10 @@
       position: relative;
     }
 
-    /* 3D TRISHUL LOGO CONTAINER & ANIMATION */
+    /* =========================================
+       3D TRISHUL LOGO
+    ========================================= */
+
     .dash-logo-wrap {
       perspective: 1200px;
       margin-bottom: 5px;
@@ -53,12 +57,51 @@
     }
 
     @keyframes trishul3DMove {
-      0% { transform: rotateY(0deg) rotateX(0deg) translateY(0px) translateZ(0px); }
-      25% { transform: rotateY(30deg) rotateX(-15deg) translateY(-15px) translateZ(30px); }
-      50% { transform: rotateY(0deg) rotateX(15deg) translateY(-25px) translateZ(45px); }
-      75% { transform: rotateY(-30deg) rotateX(-15deg) translateY(-15px) translateZ(30px); }
-      100% { transform: rotateY(0deg) rotateX(0deg) translateY(0px) translateZ(0px); }
+
+      0% {
+        transform:
+          rotateY(0deg)
+          rotateX(0deg)
+          translateY(0px)
+          translateZ(0px);
+      }
+
+      25% {
+        transform:
+          rotateY(30deg)
+          rotateX(-15deg)
+          translateY(-15px)
+          translateZ(30px);
+      }
+
+      50% {
+        transform:
+          rotateY(0deg)
+          rotateX(15deg)
+          translateY(-25px)
+          translateZ(45px);
+      }
+
+      75% {
+        transform:
+          rotateY(-30deg)
+          rotateX(-15deg)
+          translateY(-15px)
+          translateZ(30px);
+      }
+
+      100% {
+        transform:
+          rotateY(0deg)
+          rotateX(0deg)
+          translateY(0px)
+          translateZ(0px);
+      }
     }
+
+    /* =========================================
+       HEADER
+    ========================================= */
 
     .portal-badge {
       background: #c2410c;
@@ -89,10 +132,13 @@
       font-size: 14px;
       color: #fdba74;
       text-align: center;
-      margin-bottom: 25px; /* Reduced from 35px to make room for search */
+      margin-bottom: 25px;
     }
 
-    /* SEARCH BAR STYLING */
+    /* =========================================
+       SEARCH BAR
+    ========================================= */
+
     .search-container {
       position: relative;
       width: 100%;
@@ -135,6 +181,10 @@
       background: #1c1917;
     }
 
+    /* =========================================
+       NO RESULTS
+    ========================================= */
+
     .no-results-msg {
       display: none;
       grid-column: 1 / -1;
@@ -147,6 +197,10 @@
       border: 1px dashed #44403c;
     }
 
+    /* =========================================
+       DASHBOARD GRID
+    ========================================= */
+
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -154,6 +208,10 @@
       max-width: 1050px;
       width: 100%;
     }
+
+    /* =========================================
+       DASHBOARD CARD
+    ========================================= */
 
     .dash-card {
       background: #292524;
@@ -166,8 +224,12 @@
       min-height: 250px;
       border: 1px solid #44403c;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
       position: relative;
+      overflow: hidden;
     }
 
     .dash-card:hover {
@@ -199,6 +261,10 @@
       margin-bottom: 25px;
     }
 
+    /* =========================================
+       BUTTON
+    ========================================= */
+
     .card-btn {
       display: inline-flex;
       align-items: center;
@@ -214,7 +280,9 @@
       border: none;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: opacity 0.2s, transform 0.2s;
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
     }
 
     .card-btn:hover {
@@ -222,15 +290,133 @@
       transform: translateY(-1px);
     }
 
-    .btn-pdf { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); }
-    .btn-gallery { background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); }
-    .btn-calc { background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%); }
+    /* EXISTING BUTTONS */
+
+    .btn-pdf {
+      background: linear-gradient(
+        135deg,
+        #ea580c 0%,
+        #c2410c 100%
+      );
+    }
+
+    .btn-gallery {
+      background: linear-gradient(
+        135deg,
+        #f59e0b 0%,
+        #ea580c 100%
+      );
+    }
+
+    .btn-calc {
+      background: linear-gradient(
+        135deg,
+        #c2410c 0%,
+        #7c2d12 100%
+      );
+    }
+
+    /* =========================================
+       🎲 RISK OR REWARD CARD
+    ========================================= */
+
+    .game-card {
+      border: 1px solid #7c2d12;
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(249, 115, 22, 0.18),
+          transparent 35%
+        ),
+        #292524;
+    }
+
+    .game-card::before {
+      content: "🎲";
+      position: absolute;
+      right: -15px;
+      top: -30px;
+      font-size: 115px;
+      opacity: 0.08;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    .game-card::after {
+      content: "GAME";
+      position: absolute;
+      top: 14px;
+      right: 15px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #fdba74;
+      background: rgba(234, 88, 12, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      padding: 5px 9px;
+      border-radius: 20px;
+    }
+
+    .game-card:hover {
+      border-color: #f97316;
+      box-shadow:
+        0 15px 40px rgba(249, 115, 22, 0.35),
+        0 0 25px rgba(234, 88, 12, 0.12);
+    }
+
+    .game-card .card-icon {
+      animation: diceFloat 2.5s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes diceFloat {
+
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-7px) rotate(8deg);
+      }
+
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    .btn-game {
+      background:
+        linear-gradient(
+          135deg,
+          #f97316 0%,
+          #dc2626 100%
+        );
+
+      box-shadow:
+        0 5px 15px rgba(234, 88, 12, 0.35);
+    }
+
+    .btn-game:hover {
+      box-shadow:
+        0 8px 22px rgba(249, 115, 22, 0.55);
+    }
+
+    /* =========================================
+       ABOUT ME BUTTON
+    ========================================= */
 
     .about-me-btn {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+
+      background:
+        linear-gradient(
+          135deg,
+          #ea580c 0%,
+          #c2410c 100%
+        );
+
       color: #ffffff;
       border: 1.5px solid #f97316;
       border-radius: 30px;
@@ -238,19 +424,31 @@
       font-weight: 800;
       font-size: 13.5px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
+
+      box-shadow:
+        0 8px 20px rgba(234, 88, 12, 0.4);
+
       display: flex;
       align-items: center;
       gap: 8px;
+
       z-index: 1000;
+
       transition: all 0.3s ease;
     }
 
     .about-me-btn:hover {
       transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 28px rgba(234, 88, 12, 0.6);
+
+      box-shadow:
+        0 12px 28px rgba(234, 88, 12, 0.6);
+
       border-color: #ffffff;
     }
+
+    /* =========================================
+       MODAL
+    ========================================= */
 
     .modal-overlay {
       display: none;
@@ -259,11 +457,15 @@
       left: 0;
       width: 100%;
       height: 100%;
+
       background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(5px);
+
       z-index: 2000;
+
       justify-content: center;
       align-items: center;
+
       padding: 20px;
     }
 
@@ -271,13 +473,20 @@
       background: #292524;
       border: 2px solid #ea580c;
       border-radius: 20px;
+
       width: 100%;
       max-width: 480px;
       max-height: 85vh;
+
       overflow-y: auto;
+
       padding: 25px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.6);
+
       position: relative;
+
       color: #ffedd5;
     }
 
@@ -285,8 +494,10 @@
       position: absolute;
       top: 15px;
       right: 20px;
+
       font-size: 24px;
       font-weight: bold;
+
       color: #fdba74;
       cursor: pointer;
     }
@@ -318,14 +529,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+
       margin-top: 10px;
       padding: 8px 16px;
+
       background: #1c1917;
       border: 1px solid #ea580c;
+
       color: #38b6ff;
+
       border-radius: 20px;
+
       font-size: 12px;
       font-weight: bold;
+
       text-decoration: none;
     }
 
@@ -344,8 +561,10 @@
       background: #1c1917;
       border: 1px solid #7c2d12;
       border-radius: 12px;
+
       padding: 15px;
       text-align: center;
+
       margin-bottom: 16px;
     }
 
@@ -378,9 +597,13 @@
       list-style: none;
       background: #1c1917;
       border-radius: 10px;
+
       padding: 10px 14px;
+
       border: 1px solid #44403c;
+
       font-size: 12.5px;
+
       max-height: 120px;
       overflow-y: auto;
     }
@@ -388,6 +611,7 @@
     .data-list li {
       padding: 5px 0;
       border-bottom: 1px solid #292524;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -400,201 +624,740 @@
     .online-dot {
       width: 8px;
       height: 8px;
+
       background: #00ff88;
+
       border-radius: 50%;
+
       display: inline-block;
+
       margin-right: 6px;
     }
 
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
     @media (max-width: 900px) {
-      .dashboard-grid { grid-template-columns: 1fr; max-width: 400px; }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+
     }
+
+    @media (max-width: 500px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .main-title {
+        font-size: 30px;
+      }
+
+      .sub-title {
+        font-size: 12px;
+      }
+
+      .search-container {
+        margin-bottom: 25px;
+      }
+
+      .dashboard-grid {
+        gap: 18px;
+      }
+
+      .dash-card {
+        min-height: 220px;
+        padding: 25px 20px;
+      }
+
+      .about-me-btn {
+        bottom: 18px;
+        right: 18px;
+        padding: 10px 16px;
+      }
+
+    }
+
   </style>
 </head>
+
 <body>
 
-  <!-- TOP CENTER 3D TRISHUL LOGO -->
+  <!-- =========================================
+       TOP CENTER 3D TRISHUL LOGO
+  ========================================= -->
+
   <div class="dash-logo-wrap">
-    <div class="dash-logo-3d" title="APML Official Symbol">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="110" height="110">
-        <path fill="none" stroke="#ff0000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="
-          M50 85 
-          C42 85 38 75 50 63 
-          C62 75 58 85 50 85 Z 
-          
-          M50 63 L50 20 
-          
-          M35 35 L50 12 L65 35 
-          
-          M50 63 
-          C32 48 18 58 22 48 
-          C26 38 32 35 40 45 
-          L50 55 
-          
-          M50 63 
-          C68 48 82 58 78 48 
-          C74 38 68 35 60 45 
-          L50 55
-        "/>
-        <path fill="#ff0000" d="M35 35 L50 12 L65 35 L55 35 L55 25 L45 25 L45 35 Z"/>
+
+    <div
+      class="dash-logo-3d"
+      title="APML Official Symbol"
+    >
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 100 100"
+        width="110"
+        height="110"
+      >
+
+        <path
+          fill="none"
+          stroke="#ff0000"
+          stroke-width="7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="
+            M50 85
+            C42 85 38 75 50 63
+            C62 75 58 85 50 85 Z
+
+            M50 63 L50 20
+
+            M35 35 L50 12 L65 35
+
+            M50 63
+            C32 48 18 58 22 48
+            C26 38 32 35 40 45
+            L50 55
+
+            M50 63
+            C68 48 82 58 78 48
+            C74 38 68 35 60 45
+            L50 55
+          "
+        />
+
+        <path
+          fill="#ff0000"
+          d="
+            M35 35
+            L50 12
+            L65 35
+            L55 35
+            L55 25
+            L45 25
+            L45 35
+            Z
+          "
+        />
+
       </svg>
+
     </div>
+
   </div>
 
-  <div class="portal-badge">Official Portal</div>
-  <h1 class="main-title">APML <span>Operations Dashboard</span></h1>
-  <p class="sub-title">Agarwal Packers and Movers Limited - Operations & Resource Management Portal</p>
 
-  <!-- LIVE SEARCH BAR -->
+  <!-- =========================================
+       HEADER
+  ========================================= -->
+
+  <div class="portal-badge">
+    Official Portal
+  </div>
+
+  <h1 class="main-title">
+    APML <span>Operations Dashboard</span>
+  </h1>
+
+  <p class="sub-title">
+    Agarwal Packers and Movers Limited -
+    Operations & Resource Management Portal
+  </p>
+
+
+  <!-- =========================================
+       SEARCH BAR
+  ========================================= -->
+
   <div class="search-container">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" class="search-input" placeholder="Search tools (e.g., PDF Editor, Gallery, Calculator...)" onkeyup="filterTools()">
+
+    <span class="search-icon">
+      🔍
+    </span>
+
+    <input
+      type="text"
+      id="searchInput"
+      class="search-input"
+      placeholder="Search tools (e.g., PDF Editor, Gallery, Calculator, Game...)"
+      onkeyup="filterTools()"
+    >
+
   </div>
 
-  <div class="dashboard-grid" id="toolsGrid">
-    
-    <!-- No Results Message -->
-    <div class="no-results-msg" id="noResultsMsg">
-      ❌ No matching tools found. Try searching for "PDF", "Gallery", or "Calculator".
+
+  <!-- =========================================
+       DASHBOARD
+  ========================================= -->
+
+  <div
+    class="dashboard-grid"
+    id="toolsGrid"
+  >
+
+    <!-- NO RESULTS -->
+
+    <div
+      class="no-results-msg"
+      id="noResultsMsg"
+    >
+      ❌ No matching tools found.
+      Try searching for "PDF", "Gallery",
+      "Calculator", or "Game".
     </div>
 
-    <!-- Card 1 -->
+
+    <!-- =====================================
+         CARD 1 - PDF EDITOR
+    ====================================== -->
+
     <div class="dash-card active-card tool-card">
+
       <div>
-        <div class="card-icon">📄</div>
-        <div class="card-title">PDF Editor</div>
-        <p class="card-desc">Create, edit, calculate GST, and export official APML PDF documents directly.</p>
+
+        <div class="card-icon">
+          📄
+        </div>
+
+        <div class="card-title">
+          PDF Editor
+        </div>
+
+        <p class="card-desc">
+          Create, edit, calculate GST, and export
+          official APML PDF documents directly.
+        </p>
+
       </div>
-      <a href="quotation.html" class="card-btn btn-pdf">📄 Open PDF Editor ➔</a>
+
+      <a
+        href="quotation.html"
+        class="card-btn btn-pdf"
+      >
+        📄 Open PDF Editor ➔
+      </a>
+
     </div>
 
-    <!-- Card 2 -->
+
+    <!-- =====================================
+         CARD 2 - PACKING GALLERY
+    ====================================== -->
+
     <div class="dash-card tool-card">
+
       <div>
-        <div class="card-icon">📦</div>
-        <div class="card-title">Packing Gallery</div>
-        <p class="card-desc">View standard packaging guidelines, truck fleet images, bike packing, and loading videos.</p>
+
+        <div class="card-icon">
+          📦
+        </div>
+
+        <div class="card-title">
+          Packing Gallery
+        </div>
+
+        <p class="card-desc">
+          View standard packaging guidelines,
+          truck fleet images, bike packing,
+          and loading videos.
+        </p>
+
       </div>
-      <a href="gallery.html" class="card-btn btn-gallery">Open Gallery ➔</a>
+
+      <a
+        href="gallery.html"
+        class="card-btn btn-gallery"
+      >
+        Open Gallery ➔
+      </a>
+
     </div>
 
-    <!-- Card 3 -->
+
+    <!-- =====================================
+         CARD 3 - AMOUNT CALCULATOR
+    ====================================== -->
+
     <div class="dash-card tool-card">
+
       <div>
-        <div class="card-icon">🧮</div>
-        <div class="card-title">Amount Calculator</div>
-        <p class="card-desc">Calculate estimated packing and moving costs instantly for customer quotes.</p>
+
+        <div class="card-icon">
+          🧮
+        </div>
+
+        <div class="card-title">
+          Amount Calculator
+        </div>
+
+        <p class="card-desc">
+          Calculate estimated packing and moving
+          costs instantly for customer quotes.
+        </p>
+
       </div>
-      <a href="calculator.html" class="card-btn btn-calc">Calculate Amount ➔</a>
+
+      <a
+        href="calculator.html"
+        class="card-btn btn-calc"
+      >
+        Calculate Amount ➔
+      </a>
+
+    </div>
+
+
+    <!-- =====================================
+         CARD 4 - 🎲 RISK OR REWARD GAME
+    ====================================== -->
+
+    <div
+      class="dash-card tool-card game-card"
+    >
+
+      <div>
+
+        <div class="card-icon">
+          🎲
+        </div>
+
+        <div class="card-title">
+          Risk or Reward
+        </div>
+
+        <p class="card-desc">
+          Test your knowledge, secure your reward,
+          or take the risk to double your points!
+        </p>
+
+      </div>
+
+      <a
+        href="games/risk-reward.html"
+        class="card-btn btn-game"
+      >
+        🎮 Play Game ➔
+      </a>
+
     </div>
 
   </div>
 
-  <button class="about-me-btn" onclick="openAboutModal()">👨‍💻 About Me</button>
 
-  <!-- About Me Modal -->
-  <div class="modal-overlay" id="aboutModal" onclick="closeOnOutsideClick(event)">
+  <!-- =========================================
+       ABOUT ME BUTTON
+  ========================================= -->
+
+  <button
+    class="about-me-btn"
+    onclick="openAboutModal()"
+  >
+    👨‍💻 About Me
+  </button>
+
+
+  <!-- =========================================
+       ABOUT ME MODAL
+  ========================================= -->
+
+  <div
+    class="modal-overlay"
+    id="aboutModal"
+    onclick="closeOnOutsideClick(event)"
+  >
+
     <div class="modal-content">
-      <span class="close-btn" onclick="closeAboutModal()">&times;</span>
+
+      <span
+        class="close-btn"
+        onclick="closeAboutModal()"
+      >
+        &times;
+      </span>
+
 
       <div class="dev-profile">
-        <div class="dev-avatar">👨‍💻</div>
-        <div class="dev-title">Developed by Shankar Thapa</div>
-        <div class="dev-subtitle">APML Portal Developer</div>
-        <a href="https://github.com" target="_blank" class="github-link">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+
+        <div class="dev-avatar">
+          👨‍💻
+        </div>
+
+        <div class="dev-title">
+          Developed by Shankar Thapa
+        </div>
+
+        <div class="dev-subtitle">
+          APML Portal Developer
+        </div>
+
+        <a
+          href="https://github.com"
+          target="_blank"
+          class="github-link"
+        >
+
+          <svg
+            width="14"
+            height="14"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+
+            <path
+              d="
+                M8 0C3.58 0 0 3.58 0 8
+                c0 3.54 2.29 6.53 5.47 7.59
+                .4.07.55-.17.55-.38
+                0-.19-.01-.82-.01-1.49
+                -2.01.37-2.53-.49-2.69-.94
+                -.09-.23-.48-.94-.82-1.13
+                -.28-.15-.68-.52-.01-.53
+                .63-.01 1.08.58 1.23.82
+                .72 1.21 1.87.87 2.33.66
+                .07-.52.28-.87.51-1.07
+                -1.78-.2-3.64-.89-3.64-3.95
+                0-.87.31-1.59.82-2.15
+                -.08-.2-.36-1.02.08-2.12
+                0 0 .67-.21 2.2.82
+                .64-.18 1.32-.27 2-.27
+                .68 0 1.36.09 2 .27
+                1.53-1.04 2.2-.82 2.2-.82
+                .44 1.1.16 1.92.08 2.12
+                .51.56.82 1.28.82 2.15
+                0 3.07-1.87 3.75-3.65 3.95
+                .29.25.54.73.54 1.48
+                0 1.07-.01 1.93-.01 2.2
+                0 .21.15.46.55.38
+                A8.012 8.012 0 0 0 16 8
+                c0-4.42-3.58-8-8-8z
+              "
+            />
+
+          </svg>
+
           GitHub Profile
+
         </a>
+
       </div>
+
 
       <hr class="modal-divider">
 
+
+      <!-- PDF DOWNLOAD COUNT -->
+
       <div class="stat-box">
-        <div class="stat-number" id="pdfCount">0</div>
-        <div class="stat-label">Total PDFs Downloaded</div>
+
+        <div
+          class="stat-number"
+          id="pdfCount"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Total PDFs Downloaded
+        </div>
+
       </div>
 
+
+      <!-- ONLINE USERS -->
+
       <div class="info-group">
-        <h4>🟢 Online Users Status</h4>
+
+        <h4>
+          🟢 Online Users Status
+        </h4>
+
         <ul class="data-list">
-          <li><span><span class="online-dot"></span>Shankar Thapa (Developer)</span> <span style="color:#00ff88; font-size:11px;">Active</span></li>
-          <li><span><span class="online-dot"></span>Active Session User</span> <span style="color:#00ff88; font-size:11px;">Online</span></li>
+
+          <li>
+
+            <span>
+              <span class="online-dot"></span>
+              Shankar Thapa (Developer)
+            </span>
+
+            <span
+              style="
+                color:#00ff88;
+                font-size:11px;
+              "
+            >
+              Active
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <span>
+              <span class="online-dot"></span>
+              Active Session User
+            </span>
+
+            <span
+              style="
+                color:#00ff88;
+                font-size:11px;
+              "
+            >
+              Online
+            </span>
+
+          </li>
+
         </ul>
+
       </div>
 
+
+      <!-- PDF DOWNLOAD HISTORY -->
+
       <div class="info-group">
-        <h4>📋 PDF Downloaded By (Customer Log)</h4>
-        <ul class="data-list" id="downloadHistoryList">
-          <li style="color:#a8a29e; justify-content:center;">No downloads recorded yet</li>
+
+        <h4>
+          📋 PDF Downloaded By (Customer Log)
+        </h4>
+
+        <ul
+          class="data-list"
+          id="downloadHistoryList"
+        >
+
+          <li
+            style="
+              color:#a8a29e;
+              justify-content:center;
+            "
+          >
+            No downloads recorded yet
+          </li>
+
         </ul>
+
       </div>
+
     </div>
+
   </div>
 
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================= -->
+
   <script>
-    // LIVE SEARCH FUNCTIONALITY
+
+    /* =====================================
+       LIVE SEARCH
+    ===================================== */
+
     function filterTools() {
-      let input = document.getElementById('searchInput').value.toLowerCase();
-      let cards = document.querySelectorAll('.tool-card');
-      let noResultsMsg = document.getElementById('noResultsMsg');
+
+      let input =
+        document
+          .getElementById('searchInput')
+          .value
+          .toLowerCase();
+
+      let cards =
+        document.querySelectorAll('.tool-card');
+
+      let noResultsMsg =
+        document.getElementById('noResultsMsg');
+
       let hasVisibleCard = false;
 
-      cards.forEach(card => {
-        let title = card.querySelector('.card-title').innerText.toLowerCase();
-        let desc = card.querySelector('.card-desc').innerText.toLowerCase();
 
-        // Check if input matches Title or Description
-        if (title.includes(input) || desc.includes(input)) {
+      cards.forEach(card => {
+
+        let title =
+          card
+            .querySelector('.card-title')
+            .innerText
+            .toLowerCase();
+
+        let desc =
+          card
+            .querySelector('.card-desc')
+            .innerText
+            .toLowerCase();
+
+
+        if (
+          title.includes(input) ||
+          desc.includes(input)
+        ) {
+
           card.style.display = 'flex';
+
           hasVisibleCard = true;
+
         } else {
+
           card.style.display = 'none';
+
         }
+
       });
 
-      // Show 'No Results' message if everything is hidden
+
       if (hasVisibleCard) {
+
         noResultsMsg.style.display = 'none';
+
       } else {
+
         noResultsMsg.style.display = 'block';
+
       }
+
     }
 
-    // MODAL FUNCTIONS
+
+    /* =====================================
+       OPEN ABOUT MODAL
+    ===================================== */
+
     function openAboutModal() {
+
       loadStatsData();
-      document.getElementById('aboutModal').style.display = 'flex';
+
+      document
+        .getElementById('aboutModal')
+        .style.display = 'flex';
+
     }
+
+
+    /* =====================================
+       CLOSE ABOUT MODAL
+    ===================================== */
 
     function closeAboutModal() {
-      document.getElementById('aboutModal').style.display = 'none';
+
+      document
+        .getElementById('aboutModal')
+        .style.display = 'none';
+
     }
+
+
+    /* =====================================
+       CLOSE WHEN CLICK OUTSIDE
+    ===================================== */
 
     function closeOnOutsideClick(event) {
-      if (event.target.id === 'aboutModal') closeAboutModal();
+
+      if (
+        event.target.id === 'aboutModal'
+      ) {
+
+        closeAboutModal();
+
+      }
+
     }
+
+
+    /* =====================================
+       LOAD PDF STATS
+    ===================================== */
 
     function loadStatsData() {
-      const count = localStorage.getItem('apml_pdf_download_count') || 0;
-      document.getElementById('pdfCount').innerText = count;
 
-      const historyStr = localStorage.getItem('apml_pdf_download_history');
-      const historyList = document.getElementById('downloadHistoryList');
+      const count =
+        localStorage.getItem(
+          'apml_pdf_download_count'
+        ) || 0;
+
+
+      document
+        .getElementById('pdfCount')
+        .innerText = count;
+
+
+      const historyStr =
+        localStorage.getItem(
+          'apml_pdf_download_history'
+        );
+
+
+      const historyList =
+        document.getElementById(
+          'downloadHistoryList'
+        );
+
 
       if (historyStr) {
-        const history = JSON.parse(historyStr);
+
+        const history =
+          JSON.parse(historyStr);
+
+
         if (history.length > 0) {
-          historyList.innerHTML = history.reverse().map(item => `
-            <li>
-              <span style="font-weight:bold; color:#fff7ed;">👤 ${item.name}</span>
-              <span style="font-size:11px; color:#fdba74;">${item.time}</span>
-            </li>
-          `).join('');
+
+          historyList.innerHTML =
+            history.reverse().map(item => `
+
+              <li>
+
+                <span
+                  style="
+                    font-weight:bold;
+                    color:#fff7ed;
+                  "
+                >
+                  👤 ${item.name}
+                </span>
+
+                <span
+                  style="
+                    font-size:11px;
+                    color:#fdba74;
+                  "
+                >
+                  ${item.time}
+                </span>
+
+              </li>
+
+            `).join('');
+
+
           return;
+
         }
+
       }
-      historyList.innerHTML = '<li style="color:#a8a29e; justify-content:center;">No downloads recorded yet</li>';
+
+
+      historyList.innerHTML = `
+
+        <li
+          style="
+            color:#a8a29e;
+            justify-content:center;
+          "
+        >
+          No downloads recorded yet
+        </li>
+
+      `;
+
     }
+
   </script>
+
 </body>
 </html>
