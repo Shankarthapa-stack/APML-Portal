@@ -7,7 +7,7 @@
 
   <!-- RED TRISHUL FAVICON -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='none' stroke='%23ff0000' stroke-width='6' stroke-linejoin='round' d='M50 85 C42 85 40 75 50 65 C60 75 58 85 50 85 Z M50 65 L50 20 M35 35 L50 15 L65 35 M50 65 C35 50 20 60 20 50 C20 40 30 35 40 45 L50 55 M50 65 C65 50 80 60 80 50 C80 40 70 35 60 45 L50 55'/><path fill='%23ff0000' d='M35 35 L50 15 L65 35 L55 35 L55 25 L45 25 L45 35 Z'/></svg>">
-  <link rel="icon" type="image/png" href="logo.png?v=8">
+  <link rel="icon" type="image/png" href="logo.png?v=7">
 
   <style>
     * {
@@ -89,37 +89,39 @@
       font-size: 14px;
       color: #fdba74;
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 25px; /* Reduced from 35px to make room for search */
     }
 
-    /* SEARCH PANEL STYLING */
+    /* SEARCH BAR STYLING */
     .search-container {
+      position: relative;
       width: 100%;
       max-width: 550px;
-      margin-bottom: 35px;
-      position: relative;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      z-index: 10;
     }
 
     .search-icon {
       position: absolute;
       left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 18px;
-      color: #a8a29e;
+      font-size: 16px;
+      color: #fdba74;
       pointer-events: none;
     }
 
     .search-input {
       width: 100%;
       padding: 14px 20px 14px 45px;
-      border-radius: 30px;
-      border: 1px solid #44403c;
       background: #292524;
-      color: #fff7ed;
-      font-size: 15px;
+      border: 1px solid #44403c;
+      border-radius: 30px;
+      color: #ffedd5;
+      font-size: 14px;
+      font-weight: 500;
       outline: none;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       transition: all 0.3s ease;
     }
 
@@ -129,22 +131,22 @@
 
     .search-input:focus {
       border-color: #ea580c;
-      box-shadow: 0 8px 25px rgba(234, 88, 12, 0.4);
-      background: #342f2d;
+      box-shadow: 0 5px 25px rgba(234, 88, 12, 0.25);
+      background: #1c1917;
     }
 
-    .no-results {
+    .no-results-msg {
       display: none;
-      text-align: center;
-      color: #fdba74;
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 10px;
-      width: 100%;
       grid-column: 1 / -1;
+      text-align: center;
+      font-size: 15px;
+      color: #d6d3d1;
+      padding: 20px;
+      background: #292524;
+      border-radius: 12px;
+      border: 1px dashed #44403c;
     }
 
-    /* DASHBOARD GRID */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -164,7 +166,7 @@
       min-height: 250px;
       border: 1px solid #44403c;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       position: relative;
     }
 
@@ -224,7 +226,6 @@
     .btn-gallery { background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); }
     .btn-calc { background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%); }
 
-    /* ABOUT ME BUTTON & MODAL */
     .about-me-btn {
       position: fixed;
       bottom: 24px;
@@ -444,14 +445,21 @@
   <h1 class="main-title">APML <span>Operations Dashboard</span></h1>
   <p class="sub-title">Agarwal Packers and Movers Limited - Operations & Resource Management Portal</p>
 
-  <!-- SEARCH PANEL -->
+  <!-- LIVE SEARCH BAR -->
   <div class="search-container">
     <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" class="search-input" placeholder="Search for tools (e.g., PDF Editor, Gallery, Calculator...)" onkeyup="filterDashboard()">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search tools (e.g., PDF Editor, Gallery, Calculator...)" onkeyup="filterTools()">
   </div>
 
-  <div class="dashboard-grid" id="dashboardGrid">
-    <div class="dash-card active-card" data-keywords="pdf editor quotation form bill gst export documents">
+  <div class="dashboard-grid" id="toolsGrid">
+    
+    <!-- No Results Message -->
+    <div class="no-results-msg" id="noResultsMsg">
+      ❌ No matching tools found. Try searching for "PDF", "Gallery", or "Calculator".
+    </div>
+
+    <!-- Card 1 -->
+    <div class="dash-card active-card tool-card">
       <div>
         <div class="card-icon">📄</div>
         <div class="card-title">PDF Editor</div>
@@ -460,7 +468,8 @@
       <a href="quotation.html" class="card-btn btn-pdf">📄 Open PDF Editor ➔</a>
     </div>
 
-    <div class="dash-card" data-keywords="packing gallery images videos guidelines loading truck">
+    <!-- Card 2 -->
+    <div class="dash-card tool-card">
       <div>
         <div class="card-icon">📦</div>
         <div class="card-title">Packing Gallery</div>
@@ -469,7 +478,8 @@
       <a href="gallery.html" class="card-btn btn-gallery">Open Gallery ➔</a>
     </div>
 
-    <div class="dash-card" data-keywords="amount calculator cost estimator quote price moving packing">
+    <!-- Card 3 -->
+    <div class="dash-card tool-card">
       <div>
         <div class="card-icon">🧮</div>
         <div class="card-title">Amount Calculator</div>
@@ -478,13 +488,11 @@
       <a href="calculator.html" class="card-btn btn-calc">Calculate Amount ➔</a>
     </div>
 
-    <!-- NO RESULTS MESSAGE -->
-    <div id="noResults" class="no-results">❌ No tools found matching your search.</div>
   </div>
 
   <button class="about-me-btn" onclick="openAboutModal()">👨‍💻 About Me</button>
 
-  <!-- ABOUT ME MODAL -->
+  <!-- About Me Modal -->
   <div class="modal-overlay" id="aboutModal" onclick="closeOnOutsideClick(event)">
     <div class="modal-content">
       <span class="close-btn" onclick="closeAboutModal()">&times;</span>
@@ -525,34 +533,34 @@
 
   <script>
     // LIVE SEARCH FUNCTIONALITY
-    function filterDashboard() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.dash-card');
-      const noResults = document.getElementById('noResults');
-      let visibleCount = 0;
+    function filterTools() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let cards = document.querySelectorAll('.tool-card');
+      let noResultsMsg = document.getElementById('noResultsMsg');
+      let hasVisibleCard = false;
 
       cards.forEach(card => {
-        const keywords = card.getAttribute('data-keywords');
-        const title = card.querySelector('.card-title').innerText.toLowerCase();
-        
-        if (keywords.includes(input) || title.includes(input)) {
+        let title = card.querySelector('.card-title').innerText.toLowerCase();
+        let desc = card.querySelector('.card-desc').innerText.toLowerCase();
+
+        // Check if input matches Title or Description
+        if (title.includes(input) || desc.includes(input)) {
           card.style.display = 'flex';
-          setTimeout(() => card.style.opacity = '1', 10);
-          visibleCount++;
+          hasVisibleCard = true;
         } else {
-          card.style.opacity = '0';
-          setTimeout(() => card.style.display = 'none', 300);
+          card.style.display = 'none';
         }
       });
 
-      if (visibleCount === 0) {
-        setTimeout(() => noResults.style.display = 'block', 300);
+      // Show 'No Results' message if everything is hidden
+      if (hasVisibleCard) {
+        noResultsMsg.style.display = 'none';
       } else {
-        noResults.style.display = 'none';
+        noResultsMsg.style.display = 'block';
       }
     }
 
-    // MODAL SCRIPTS
+    // MODAL FUNCTIONS
     function openAboutModal() {
       loadStatsData();
       document.getElementById('aboutModal').style.display = 'flex';
