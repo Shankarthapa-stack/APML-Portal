@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APML Official Quotation Editor</title>
-<!-- Browser Tab Logo Icon -->
-<link rel="icon" type="image/png" href="logo.png">
-  <!-- HTML2PDF Generator Library -->
+
+  <link rel="icon" type="image/png" href="logo.png">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
@@ -24,7 +24,6 @@
       overflow: hidden;
     }
 
-    /* TOP NAVBAR */
     .navbar {
       background-color: rgba(11, 30, 84, 0.95);
       border-bottom: 1px solid rgba(56, 182, 255, 0.25);
@@ -36,7 +35,14 @@
       height: 60px;
     }
 
-    /* NEW SHIMMER & NEON BEAM MOVING APML BUTTON */
+    @keyframes moveTempo {
+      0% { transform: translateX(0) translateY(0); }
+      25% { transform: translateX(4px) translateY(-1px); }
+      50% { transform: translateX(8px) translateY(0); }
+      75% { transform: translateX(4px) translateY(-1px); }
+      100% { transform: translateX(0) translateY(0); }
+    }
+
     @keyframes shimmerSweep {
       0% { left: -100%; }
       50%, 100% { left: 120%; }
@@ -52,7 +58,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 9px 22px;
+      padding: 8px 22px;
       font-size: 13.5px;
       font-weight: 800;
       color: #ffffff;
@@ -68,7 +74,15 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Light Beam Moving Shimmer Line */
+    .apml-brand-btn .moving-tempo {
+      width: 25px;
+      height: 21px;
+      object-fit: contain;
+      display: inline-block;
+      animation: moveTempo 1.8s infinite ease-in-out;
+      filter: drop-shadow(0 0 4px rgba(56, 182, 255, 0.8));
+    }
+
     .apml-brand-btn::before {
       content: '';
       position: absolute;
@@ -86,10 +100,6 @@
       transform: translateY(-2px) scale(1.03);
       box-shadow: 0 8px 25px rgba(56, 182, 255, 0.6);
       background: linear-gradient(135deg, #0077cc 0%, #38b6ff 100%);
-    }
-
-    .apml-brand-btn:active {
-      transform: translateY(0) scale(0.98);
     }
 
     .apml-brand-btn .badge-dot {
@@ -111,13 +121,11 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* MAIN SPLIT-SCREEN LAYOUT */
     .main-container {
       display: flex;
       height: calc(100vh - 60px);
     }
 
-    /* LEFT SIDEBAR: FORM EDITOR PANEL */
     .sidebar {
       width: 400px;
       min-width: 400px;
@@ -204,11 +212,6 @@
       cursor: pointer;
     }
 
-    input.form-control:focus, select.form-control:focus {
-      border-color: #17388e;
-      box-shadow: 0 0 0 2px rgba(23, 56, 142, 0.15);
-    }
-
     .items-header {
       display: flex;
       justify-content: space-between;
@@ -267,7 +270,6 @@
       background-color: #0d235d;
     }
 
-    /* RIGHT PREVIEW AREA */
     .preview-area {
       flex-grow: 1;
       background-color: #0b1a40;
@@ -277,7 +279,6 @@
       justify-content: center;
     }
 
-    /* EXACT 100% MATCH A4 PAGE CANVAS */
     .pdf-page {
       background: #ffffff;
       width: 210mm;
@@ -360,29 +361,24 @@
 </head>
 <body>
 
-  <!-- Top Navigation Bar -->
   <div class="navbar">
     <a href="index.html" class="apml-brand-btn" title="Return to APML Home Dashboard">
       <span class="badge-dot"></span>
+      <img src="https://cdn-icons-png.flaticon.com/512/2830/2830312.png" alt="APML Tempo" class="moving-tempo">
       <span>APML Portal</span>
     </a>
     <a href="index.html" class="portal-link">Dashboard ➔</a>
   </div>
 
-  <!-- Main Split-Screen Layout -->
   <div class="main-container">
-
-    <!-- LEFT PANEL: FORM EDITOR -->
     <div class="sidebar">
       <div class="sidebar-title">Quotation Form</div>
 
-      <!-- TEMPLATE SWITCHER BUTTONS -->
       <div class="tpl-btn-group">
         <button type="button" class="tpl-btn active" id="btn-exact" onclick="switchCompany('exact')">Exact Container Logistics</button>
         <button type="button" class="tpl-btn" id="btn-maxcare" onclick="switchCompany('maxcare')">Maxcare Packers & Movers</button>
       </div>
 
-      <!-- Calendar Date Picker -->
       <div class="form-group">
         <label>Date (Calendar Select)</label>
         <input type="date" id="in-date" class="form-control" value="2026-08-23" onchange="updatePreview()" oninput="updatePreview()">
@@ -420,7 +416,6 @@
         </div>
       </div>
 
-      <!-- GST ON / OFF TOGGLE SELECTOR -->
       <div class="form-group">
         <label>GST Calculation Mode</label>
         <select id="in-gst-toggle" class="form-control" onchange="updatePreview()">
@@ -429,30 +424,24 @@
         </select>
       </div>
 
-      <!-- Amount Particulars Section -->
       <div>
         <div class="items-header">
           <label style="font-size:10px; font-weight:700; color:#475569; text-transform:uppercase;">Amount Particulars</label>
           <button type="button" class="btn-add-item" onclick="addItemRow()">+ Add Item</button>
         </div>
         <div id="items-inputs-container">
-          <!-- Inputs populated dynamically -->
-        </div>
+          </div>
       </div>
 
-      <!-- PDF Download Button -->
       <button type="button" class="btn-download-pdf" onclick="downloadPDF()">
         📥 Download PDF
       </button>
     </div>
 
-    <!-- RIGHT PANEL: LIVE PDF PREVIEW CANVAS -->
     <div class="preview-area">
       <div class="pdf-page" id="pdfContent">
-        <!-- Live Document Rendered Here -->
-      </div>
+        </div>
     </div>
-
   </div>
 
   <script>
@@ -493,7 +482,6 @@
 
     function getFormattedDate(dateStr) {
       if (!dateStr) return '23rd Aug 2026';
-      
       const parts = dateStr.split('-');
       if (parts.length !== 3) return dateStr;
 
@@ -559,7 +547,6 @@
       return num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    /* RENDERING ENGINE WITH DYNAMIC 18% / 0% GST CALCULATION */
     function updatePreview() {
       const rawDate = document.getElementById('in-date').value;
       const formattedDate = getFormattedDate(rawDate);
@@ -672,7 +659,6 @@
           </div>
         `;
       } else {
-        /* MAXCARE PACKERS & MOVERS TEMPLATE */
         let rowsHtml = '';
         itemsData.maxcare.forEach((item, idx) => {
           rowsHtml += `
@@ -766,6 +752,17 @@
       const fileName = currentTemplate === 'exact' 
         ? `EXACT_CONTAINER_LOGISTIC_PVT_LTD_Quotation_${custName}.pdf` 
         : `MAXCARE_PACKERS_MOVERS_PVT_LTD_Quotation_${custName}.pdf`;
+
+      let count = parseInt(localStorage.getItem('apml_pdf_download_count') || '0', 10);
+      count += 1;
+      localStorage.setItem('apml_pdf_download_count', count.toString());
+
+      let history = JSON.parse(localStorage.getItem('apml_pdf_download_history') || '[]');
+      const now = new Date();
+      const timeStr = now.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' }) + ' ' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
+      history.push({ name: custName, time: timeStr });
+      localStorage.setItem('apml_pdf_download_history', JSON.stringify(history));
 
       const element = document.getElementById('pdfContent');
 
