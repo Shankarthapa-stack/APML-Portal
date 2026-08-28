@@ -1,1 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risk or Reward</title>
 
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 200, .12), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 120, .12), transparent 30%),
+        #070b1c;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(15, 20, 45, .92);
+    border: 1px solid rgba(0,255,255,.25);
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 0 50px rgba(0,255,255,.12);
+}
+
+h1 {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+h1 span:first-child {
+    color: #ff3864;
+}
+
+h1 span:last-child {
+    color: #20e58a;
+}
+
+.subtitle {
+    text-align: center;
+    color: #aeb7d8;
+    margin-bottom: 25px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 15px;
+    padding: 13px;
+    text-align: center;
+}
+
+.stat small {
+    display: block;
+    color: #9ba5c7;
+    margin-bottom: 5px;
+}
+
+.stat strong {
+    font-size: 22px;
+}
+
+.question-box {
+    border: 1px solid #5939ff;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    background: rgba(80,50,255,.08);
+}
+
+.question-number {
+    color: #8c7cff;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+#question {
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.option {
+    border: 1px solid #394466;
+    background: rgba(255,255,255,.04);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .25s;
+}
+
+.option:hover {
+    transform: translateY(-3px);
+    border-color: #20e58a;
+    background: rgba(32,229,138,.1);
+}
+
+.option.selected {
+    border-color: #20e58a;
+    background: #20e58a;
+    color: #00140b;
+    font-weight: bold;
+}
+
+.score-box {
+    text-align: center;
+    margin: 22px 0;
+}
+
+.score-box small {
+    color: #8f9abd;
+}
+
+#currentScore {
+    font-size: 32px;
+    display: block;
+    color: #20e58a;
+    margin-top: 5px;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.action {
+    flex: 1;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: .25s;
+}
+
+.reward {
+    background: #ffc400;
+    color: #171000;
+}
+
+.risk {
+    background: #ff2865;
+    color: white;
+}
+
+.action:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.action:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hint {
+    text-align: center;
+    color: #858eae;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.message {
+    min-height: 45px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.correct {
+    color: #20e58a;
+}
+
+.wrong {
+    color: #ff3864;
+}
+
+.next-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #603cff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+}
+
+.next-btn:hover {
+    background: #7457ff;
+}
+
+.game-over {
+    text-align: center;
+    display: none;
+}
+
+.game-over h2 {
+    font-size: 32px;
+    color: #20e58a;
+    margin-bottom: 15px;
+}
+
+.restart {
+    margin-top: 20px;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 12px;
+    background: #603cff;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@media(max-width: 500px) {
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .stat {
+        padding: 10px 5px;
+    }
+
+    .stat strong {
+        font-size: 17px;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .question-box {
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+    <div id="gameScreen">
+
+        <h1>
+            <span>RISK</span>
+            OR
+            <span>REWARD</span>
+        </h1>
+
+        <p class="subtitle">
+            Take the risk, double your score or keep it safe.
+        </p>
+
+        <div class="stats">
+
+            <div class="stat">
+                <small>⭐ SCORE</small>
+                <strong id="score">0</strong>
+            </div>
+
+            <div class="stat">
+                <small>⚡ LEVEL</small>
+                <strong id="level">1</strong>
+            </div>
+
+            <div class="stat">
+                <small>🏆 BEST</small>
+                <strong id="best">0</strong>
+            </div>
+
+        </div>
+
+        <div class="question-box">
+
+            <div class="question-number">
+                QUESTION <span id="questionNumber">1</span>
+            </div>
+
+            <div id="question">
+                Loading...
+            </div>
+
+            <div class="options" id="options"></div>
+
+        </div>
+
+        <div class="score-box">
+            <small>CURRENT REWARD</small>
+            <span id="currentScore">100</span>
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="action reward"
+                id="rewardBtn"
+                onclick="takeReward()"
+                disabled>
+                💰 TAKE REWARD
+            </button>
+
+            <button
+                class="action risk"
+                id="riskBtn"
+                onclick="takeRisk()"
+                disabled>
+                🎲 RISK IT
+            </button>
+
+        </div>
+
+        <div class="hint">
+            Take Reward = secure your points<br>
+            Risk It = correct answer → 2× reward | wrong answer → lose reward
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <button
+            id="nextBtn"
+            class="next-btn"
+            onclick="nextQuestion()">
+            NEXT QUESTION →
+        </button>
+
+    </div>
+
+
+    <div id="gameOver" class="game-over">
+
+        <h2>🏆 GAME OVER</h2>
+
+        <p>Your Final Score</p>
+
+        <h1 id="finalScore">0</h1>
+
+        <p id="finalMessage"></p>
+
+        <button class="restart" onclick="restartGame()">
+            🔄 PLAY AGAIN
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   QUESTIONS
+========================= */
+
+const questions = [
+
+    {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Jupiter", "Venus"],
+        answer: 1
+    },
+
+    {
+        question: "How many continents are there?",
+        options: ["5", "6", "7", "8"],
+        answer: 2
+    },
+
+    {
+        question: "Which language is used to style websites?",
+        options: ["HTML", "CSS", "Python", "SQL"],
+        answer: 1
+    },
+
+    {
+        question: "Which is the largest ocean?",
+        options: [
+            "Atlantic Ocean",
+            "Indian Ocean",
+            "Pacific Ocean",
+            "Arctic Ocean"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "What does HTML stand for?",
+        options: [
+            "Hyper Text Markup Language",
+            "High Text Machine Language",
+            "Hyper Tool Multi Language",
+            "Home Text Markup Language"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which company created Android?",
+        options: [
+            "Apple",
+            "Google",
+            "Microsoft",
+            "Amazon"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "How many days are there in a leap year?",
+        options: ["364", "365", "366", "367"],
+        answer: 2
+    },
+
+    {
+        question: "Which device is used to connect to the internet?",
+        options: [
+            "Router",
+            "Keyboard",
+            "Printer",
+            "Scanner"
+        ],
+        answer: 0
+    }
+
+];
+
+
+/* =========================
+   GAME VARIABLES
+========================= */
+
+let questionIndex = 0;
+let score = 0;
+let reward = 100;
+let selectedAnswer = null;
+let level = 1;
+
+let bestScore =
+    localStorage.getItem("riskRewardBest") || 0;
+
+document.getElementById("best").textContent = bestScore;
+
+
+/* =========================
+   LOAD QUESTION
+========================= */
+
+function loadQuestion() {
+
+    if (questionIndex >= questions.length) {
+        endGame();
+        return;
+    }
+
+    const q = questions[questionIndex];
+
+    selectedAnswer = null;
+
+    reward = 100 + (level - 1) * 50;
+
+    document.getElementById("questionNumber").textContent =
+        questionIndex + 1;
+
+    document.getElementById("question").textContent =
+        q.question;
+
+    document.getElementById("currentScore").textContent =
+        reward;
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("level").textContent =
+        level;
+
+    const optionsBox =
+        document.getElementById("options");
+
+    optionsBox.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = option;
+
+        button.onclick = function() {
+            selectAnswer(index, button);
+        };
+
+        optionsBox.appendChild(button);
+
+    });
+
+    document.getElementById("rewardBtn").disabled = true;
+    document.getElementById("riskBtn").disabled = true;
+
+    document.getElementById("message").textContent = "";
+
+    document.getElementById("nextBtn").style.display = "none";
+}
+
+
+/* =========================
+   SELECT ANSWER
+========================= */
+
+function selectAnswer(index, button) {
+
+    selectedAnswer = index;
+
+    document.querySelectorAll(".option")
+        .forEach(btn => {
+            btn.classList.remove("selected");
+        });
+
+    button.classList.add("selected");
+
+    document.getElementById("rewardBtn").disabled = false;
+    document.getElementById("riskBtn").disabled = false;
+}
+
+
+/* =========================
+   TAKE REWARD
+========================= */
+
+function takeReward() {
+
+    if (selectedAnswer === null) return;
+
+    score += reward;
+
+    document.getElementById("score").textContent = score;
+
+    showMessage(
+        "💰 Reward secured! +" + reward,
+        "correct"
+    );
+
+    disableActions();
+
+    document.getElementById("nextBtn").style.display = "block";
+}
+
+
+/* =========================
+   RISK IT
+========================= */
+
+function takeRisk() {
+
+    if (selectedAnswer === null) return;
+
+    const correctAnswer =
+        questions[questionIndex].answer;
+
+    if (selectedAnswer === correctAnswer) {
+
+        const winAmount = reward * 2;
+
+        score += winAmount;
+
+        document.getElementById("score").textContent =
+            score;
+
+        showMessage(
+            "🔥 CORRECT! You doubled your reward: +" +
+            winAmount,
+            "correct"
+        );
+
+    } else {
+
+        score -= reward;
+
+        if (score < 0) {
+            score = 0;
+        }
+
+        document.getElementById("score").textContent =
+            score;
+
+        showMessage(
+            "💥 WRONG! You lost " + reward + " points.",
+            "wrong"
+        );
+    }
+
+    disableActions();
+
+    document.getElementById("nextBtn").style.display =
+        "block";
+}
+
+
+/* =========================
+   DISABLE BUTTONS
+========================= */
+
+function disableActions() {
+
+    document.getElementById("rewardBtn").disabled = true;
+
+    document.getElementById("riskBtn").disabled = true;
+
+    document.querySelectorAll(".option")
+        .forEach(btn => {
+            btn.disabled = true;
+        });
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text, type) {
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+}
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion() {
+
+    questionIndex++;
+
+    level =
+        Math.floor(questionIndex / 2) + 1;
+
+    loadQuestion();
+}
+
+
+/* =========================
+   END GAME
+========================= */
+
+function endGame() {
+
+    document.getElementById("gameScreen").style.display =
+        "none";
+
+    document.getElementById("gameOver").style.display =
+        "block";
+
+    document.getElementById("finalScore").textContent =
+        score;
+
+    if (score > bestScore) {
+
+        bestScore = score;
+
+        localStorage.setItem(
+            "riskRewardBest",
+            bestScore
+        );
+
+        document.getElementById("finalMessage").textContent =
+            "🎉 New High Score! You are the Risk Master!";
+
+    } else {
+
+        document.getElementById("finalMessage").textContent =
+            "Can you beat your best score next time?";
+    }
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+function restartGame() {
+
+    questionIndex = 0;
+
+    score = 0;
+
+    level = 1;
+
+    reward = 100;
+
+    document.getElementById("gameScreen").style.display =
+        "block";
+
+    document.getElementById("gameOver").style.display =
+        "none";
+
+    loadQuestion();
+}
+
+
+/* =========================
+   START GAME
+========================= */
+
+loadQuestion();
+
+</script>
+
+</body>
+  </html>
