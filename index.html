@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APML Operations Dashboard</title>
 
-  <!-- RED COLOR FAVICON LINK -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%23ff0000' d='M50 5 L65 30 L50 45 L35 30 Z M50 35 C35 20 15 30 15 50 C15 70 35 75 50 55 C65 75 85 70 85 50 C85 30 65 20 50 35 Z M30 50 C30 40 42 35 50 48 C58 35 70 40 70 50 C70 60 58 65 50 52 C42 65 30 60 30 50 Z'/></svg>">
-  <link rel="icon" type="image/png" href="logo.png?v=6">
+  <!-- RED TRISHUL FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='none' stroke='%23ff0000' stroke-width='6' stroke-linejoin='round' d='M50 85 C42 85 40 75 50 65 C60 75 58 85 50 85 Z M50 65 L50 20 M35 35 L50 15 L65 35 M50 65 C35 50 20 60 20 50 C20 40 30 35 40 45 L50 55 M50 65 C65 50 80 60 80 50 C80 40 70 35 60 45 L50 55'/><path fill='%23ff0000' d='M35 35 L50 15 L65 35 L55 35 L55 25 L45 25 L45 35 Z'/></svg>">
+  <link rel="icon" type="image/png" href="logo.png?v=7">
 
   <style>
     * {
@@ -29,10 +29,10 @@
       position: relative;
     }
 
-    /* 3D LOGO CONTAINER & ANIMATION */
+    /* 3D TRISHUL LOGO CONTAINER & ANIMATION */
     .dash-logo-wrap {
-      perspective: 1000px;
-      margin-bottom: 12px;
+      perspective: 1200px;
+      margin-bottom: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -40,8 +40,8 @@
 
     .dash-logo-3d {
       transform-style: preserve-3d;
-      animation: logo3DMove 5s infinite ease-in-out;
-      filter: drop-shadow(0 20px 25px rgba(255, 0, 0, 0.45));
+      animation: trishul3DMove 6s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      filter: drop-shadow(0 25px 25px rgba(255, 0, 0, 0.5));
       cursor: pointer;
     }
 
@@ -49,20 +49,21 @@
       animation-play-state: paused;
       transform: scale(1.15) rotateY(360deg);
       transition: transform 0.8s ease;
+      filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.8));
     }
 
-    @keyframes logo3DMove {
+    @keyframes trishul3DMove {
       0% {
         transform: rotateY(0deg) rotateX(0deg) translateY(0px) translateZ(0px);
       }
       25% {
-        transform: rotateY(25deg) rotateX(-12deg) translateY(-10px) translateZ(20px);
+        transform: rotateY(30deg) rotateX(-15deg) translateY(-15px) translateZ(30px);
       }
       50% {
-        transform: rotateY(0deg) rotateX(18deg) translateY(-18px) translateZ(35px);
+        transform: rotateY(0deg) rotateX(15deg) translateY(-25px) translateZ(45px);
       }
       75% {
-        transform: rotateY(-25deg) rotateX(-12deg) translateY(-10px) translateZ(20px);
+        transform: rotateY(-30deg) rotateX(-15deg) translateY(-15px) translateZ(30px);
       }
       100% {
         transform: rotateY(0deg) rotateX(0deg) translateY(0px) translateZ(0px);
@@ -367,11 +368,30 @@
 </head>
 <body>
 
-  <!-- TOP CENTER 3D ANIMATED LOGO -->
+  <!-- TOP CENTER 3D TRISHUL LOGO -->
   <div class="dash-logo-wrap">
-    <div class="dash-logo-3d" title="APML 3D Brand Emblem">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="95" height="95">
-        <path fill="#ff0000" d="M50 5 L65 30 L50 45 L35 30 Z M50 35 C35 20 15 30 15 50 C15 70 35 75 50 55 C65 75 85 70 85 50 C85 30 65 20 50 35 Z M30 50 C30 40 42 35 50 48 C58 35 70 40 70 50 C70 60 58 65 50 52 C42 65 30 60 30 50 Z"/>
+    <div class="dash-logo-3d" title="APML Official Symbol">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="110" height="110">
+        <path fill="none" stroke="#ff0000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="
+          M50 85 
+          C42 85 38 75 50 63 
+          C62 75 58 85 50 85 Z 
+          
+          M50 63 L50 20 
+          
+          M35 35 L50 12 L65 35 
+          
+          M50 63 
+          C32 48 18 58 22 48 
+          C26 38 32 35 40 45 
+          L50 55 
+          
+          M50 63 
+          C68 48 82 58 78 48 
+          C74 38 68 35 60 45 
+          L50 55
+        "/>
+        <path fill="#ff0000" d="M35 35 L50 12 L65 35 L55 35 L55 25 L45 25 L45 35 Z"/>
       </svg>
     </div>
   </div>
