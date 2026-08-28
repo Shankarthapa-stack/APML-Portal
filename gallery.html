@@ -229,6 +229,13 @@
       transform: scale(1.05);
     }
 
+    /* Video Player Specific Style */
+    .card-img-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .card-body {
       padding: 14px 16px;
     }
@@ -299,94 +306,99 @@
     <div class="filter-group">
       <button class="filter-btn active" onclick="filterGallery('all', this)">✨ Show All <span>(6)</span></button>
       <button class="filter-btn" onclick="filterGallery('images', this)">📦 Packing Images <span>(4)</span></button>
-      <button class="filter-btn" onclick="filterGallery('videos', this)">🎥 Packing Videos <span>(1)</span></button>
-      <button class="filter-btn" onclick="filterGallery('fleet', this)">🚚 Truck Fleet <span>(1)</span></button>
+      <button class="filter-btn" onclick="filterGallery('videos', this)">🎥 Packing Videos <span>(2)</span></button>
     </div>
 
     <!-- Gallery Grid -->
     <div class="gallery-grid" id="galleryGrid">
 
-      <!-- Item 1 -->
+      <!-- Packing Image 1 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Small Items Packing">
+          <img src="packing1.jpg" alt="Packing 1">
         </div>
         <div class="card-body">
           <div class="card-tag">Packing Images</div>
           <div class="card-title">Small Items & Crockery</div>
         </div>
         <div class="card-footer">
-          <a href="#" class="view-btn">View Fullscreen 🔍</a>
+          <a href="packing1.jpg" target="_blank" class="view-btn">View Fullscreen 🔍</a>
         </div>
       </div>
 
-      <!-- Item 2 -->
+      <!-- Packing Image 2 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Fridge Packing">
+          <img src="packing2.jpg" alt="Packing 2">
         </div>
         <div class="card-body">
           <div class="card-tag">Packing Images • Appliance</div>
           <div class="card-title">Fridge Packing</div>
         </div>
         <div class="card-footer">
-          <a href="#" class="view-btn">View Fullscreen 🔍</a>
+          <a href="packing2.jpg" target="_blank" class="view-btn">View Fullscreen 🔍</a>
         </div>
       </div>
 
-      <!-- Item 3 -->
+      <!-- Packing Image 3 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80" alt="Washing Machine Packing">
+          <img src="packing3.jpg" alt="Packing 3">
         </div>
         <div class="card-body">
           <div class="card-tag">Packing Images • Appliance</div>
           <div class="card-title">Washing Machine Packing</div>
         </div>
         <div class="card-footer">
-          <a href="#" class="view-btn">View Fullscreen 🔍</a>
+          <a href="packing3.jpg" target="_blank" class="view-btn">View Fullscreen 🔍</a>
         </div>
       </div>
 
-      <!-- Item 4 -->
+      <!-- Packing Image 4 -->
       <div class="gallery-card" data-category="images">
         <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Wooden Frame Crating">
+          <img src="packing4.jpg" alt="Packing 4">
         </div>
         <div class="card-body">
           <div class="card-tag">Packing Images • Crating</div>
           <div class="card-title">Wooden Frame Crating</div>
         </div>
         <div class="card-footer">
-          <a href="#" class="view-btn">View Fullscreen 🔍</a>
+          <a href="packing4.jpg" target="_blank" class="view-btn">View Fullscreen 🔍</a>
         </div>
       </div>
 
-      <!-- Item 5 -->
-      <div class="gallery-card" data-category="fleet">
-        <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80" alt="Truck Fleet Container">
-        </div>
-        <div class="card-body">
-          <div class="card-tag">Truck Fleet • Logistics</div>
-          <div class="card-title">Dedicated Household Container</div>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="view-btn">View Fullscreen 🔍</a>
-        </div>
-      </div>
-
-      <!-- Item 6 -->
+      <!-- Video 1 -->
       <div class="gallery-card" data-category="videos">
         <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=600&q=80" alt="Vehicle Loading Video">
+          <video controls>
+            <source src="packing-video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
         <div class="card-body">
           <div class="card-tag">Packing Videos • Protocol</div>
-          <div class="card-title">Vehicle Loading Protocol Video</div>
+          <div class="card-title">Vehicle Loading Protocol Video 1</div>
         </div>
         <div class="card-footer">
-          <a href="#" class="view-btn">Watch Video 🎥</a>
+          <a href="packing-video1.mp4" target="_blank" class="view-btn">Watch Video 🎥</a>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="gallery-card" data-category="videos">
+        <div class="card-img-wrap">
+          <video controls>
+            <source src="packing-video2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">Packing Videos • Lashing</div>
+          <div class="card-title">Carrier Lashing Video 2</div>
+        </div>
+        <div class="card-footer">
+          <a href="packing-video2.mp4" target="_blank" class="view-btn">Watch Video 🎥</a>
         </div>
       </div>
 
