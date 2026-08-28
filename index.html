@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APML Operations Dashboard</title>
 
-  <!-- DIRECT DATA-URI FAVICON (INSTANT DISPLAY GUARANTEED) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%23000000' d='M50 5 L65 30 L50 45 L35 30 Z M50 35 C35 20 15 30 15 50 C15 70 35 75 50 55 C65 75 85 70 85 50 C85 30 65 20 50 35 Z M30 50 C30 40 42 35 50 48 C58 35 70 40 70 50 C70 60 58 65 50 52 C42 65 30 60 30 50 Z'/></svg>">
-  <link rel="icon" type="image/png" href="logo.png?v=3">
+  <!-- RED COLOR FAVICON LINK -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%23ff0000' d='M50 5 L65 30 L50 45 L35 30 Z M50 35 C35 20 15 30 15 50 C15 70 35 75 50 55 C65 75 85 70 85 50 C85 30 65 20 50 35 Z M30 50 C30 40 42 35 50 48 C58 35 70 40 70 50 C70 60 58 65 50 52 C42 65 30 60 30 50 Z'/></svg>">
+  <link rel="icon" type="image/png" href="logo.png?v=6">
 
   <style>
     * {
@@ -27,6 +27,46 @@
       justify-content: center;
       padding: 20px;
       position: relative;
+    }
+
+    /* 3D LOGO CONTAINER & ANIMATION */
+    .dash-logo-wrap {
+      perspective: 1000px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dash-logo-3d {
+      transform-style: preserve-3d;
+      animation: logo3DMove 5s infinite ease-in-out;
+      filter: drop-shadow(0 20px 25px rgba(255, 0, 0, 0.45));
+      cursor: pointer;
+    }
+
+    .dash-logo-3d:hover {
+      animation-play-state: paused;
+      transform: scale(1.15) rotateY(360deg);
+      transition: transform 0.8s ease;
+    }
+
+    @keyframes logo3DMove {
+      0% {
+        transform: rotateY(0deg) rotateX(0deg) translateY(0px) translateZ(0px);
+      }
+      25% {
+        transform: rotateY(25deg) rotateX(-12deg) translateY(-10px) translateZ(20px);
+      }
+      50% {
+        transform: rotateY(0deg) rotateX(18deg) translateY(-18px) translateZ(35px);
+      }
+      75% {
+        transform: rotateY(-25deg) rotateX(-12deg) translateY(-10px) translateZ(20px);
+      }
+      100% {
+        transform: rotateY(0deg) rotateX(0deg) translateY(0px) translateZ(0px);
+      }
     }
 
     .portal-badge {
@@ -58,7 +98,7 @@
       font-size: 14px;
       color: #fdba74;
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 35px;
     }
 
     .dashboard-grid {
@@ -326,6 +366,15 @@
   </style>
 </head>
 <body>
+
+  <!-- TOP CENTER 3D ANIMATED LOGO -->
+  <div class="dash-logo-wrap">
+    <div class="dash-logo-3d" title="APML 3D Brand Emblem">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="95" height="95">
+        <path fill="#ff0000" d="M50 5 L65 30 L50 45 L35 30 Z M50 35 C35 20 15 30 15 50 C15 70 35 75 50 55 C65 75 85 70 85 50 C85 30 65 20 50 35 Z M30 50 C30 40 42 35 50 48 C58 35 70 40 70 50 C70 60 58 65 50 52 C42 65 30 60 30 50 Z"/>
+      </svg>
+    </div>
+  </div>
 
   <div class="portal-badge">Official Portal</div>
   <h1 class="main-title">APML <span>Operations Dashboard</span></h1>
