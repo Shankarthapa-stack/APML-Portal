@@ -1,457 +1,104 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APML Packing Gallery</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+/* TOP NAVBAR */
+.navbar {
+  background-color: rgba(11, 30, 84, 0.95);
+  border-bottom: 1px solid rgba(56, 182, 255, 0.25);
+  backdrop-filter: blur(8px);
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
 
-    body {
-      background-color: #17388e;
-      color: #ffffff;
-      padding: 40px 20px;
-      min-height: 100vh;
-      opacity: 1;
-      transition: opacity 0.25s ease-in-out;
-    }
+/* LIVE MOVING TEMPO APML BUTTON */
+@keyframes moveTempo {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(4px) translateY(-1px); }
+  50% { transform: translateX(8px) translateY(0); }
+  75% { transform: translateX(4px) translateY(-1px); }
+  100% { transform: translateX(0) translateY(0); }
+}
 
-    body.fade-out {
-      opacity: 0;
-    }
+@keyframes shimmerSweep {
+  0% { left: -100%; }
+  50%, 100% { left: 120%; }
+}
 
-    .header {
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto 30px auto;
-    }
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(56, 182, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2); }
+  50% { box-shadow: 0 0 20px rgba(56, 182, 255, 0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+}
 
-    .guideline-badge {
-      display: inline-block;
-      background: #ffffff;
-      color: #333333;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 15px;
-      letter-spacing: 0.5px;
-    }
+.apml-brand-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 22px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0b1a40 0%, #17388e 50%, #0077cc 100%);
+  border: 1.5px solid #38b6ff;
+  border-radius: 30px;
+  text-decoration: none;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  animation: pulseGlow 2.5s infinite ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    .header h1 {
-      font-size: 36px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
+/* Moving Tempo Image Styling */
+.apml-brand-btn .moving-tempo {
+  width: 25px;
+  height: 21px;
+  object-fit: contain;
+  display: inline-block;
+  animation: moveTempo 1.8s infinite ease-in-out;
+  filter: drop-shadow(0 0 4px rgba(56, 182, 255, 0.8));
+}
 
-    .header h1 span {
-      color: #38b6ff;
-    }
+/* Light Beam Moving Shimmer Line */
+.apml-brand-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: skewX(-20deg);
+  animation: shimmerSweep 3s infinite ease-in-out;
+}
 
-    .header p {
-      font-size: 13px;
-      color: #d1d5db;
-      line-height: 1.5;
-    }
+.apml-brand-btn:hover {
+  border-color: #ffffff;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(56, 182, 255, 0.6);
+  background: linear-gradient(135deg, #0077cc 0%, #38b6ff 100%);
+}
 
-    /* SMART FLOATING TOP-LEFT BUTTON */
-    .top-portal-wrapper {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 10000;
-    }
+.apml-brand-btn:active {
+  transform: translateY(0) scale(0.98);
+}
 
-    .btn.portal-btn {
-      background: linear-gradient(135deg, #0b1e54 0%, #17388e 100%);
-      color: #ffffff;
-      border: 1.5px solid #38b6ff;
-      padding: 10px 18px;
-      font-size: 13px;
-      font-weight: 700;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      cursor: pointer !important;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      letter-spacing: 0.3px;
-      backdrop-filter: blur(8px);
-    }
+.apml-brand-btn .badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88;
+}
 
-    .btn.portal-btn:hover {
-      background: linear-gradient(135deg, #38b6ff 0%, #0088cc 100%);
-      color: #ffffff;
-      border-color: #ffffff;
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 8px 20px rgba(56, 182, 255, 0.5);
-    }
-
-    .btn.portal-btn:active {
-      transform: scale(0.96);
-    }
-
-    .btn.portal-btn span.icon {
-      font-size: 15px;
-      transition: transform 0.2s ease;
-    }
-
-    .btn.portal-btn:hover span.icon {
-      transform: rotate(-15deg);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 9999;
-    }
-
-    .btn {
-      background-color: #ffffff;
-      color: #0d2b7a;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 25px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer !important;
-      transition: all 0.2s ease-in-out;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      user-select: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    }
-
-    .btn.active {
-      background-color: #00bcd4;
-      color: #ffffff;
-    }
-
-    /* BADGE FOR COUNT LOGIC */
-    .count-badge {
-      background: rgba(0, 0, 0, 0.15);
-      font-size: 11px;
-      padding: 2px 7px;
-      border-radius: 12px;
-      margin-left: 2px;
-    }
-
-    .btn.active .count-badge {
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      color: #333333;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    .card-media {
-      height: 220px;
-      background-color: #111a33;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gallery-item.video .card-media {
-      height: 200px;
-    }
-
-    .card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card-media video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background-color: #000000;
-    }
-
-    .card-body {
-      padding: 15px 20px;
-      flex-grow: 1;
-    }
-
-    .card-subtitle {
-      font-size: 11px;
-      font-weight: bold;
-      color: #0088cc;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 5px;
-    }
-
-    .card-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #1f2937;
-    }
-
-    .card-footer {
-      padding: 12px 20px;
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      justify-between: space-between;
-      align-items: center;
-    }
-
-    .action-link {
-      color: #0088cc;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .action-link:hover {
-      text-decoration: underline;
-    }
-
-    .download-btn {
-      background: #f3f4f6;
-      border: 1px solid #d1d5db;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    .download-btn:hover {
-      background: #e5e7eb;
-    }
-
-    @media (max-width: 640px) {
-      .top-portal-wrapper {
-        position: static;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- FLOATING TOP-LEFT BUTTON WITH SMART NAVIGATION LOGIC -->
-  <div class="top-portal-wrapper">
-    <button type="button" class="btn portal-btn" onclick="navigateToDashboard(this)">
-      <span class="icon">🌐</span> APML Portal
-    </button>
-  </div>
-
-  <!-- Header Section -->
-  <div class="header">
-    <div class="guideline-badge">📋 Standard Packaging Guidelines</div>
-    <h1>APML <span>Packing Gallery</span></h1>
-    <p>Comprehensive reference guidelines, fleet operations, specialized Solid & TV cartons, vehicle loading protocols, carrier lashing, and packing demonstration videos.</p>
-  </div>
-
-  <!-- Category Filters Row -->
-  <div class="nav-container">
-    <button type="button" class="btn active" onclick="filterGallery(this, 'all')">
-      ✨ Show All <span class="count-badge" id="count-all">0</span>
-    </button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'packing')">
-      📦 Packing Images <span class="count-badge" id="count-packing">0</span>
-    </button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'video')">
-      🎥 Packing Videos <span class="count-badge" id="count-video">0</span>
-    </button>
-    <button type="button" class="btn" onclick="filterGallery(this, 'truck')">
-      🚚 Truck Fleet <span class="count-badge" id="count-truck">0</span>
-    </button>
-  </div>
-
-  <!-- Gallery Grid Items -->
-  <div class="gallery-grid">
-
-    <div class="card gallery-item packing">
-      <div class="card-media">
-        <img src="image/Image1 (2).jpg.jpg" alt="Small Items Packing">
-      </div>
-      <div class="card-body">
-        <div class="card-subtitle">Packing Images</div>
-        <div class="card-title">Small Items & Crockery</div>
-      </div>
-      <div class="card-footer">
-        <a href="image/Image1 (2).jpg.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
-        <a href="image/Image1 (2).jpg.jpg" download class="download-btn" title="Download">⬇️</a>
-      </div>
-    </div>
-
-    <div class="card gallery-item packing">
-      <div class="card-media">
-        <img src="image/Image2.jpg.jpg" alt="Fridge Packing">
-      </div>
-      <div class="card-body">
-        <div class="card-subtitle">Packing Images • Appliance</div>
-        <div class="card-title">Fridge Packing</div>
-      </div>
-      <div class="card-footer">
-        <a href="image/Image2.jpg.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
-        <a href="image/Image2.jpg.jpg" download class="download-btn" title="Download">⬇️</a>
-      </div>
-    </div>
-
-    <div class="card gallery-item packing">
-      <div class="card-media">
-        <img src="image/Image3.jpg.jpg" alt="Washing Machine Packing">
-      </div>
-      <div class="card-body">
-        <div class="card-subtitle">Packing Images • Appliance</div>
-        <div class="card-title">Washing Machine Packing</div>
-      </div>
-      <div class="card-footer">
-        <a href="image/Image3.jpg.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
-        <a href="image/Image3.jpg.jpg" download class="download-btn" title="Download">⬇️</a>
-      </div>
-    </div>
-
-    <div class="card gallery-item packing">
-      <div class="card-media">
-        <img src="image/Image4.jpg.jpg" alt="Wooden Crating">
-      </div>
-      <div class="card-body">
-        <div class="card-subtitle">Packing Images • Crating</div>
-        <div class="card-title">Wooden Frame Crating</div>
-      </div>
-      <div class="card-footer">
-        <a href="image/Image4.jpg.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
-        <a href="image/Image4.jpg.jpg" download class="download-btn" title="Download">⬇️</a>
-      </div>
-    </div>
-
-    <div class="card gallery-item packing">
-      <div class="card-media">
-        <img src="image/Image5.jpg.jpg" alt="Crockery Cabinet Packing">
-      </div>
-      <div class="card-body">
-        <div class="card-subtitle">Packing Images • Furniture</div>
-        <div class="card-title">Crockery Cabinet Packing</div>
-      </div>
-      <div class="card-footer">
-        <a href="image/Image5.jpg.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
-        <a href="image/Image5.jpg.jpg" download class="download-btn" title="Download">⬇️</a>
-      </div>
-    </div>
-
-    <div class="card gallery-item packing">
-      <div class="card-media">
-        <img src="image/Image6.jpg.jpg" alt="Temple Mandir Packing">
-      </div>
-      <div class="card-body">
-        <div class="card-subtitle">Packing Images • Fragile</div>
-        <div class="card-title">Temple / Mandir Packing</div>
-      </div>
-      <div class="card-footer">
-        <a href="image/Image6.jpg.jpg" target="_blank" class="action-link">View Fullscreen 🔍</a>
-        <a href="image/Image6.jpg.jpg" download class="download-btn" title="Download">⬇️</a>
-      </div>
-    </div>
-
-    <div class="card gallery-item video">
-      <div class="card-media">
-        <video controls>
-          <source src="packing-video1.mp4" type="video/mp4">
-          Your browser does not support video playback.
-        </video>
-      </div>
-      <div class="card-body">
-        <div class="card-subtitle">Packing Video • Demonstration</div>
-        <div class="card-title">Packing Video 1</div>
-      </div>
-      <div class="card-footer">
-        <span class="action-link">Play Video ▶️</span>
-        <a href="packing-video1.mp4" download class="download-btn" title="Download">⬇️</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- JAVASCRIPT LOGIC SECTION -->
-  <script>
-    // 1. DYNAMIC CATEGORY COUNTER LOGIC
-    document.addEventListener("DOMContentLoaded", () => {
-      const allItems = document.querySelectorAll('.gallery-item');
-      const packingItems = document.querySelectorAll('.gallery-item.packing');
-      const videoItems = document.querySelectorAll('.gallery-item.video');
-      const truckItems = document.querySelectorAll('.gallery-item.truck');
-
-      document.getElementById('count-all').innerText = allItems.length;
-      document.getElementById('count-packing').innerText = packingItems.length;
-      document.getElementById('count-video').innerText = videoItems.length;
-      document.getElementById('count-truck').innerText = truckItems.length;
-    });
-
-    // 2. FILTERING LOGIC
-    function filterGallery(element, category) {
-      const buttons = document.querySelectorAll('.nav-container .btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-
-      element.classList.add('active');
-
-      const items = document.querySelectorAll('.gallery-item');
-      items.forEach(item => {
-        if (category === 'all' || item.classList.contains(category)) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-
-    // 3. SMOOTH NAVIGATION LOGIC WITH FADE TRANSITION
-    function navigateToDashboard(buttonElement) {
-      document.body.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 180);
-    }
-  </script>
-</body>
-</html>
+.portal-link {
+  background: linear-gradient(135deg, #ff9900 0%, #e68a00 100%);
+  color: #ffffff;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
