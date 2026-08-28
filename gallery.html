@@ -34,7 +34,7 @@
       z-index: 100;
     }
 
-    /* UNIFIED APML PORTAL BUTTON CSS (SAME AS PDF EDITOR) */
+    /* UNIFIED APML PORTAL BUTTON CSS */
     @keyframes moveTempo {
       0% { transform: translateX(0) translateY(0); }
       25% { transform: translateX(4px) translateY(-1px); }
@@ -275,7 +275,6 @@
   <div class="navbar">
     <a href="index.html" class="apml-brand-btn" title="Return to APML Home Dashboard">
       <span class="badge-dot"></span>
-      <!-- Live Moving Tempo Icon -->
       <img src="https://cdn-icons-png.flaticon.com/512/2830/2830312.png" alt="APML Tempo" class="moving-tempo">
       <span>APML Portal</span>
     </a>
@@ -293,9 +292,9 @@
 
     <!-- Category Filters -->
     <div class="filter-group">
-      <button class="filter-btn active" onclick="filterGallery('all', this)">✨ Show All <span>(6)</span></button>
+      <button class="filter-btn active" onclick="filterGallery('all', this)">✨ Show All <span>(5)</span></button>
       <button class="filter-btn" onclick="filterGallery('images', this)">📦 Packing Images <span>(4)</span></button>
-      <button class="filter-btn" onclick="filterGallery('videos', this)">🎥 Packing Videos <span>(2)</span></button>
+      <button class="filter-btn" onclick="filterGallery('videos', this)">🎥 Packing Videos <span>(1)</span></button>
     </div>
 
     <!-- Gallery Grid -->
@@ -371,23 +370,6 @@
         </div>
         <div class="card-footer">
           <a href="packing-video1.mp4" target="_blank" class="view-btn">Watch Video 🎥</a>
-        </div>
-      </div>
-
-      <!-- Video 2 -->
-      <div class="gallery-card" data-category="videos">
-        <div class="card-img-wrap">
-          <video controls>
-            <source src="packing-video2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div class="card-body">
-          <div class="card-tag">Packing Videos • Lashing</div>
-          <div class="card-title">Carrier Lashing Video 2</div>
-        </div>
-        <div class="card-footer">
-          <a href="packing-video2.mp4" target="_blank" class="view-btn">Watch Video 🎥</a>
         </div>
       </div>
 
