@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APML Operations Dashboard</title>
 
-  <!-- RED TRISHUL FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='none' stroke='%23ff0000' stroke-width='6' stroke-linejoin='round' d='M50 85 C42 85 40 75 50 65 C60 75 58 85 50 85 Z M50 65 L50 20 M35 35 L50 15 L65 35 M50 65 C35 50 20 60 20 50 C20 40 30 35 40 45 L50 55 M50 65 C65 50 80 60 80 50 C80 40 70 35 60 45 L50 55'/><path fill='%23ff0000' d='M35 35 L50 15 L65 35 L55 35 L55 25 L45 25 L45 35 Z'/></svg>">
-  <link rel="icon" type="image/png" href="logo.png?v=7">
+  <!-- FAVICON (Updated to new-logo.png) -->
+  <link rel="icon" type="image/png" href="new-logo.png?v=1">
 
   <style>
 
@@ -31,12 +30,12 @@
     }
 
     /* =========================================
-       3D TRISHUL LOGO
+       3D LOGO ANIMATION
     ========================================= */
 
     .dash-logo-wrap {
       perspective: 1200px;
-      margin-bottom: 5px;
+      margin-bottom: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -44,19 +43,26 @@
 
     .dash-logo-3d {
       transform-style: preserve-3d;
-      animation: trishul3DMove 6s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
-      filter: drop-shadow(0 25px 25px rgba(255, 0, 0, 0.5));
+      animation: logo3DMove 6s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
       cursor: pointer;
+    }
+
+    .dash-logo-3d img {
+      width: 130px;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .dash-logo-3d:hover {
       animation-play-state: paused;
-      transform: scale(1.15) rotateY(360deg);
+      transform: scale(1.1) rotateY(360deg);
       transition: transform 0.8s ease;
-      filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.8));
+      filter: drop-shadow(0 0 25px rgba(234, 88, 12, 0.6));
     }
 
-    @keyframes trishul3DMove {
+    @keyframes logo3DMove {
 
       0% {
         transform:
@@ -68,26 +74,26 @@
 
       25% {
         transform:
-          rotateY(30deg)
-          rotateX(-15deg)
-          translateY(-15px)
-          translateZ(30px);
+          rotateY(25deg)
+          rotateX(-10deg)
+          translateY(-10px)
+          translateZ(20px);
       }
 
       50% {
         transform:
           rotateY(0deg)
-          rotateX(15deg)
-          translateY(-25px)
-          translateZ(45px);
+          rotateX(10deg)
+          translateY(-18px)
+          translateZ(35px);
       }
 
       75% {
         transform:
-          rotateY(-30deg)
-          rotateX(-15deg)
-          translateY(-15px)
-          translateZ(30px);
+          rotateY(-25deg)
+          rotateX(-10deg)
+          translateY(-10px)
+          translateZ(20px);
       }
 
       100% {
@@ -289,8 +295,6 @@
       opacity: 0.92;
       transform: translateY(-1px);
     }
-
-    /* EXISTING BUTTONS */
 
     .btn-pdf {
       background: linear-gradient(
@@ -688,68 +692,13 @@
 <body>
 
   <!-- =========================================
-       TOP CENTER 3D TRISHUL LOGO
+       TOP CENTER 3D LOGO
   ========================================= -->
 
   <div class="dash-logo-wrap">
-
-    <div
-      class="dash-logo-3d"
-      title="APML Official Symbol"
-    >
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 100"
-        width="110"
-        height="110"
-      >
-
-        <path
-          fill="none"
-          stroke="#ff0000"
-          stroke-width="7"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="
-            M50 85
-            C42 85 38 75 50 63
-            C62 75 58 85 50 85 Z
-
-            M50 63 L50 20
-
-            M35 35 L50 12 L65 35
-
-            M50 63
-            C32 48 18 58 22 48
-            C26 38 32 35 40 45
-            L50 55
-
-            M50 63
-            C68 48 82 58 78 48
-            C74 38 68 35 60 45
-            L50 55
-          "
-        />
-
-        <path
-          fill="#ff0000"
-          d="
-            M35 35
-            L50 12
-            L65 35
-            L55 35
-            L55 25
-            L45 25
-            L45 35
-            Z
-          "
-        />
-
-      </svg>
-
+    <div class="dash-logo-3d" title="APML Official Symbol">
+      <img src="new-logo.png" alt="APML Official Symbol">
     </div>
-
   </div>
 
 
@@ -1030,334 +979,4 @@
                 1.53-1.04 2.2-.82 2.2-.82
                 .44 1.1.16 1.92.08 2.12
                 .51.56.82 1.28.82 2.15
-                0 3.07-1.87 3.75-3.65 3.95
-                .29.25.54.73.54 1.48
-                0 1.07-.01 1.93-.01 2.2
-                0 .21.15.46.55.38
-                A8.012 8.012 0 0 0 16 8
-                c0-4.42-3.58-8-8-8z
-              "
-            />
-
-          </svg>
-
-          GitHub Profile
-
-        </a>
-
-      </div>
-
-
-      <hr class="modal-divider">
-
-
-      <!-- PDF DOWNLOAD COUNT -->
-
-      <div class="stat-box">
-
-        <div
-          class="stat-number"
-          id="pdfCount"
-        >
-          0
-        </div>
-
-        <div class="stat-label">
-          Total PDFs Downloaded
-        </div>
-
-      </div>
-
-
-      <!-- ONLINE USERS -->
-
-      <div class="info-group">
-
-        <h4>
-          🟢 Online Users Status
-        </h4>
-
-        <ul class="data-list">
-
-          <li>
-
-            <span>
-              <span class="online-dot"></span>
-              Shankar Thapa (Developer)
-            </span>
-
-            <span
-              style="
-                color:#00ff88;
-                font-size:11px;
-              "
-            >
-              Active
-            </span>
-
-          </li>
-
-
-          <li>
-
-            <span>
-              <span class="online-dot"></span>
-              Active Session User
-            </span>
-
-            <span
-              style="
-                color:#00ff88;
-                font-size:11px;
-              "
-            >
-              Online
-            </span>
-
-          </li>
-
-        </ul>
-
-      </div>
-
-
-      <!-- PDF DOWNLOAD HISTORY -->
-
-      <div class="info-group">
-
-        <h4>
-          📋 PDF Downloaded By (Customer Log)
-        </h4>
-
-        <ul
-          class="data-list"
-          id="downloadHistoryList"
-        >
-
-          <li
-            style="
-              color:#a8a29e;
-              justify-content:center;
-            "
-          >
-            No downloads recorded yet
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================= -->
-
-  <script>
-
-    /* =====================================
-       LIVE SEARCH
-    ===================================== */
-
-    function filterTools() {
-
-      let input =
-        document
-          .getElementById('searchInput')
-          .value
-          .toLowerCase();
-
-      let cards =
-        document.querySelectorAll('.tool-card');
-
-      let noResultsMsg =
-        document.getElementById('noResultsMsg');
-
-      let hasVisibleCard = false;
-
-
-      cards.forEach(card => {
-
-        let title =
-          card
-            .querySelector('.card-title')
-            .innerText
-            .toLowerCase();
-
-        let desc =
-          card
-            .querySelector('.card-desc')
-            .innerText
-            .toLowerCase();
-
-
-        if (
-          title.includes(input) ||
-          desc.includes(input)
-        ) {
-
-          card.style.display = 'flex';
-
-          hasVisibleCard = true;
-
-        } else {
-
-          card.style.display = 'none';
-
-        }
-
-      });
-
-
-      if (hasVisibleCard) {
-
-        noResultsMsg.style.display = 'none';
-
-      } else {
-
-        noResultsMsg.style.display = 'block';
-
-      }
-
-    }
-
-
-    /* =====================================
-       OPEN ABOUT MODAL
-    ===================================== */
-
-    function openAboutModal() {
-
-      loadStatsData();
-
-      document
-        .getElementById('aboutModal')
-        .style.display = 'flex';
-
-    }
-
-
-    /* =====================================
-       CLOSE ABOUT MODAL
-    ===================================== */
-
-    function closeAboutModal() {
-
-      document
-        .getElementById('aboutModal')
-        .style.display = 'none';
-
-    }
-
-
-    /* =====================================
-       CLOSE WHEN CLICK OUTSIDE
-    ===================================== */
-
-    function closeOnOutsideClick(event) {
-
-      if (
-        event.target.id === 'aboutModal'
-      ) {
-
-        closeAboutModal();
-
-      }
-
-    }
-
-
-    /* =====================================
-       LOAD PDF STATS
-    ===================================== */
-
-    function loadStatsData() {
-
-      const count =
-        localStorage.getItem(
-          'apml_pdf_download_count'
-        ) || 0;
-
-
-      document
-        .getElementById('pdfCount')
-        .innerText = count;
-
-
-      const historyStr =
-        localStorage.getItem(
-          'apml_pdf_download_history'
-        );
-
-
-      const historyList =
-        document.getElementById(
-          'downloadHistoryList'
-        );
-
-
-      if (historyStr) {
-
-        const history =
-          JSON.parse(historyStr);
-
-
-        if (history.length > 0) {
-
-          historyList.innerHTML =
-            history.reverse().map(item => `
-
-              <li>
-
-                <span
-                  style="
-                    font-weight:bold;
-                    color:#fff7ed;
-                  "
-                >
-                  👤 ${item.name}
-                </span>
-
-                <span
-                  style="
-                    font-size:11px;
-                    color:#fdba74;
-                  "
-                >
-                  ${item.time}
-                </span>
-
-              </li>
-
-            `).join('');
-
-
-          return;
-
-        }
-
-      }
-
-
-      historyList.innerHTML = `
-
-        <li
-          style="
-            color:#a8a29e;
-            justify-content:center;
-          "
-        >
-          No downloads recorded yet
-        </li>
-
-      `;
-
-    }
-
-  </script>
-
-</body>
-</html>
+                0 3.07-1.87 3.75-3.65 3.9
