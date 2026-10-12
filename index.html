@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APML Operations Dashboard</title>
 
-  <!-- FAVICON (Updated to new-logo.png) -->
-  <link rel="icon" type="image/png" href="new-logo.png?v=1">
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="new-logo.png.png?v=2">
 
   <style>
 
@@ -30,11 +30,10 @@
     }
 
     /* =========================================
-       3D LOGO ANIMATION
+       STILL LOGO (NO MOVEMENT & BLENDED BG)
     ========================================= */
 
     .dash-logo-wrap {
-      perspective: 1200px;
       margin-bottom: 15px;
       display: flex;
       justify-content: center;
@@ -42,67 +41,19 @@
     }
 
     .dash-logo-3d {
-      transform-style: preserve-3d;
-      animation: logo3DMove 6s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
-      filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
-      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .dash-logo-3d img {
-      width: 130px;
+      width: 140px;
       height: auto;
       object-fit: contain;
       display: block;
-    }
-
-    .dash-logo-3d:hover {
-      animation-play-state: paused;
-      transform: scale(1.1) rotateY(360deg);
-      transition: transform 0.8s ease;
-      filter: drop-shadow(0 0 25px rgba(234, 88, 12, 0.6));
-    }
-
-    @keyframes logo3DMove {
-
-      0% {
-        transform:
-          rotateY(0deg)
-          rotateX(0deg)
-          translateY(0px)
-          translateZ(0px);
-      }
-
-      25% {
-        transform:
-          rotateY(25deg)
-          rotateX(-10deg)
-          translateY(-10px)
-          translateZ(20px);
-      }
-
-      50% {
-        transform:
-          rotateY(0deg)
-          rotateX(10deg)
-          translateY(-18px)
-          translateZ(35px);
-      }
-
-      75% {
-        transform:
-          rotateY(-25deg)
-          rotateX(-10deg)
-          translateY(-10px)
-          translateZ(20px);
-      }
-
-      100% {
-        transform:
-          rotateY(0deg)
-          rotateX(0deg)
-          translateY(0px)
-          translateZ(0px);
-      }
+      /* Background blending logic */
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
 
     /* =========================================
@@ -692,12 +643,12 @@
 <body>
 
   <!-- =========================================
-       TOP CENTER 3D LOGO
+       HEADER LOGO (STILL)
   ========================================= -->
 
   <div class="dash-logo-wrap">
     <div class="dash-logo-3d" title="APML Official Symbol">
-      <img src="new-logo.png" alt="APML Official Symbol">
+      <img src="new-logo.png.png" alt="APML Official Symbol">
     </div>
   </div>
 
@@ -979,4 +930,334 @@
                 1.53-1.04 2.2-.82 2.2-.82
                 .44 1.1.16 1.92.08 2.12
                 .51.56.82 1.28.82 2.15
-                0 3.07-1.87 3.75-3.65 3.9
+                0 3.07-1.87 3.75-3.65 3.95
+                .29.25.54.73.54 1.48
+                0 1.07-.01 1.93-.01 2.2
+                0 .21.15.46.55.38
+                A8.012 8.012 0 0 0 16 8
+                c0-4.42-3.58-8-8-8z
+              "
+            />
+
+          </svg>
+
+          GitHub Profile
+
+        </a>
+
+      </div>
+
+
+      <hr class="modal-divider">
+
+
+      <!-- PDF DOWNLOAD COUNT -->
+
+      <div class="stat-box">
+
+        <div
+          class="stat-number"
+          id="pdfCount"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Total PDFs Downloaded
+        </div>
+
+      </div>
+
+
+      <!-- ONLINE USERS -->
+
+      <div class="info-group">
+
+        <h4>
+          🟢 Online Users Status
+        </h4>
+
+        <ul class="data-list">
+
+          <li>
+
+            <span>
+              <span class="online-dot"></span>
+              Shankar Thapa (Developer)
+            </span>
+
+            <span
+              style="
+                color:#00ff88;
+                font-size:11px;
+              "
+            >
+              Active
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <span>
+              <span class="online-dot"></span>
+              Active Session User
+            </span>
+
+            <span
+              style="
+                color:#00ff88;
+                font-size:11px;
+              "
+            >
+              Online
+            </span>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <!-- PDF DOWNLOAD HISTORY -->
+
+      <div class="info-group">
+
+        <h4>
+          📋 PDF Downloaded By (Customer Log)
+        </h4>
+
+        <ul
+          class="data-list"
+          id="downloadHistoryList"
+        >
+
+          <li
+            style="
+              color:#a8a29e;
+              justify-content:center;
+            "
+          >
+            No downloads recorded yet
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    /* =====================================
+       LIVE SEARCH
+    ===================================== */
+
+    function filterTools() {
+
+      let input =
+        document
+          .getElementById('searchInput')
+          .value
+          .toLowerCase();
+
+      let cards =
+        document.querySelectorAll('.tool-card');
+
+      let noResultsMsg =
+        document.getElementById('noResultsMsg');
+
+      let hasVisibleCard = false;
+
+
+      cards.forEach(card => {
+
+        let title =
+          card
+            .querySelector('.card-title')
+            .innerText
+            .toLowerCase();
+
+        let desc =
+          card
+            .querySelector('.card-desc')
+            .innerText
+            .toLowerCase();
+
+
+        if (
+          title.includes(input) ||
+          desc.includes(input)
+        ) {
+
+          card.style.display = 'flex';
+
+          hasVisibleCard = true;
+
+        } else {
+
+          card.style.display = 'none';
+
+        }
+
+      });
+
+
+      if (hasVisibleCard) {
+
+        noResultsMsg.style.display = 'none';
+
+      } else {
+
+        noResultsMsg.style.display = 'block';
+
+      }
+
+    }
+
+
+    /* =====================================
+       OPEN ABOUT MODAL
+    ===================================== */
+
+    function openAboutModal() {
+
+      loadStatsData();
+
+      document
+        .getElementById('aboutModal')
+        .style.display = 'flex';
+
+    }
+
+
+    /* =====================================
+       CLOSE ABOUT MODAL
+    ===================================== */
+
+    function closeAboutModal() {
+
+      document
+        .getElementById('aboutModal')
+        .style.display = 'none';
+
+    }
+
+
+    /* =====================================
+       CLOSE WHEN CLICK OUTSIDE
+    ===================================== */
+
+    function closeOnOutsideClick(event) {
+
+      if (
+        event.target.id === 'aboutModal'
+      ) {
+
+        closeAboutModal();
+
+      }
+
+    }
+
+
+    /* =====================================
+       LOAD PDF STATS
+    ===================================== */
+
+    function loadStatsData() {
+
+      const count =
+        localStorage.getItem(
+          'apml_pdf_download_count'
+        ) || 0;
+
+
+      document
+        .getElementById('pdfCount')
+        .innerText = count;
+
+
+      const historyStr =
+        localStorage.getItem(
+          'apml_pdf_download_history'
+        );
+
+
+      const historyList =
+        document.getElementById(
+          'downloadHistoryList'
+        );
+
+
+      if (historyStr) {
+
+        const history =
+          JSON.parse(historyStr);
+
+
+        if (history.length > 0) {
+
+          historyList.innerHTML =
+            history.reverse().map(item => `
+
+              <li>
+
+                <span
+                  style="
+                    font-weight:bold;
+                    color:#fff7ed;
+                  "
+                >
+                  👤 ${item.name}
+                </span>
+
+                <span
+                  style="
+                    font-size:11px;
+                    color:#fdba74;
+                  "
+                >
+                  ${item.time}
+                </span>
+
+              </li>
+
+            `).join('');
+
+
+          return;
+
+        }
+
+      }
+
+
+      historyList.innerHTML = `
+
+        <li
+          style="
+            color:#a8a29e;
+            justify-content:center;
+          "
+        >
+          No downloads recorded yet
+        </li>
+
+      `;
+
+    }
+
+  </script>
+
+</body>
+</html>
